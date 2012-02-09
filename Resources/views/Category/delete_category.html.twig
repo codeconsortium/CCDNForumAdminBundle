@@ -1,0 +1,46 @@
+{% extends param('ccdn_forum_admin.category.layout_templates.delete_category') %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/ccdncomponentcommon/css/form.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}{{ 'title.category.delete'| trans({'%category_name%': category.name}, 'CCDNForumAdminBundle') }}{% endblock %}
+
+{% block sidebar %}
+	{% if is_granted('ROLE_MODERATOR') %}
+	<div class="common_box_5 bg_header_smoke">
+		<div class="common_box_header"><span class="heading_glow">{{ 'sidebar.header.special' | trans({}, 'CCDNComponentCommonBundle') }}</span></div>
+		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_moderator_forum_cp') }}">{{ 'general.view.link_moderate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_admin_forum_cp') }}">{{ 'general.view.link_administrate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% endif %}
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+
+<div class="common_box_5 bg_header_smoke">
+	<div class="common_box_header">
+		<span class="heading_glow">{{ 'title.category.delete'| trans({'%category_name%': category.name}, 'CCDNForumAdminBundle') }}</span>
+	</div>
+	<div class="common_box_panel h_align_centre v_align_middle">
+		<div class="h_align_centre v_align_middle margin_10 padding_10">
+			{{ 'category.delete.confirmation_question'  | trans({'%category_name%' : category.name }, 'CCDNForumAdminBundle') }}
+			<br /><br />
+			<a href="{{ path('cc_admin_forum_category_delete_confirmed', {'category_id': category.id })}}">{{ 'delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="{{ path('cc_admin_forum_category_index')}}">{{ 'delete.confirm_no' | trans({}, 'CCDNForumAdminBundle') }}</a>
+		</div>
+	</div>
+</div>
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% endblock %}

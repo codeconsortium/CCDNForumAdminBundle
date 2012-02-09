@@ -1,0 +1,43 @@
+{% extends param('ccdn_forum_admin.category.layout_templates.index') %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('bundles/CCDNForumForum/css/category.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}{{ 'title.category' | trans({}, 'CCDNForumAdminBundle') }}{% endblock %}
+
+{% block sidebar %}
+	{% if is_granted('ROLE_MODERATOR') %}
+	<div class="common_box_5 bg_header_smoke">
+		<div class="common_box_header"><span class="heading_glow">{{ 'sidebar.header.special' | trans({}, 'CCDNComponentCommonBundle') }}</span></div>
+		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_moderator_forum_cp') }}">{{ 'general.view.link_moderate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_admin_forum_cp') }}">{{ 'general.view.link_administrate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		{% endif %}
+	</div>
+	{% endif %}
+
+	<div class="common_box_5 bg_header_smoke">
+		<div class="common_box_header"><span class="heading_glow">{{ 'sidebar.header.tools' | trans({}, 'CCDNForumAdminBundle') }}</span></div>
+		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_admin_forum_category_create') }}">{{ 'sidebar.link.category.create' | trans({}, 'CCDNForumAdminBundle') }}</a></div>
+		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_admin_forum_board_create') }}">{{ 'sidebar.link.board.create' | trans({}, 'CCDNForumAdminBundle') }}</a></div>
+	</div>
+{% endblock %}
+
+{% block body %}
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+
+{% for category in categories %}
+	{% include "CCDNForumAdminBundle:Category:item_category.html.twig" %}
+{% else %}
+	{{ 'categories.empty' | trans({}, 'CCDNForumForumBundle') }}
+{% endfor %}
+
+{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+
+{% endblock %}

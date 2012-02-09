@@ -1,0 +1,58 @@
+sidebar.header.tools: Admin Tools
+sidebar.link.category.create: Create Category
+sidebar.link.board.create: Create Board
+
+# crumbs
+crumbs.category.index: Index
+crumbs.category.create: Create Category
+crumbs.category.edit: Edit Category %category_name%
+crumbs.category.delete: Delete Category %category_name%
+
+crumbs.board.create: Create Board
+crumbs.board.edit: Edit Board %board_name%
+crumbs.board.delete: Delete Board %board_name%
+
+title.category: Forum Admin.
+title.category.create: Create new category.
+title.category.edit: Edit category %category_name%.
+title.category.delete: Delete category %category_name%?
+title.board.create: Create new board.
+title.board.edit: Edit board %board_name%.
+title.board.delete: Delete board %board_name%?
+
+# index
+link.item.move_up: Move Up
+link.item.move_down: Move Down
+link.category.edit: Edit Category
+link.category.delete: Delete Category
+link.board.add: Add Board
+link.board.edit: Edit Board
+link.board.delete: Delete Board
+
+flash.category.create.success: 'Category Created Successfully.'
+flash.category.edit.success: 'Category Edited Successfully.'
+flash.category.delete.success: 'Category Deleted Successfully.'
+flash.category.reorder.success: 'Category Re-Ordered Successfully.'
+
+flash.board.create.success: 'Board Created Successfully.'
+flash.board.edit.success: 'Board Edited Successfully.'
+flash.board.delete.success: 'Board Deleted Successfully.'
+flash.board.reorder.success: 'Board Re-Ordered Successfully.'
+
+# category create
+form.label.category.name: 'Category Name:'
+form.button.category.create: 'Create Category'
+form.button.category.edit: 'Save Changes'
+
+form.label.board.category: 'Category: '
+form.label.board.name: 'Board Name: '
+form.label.board.description: 'Board Description: '
+form.button.board.create: 'Create Board'
+form.button.board.edit: 'Save Changes'
+
+# category delete
+category.delete.confirmation_question: Are you sure you want to delete the category %category_name%?
+board.delete.confirmation_question: Are you sure you want to delete the board %board_name%?
+
+delete.confirm_yes: Yes
+delete.confirm_no: No
