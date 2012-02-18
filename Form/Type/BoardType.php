@@ -89,6 +89,7 @@ class BoardType extends AbstractType
 	public function getDefaultOptions(array $options)
 	{
 		return array(
+            'empty_data' => new \CCDNForum\ForumBundle\Entity\Board(),
 			'data_class' => 'CCDNForum\ForumBundle\Entity\Board',
 			'csrf_protection' => true,
             'csrf_field_name' => '_token',

@@ -46,6 +46,7 @@ class CategoryType extends AbstractType
 	public function getDefaultOptions(array $options)
 	{
 		return array(
+            'empty_data' => new \CCDNForum\ForumBundle\Entity\Category(),
 			'data_class' => 'CCDNForum\ForumBundle\Entity\Category',
 			'csrf_protection' => true,
             'csrf_field_name' => '_token',
