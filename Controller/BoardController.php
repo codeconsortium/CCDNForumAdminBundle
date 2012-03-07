@@ -46,7 +46,7 @@ class BoardController extends ContainerAware
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
-		$formHandler = $this->container->get('admin.board.form.insert.handler');
+		$formHandler = $this->container->get('ccdn_forum_admin.board.form.insert.handler');
 		
 		$formHandler->setOptions(array('category_id' => $category_id));
 		$form = $formHandler->getForm();
@@ -61,7 +61,7 @@ class BoardController extends ContainerAware
 		else
 		{
 			// setup crumb trail.
-			$crumb_trail = $this->container->get('crumb_trail')
+			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 					$this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.board.create', array(), 'CCDNForumAdminBundle'), 
@@ -92,14 +92,14 @@ class BoardController extends ContainerAware
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
-		$board = $this->container->get('board.repository')->findOneById($board_id);
+		$board = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($board_id);
 
 		if ( ! $board)
 		{
 			throw new NotFoundHTTPException('No such board exists!');
 		}
 		
-		$formHandler = $this->container->get('admin.board.form.update.handler');		
+		$formHandler = $this->container->get('ccdn_forum_admin.board.form.update.handler');		
 		$formHandler->setOptions(array('board_entity' => $board));
 		
 		$form = $formHandler->getForm();
@@ -114,7 +114,7 @@ class BoardController extends ContainerAware
 		else
 		{
 			// setup crumb trail.
-			$crumb_trail = $this->container->get('crumb_trail')
+			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 					$this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.board.edit', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), 
@@ -141,7 +141,7 @@ class BoardController extends ContainerAware
 			throw new AccessDeniedException('You do not have permission to access this page!');
 		}
 			
-		$board = $this->container->get('board.repository')->findOneById($board_id);
+		$board = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($board_id);
 
 		if ( ! $board)
 		{
@@ -149,7 +149,7 @@ class BoardController extends ContainerAware
 		}
 		
 		// setup crumb trail.
-		$crumb_trail = $this->container->get('crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 				$this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 			->add($this->container->get('translator')->trans('crumbs.board.delete', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), 
@@ -175,14 +175,14 @@ class BoardController extends ContainerAware
 		}
 		
 		$doctrine = $this->container->get('doctrine');
-		$board = $this->container->get('board.repository')->findOneById($board_id);
+		$board = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($board_id);
 		
 		if ( ! $board)
 		{
 			throw new NotFoundHTTPException('No such board exists!');
 		}
 
-		$this->container->get('admin.board.manager')->remove($board)->flushNow();
+		$this->container->get('ccdn_forum_admin.board.manager')->remove($board)->flushNow();
 		
 		$this->container->get('session')->setFlash('notice', 
 			$this->container->get('translator')->trans('flash.board.delete.success', array(), 'CCDNForumAdminBundle'));
@@ -204,8 +204,8 @@ class BoardController extends ContainerAware
 		}
 		
 //		$em = $this->container->get('doctrine.orm.entity_manager');
-		$category_id = $this->container->get('board.repository')->findOneById($board_id)->getCategory()->getId();
-		$boards = $this->container->get('board.repository')->findBoardsOrderedByPriorityInCategory($category_id);
+		$category_id = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($board_id)->getCategory()->getId();
+		$boards = $this->container->get('ccdn_forum_forum.board.repository')->findBoardsOrderedByPriorityInCategory($category_id);
 
 		if ( ! $boards)
 		{
@@ -219,7 +219,7 @@ class BoardController extends ContainerAware
 			return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
 		}
 		
-		$this->container->get('admin.board.manager')->reorder($boards, $board_id, $direction)->flushNow();
+		$this->container->get('ccdn_forum_admin.board.manager')->reorder($boards, $board_id, $direction)->flushNow();
 		
 		$this->container->get('session')->setFlash('notice', 
 			$this->container->get('translator')->trans('flash.board.reorder.success', array(), 'CCDNForumAdminBundle'));

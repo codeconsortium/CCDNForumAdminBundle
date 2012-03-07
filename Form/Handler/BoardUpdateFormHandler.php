@@ -137,7 +137,7 @@ class BoardUpdateFormHandler
 	{
 		if ( ! $this->form)
 		{
-			$board = $this->container->get('admin.board.form.type');
+			$board = $this->container->get('ccdn_forum_admin.board.form.type');
 			$board->setDefaultValues(array('category' => $this->options['board_entity']->getCategory()->getId()));
 			$this->form = $this->factory->create($board, $this->options['board_entity']);
 		}

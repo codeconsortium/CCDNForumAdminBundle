@@ -137,7 +137,7 @@ class CategoryUpdateFormHandler
 	{
 		if ( ! $this->form)
 		{
-			$this->form = $this->factory->create($this->container->get('admin.category.form.type'), $this->options['category_entity']);
+			$this->form = $this->factory->create($this->container->get('ccdn_forum_admin.category.form.type'), $this->options['category_entity']);
 		}
 
 		return $this->form;

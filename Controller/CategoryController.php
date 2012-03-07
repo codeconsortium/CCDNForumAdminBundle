@@ -43,11 +43,11 @@ class CategoryController extends ContainerAware
 			throw new AccessDeniedException('You do not have permission to access this page!');
 		}
 		
-		$categories = $this->container->get('category.repository')->findAllJoinedToBoard();
+		$categories = $this->container->get('ccdn_forum_forum.category.repository')->findAllJoinedToBoard();
 		
 		$topics_per_page = $this->container->getParameter('ccdn_forum_admin.board.topics_per_page');
 		
-		$crumb_trail = $this->container->get('crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 				$this->container->get('router')->generate('cc_admin_forum_category_index'), "home");
 		
@@ -76,7 +76,7 @@ class CategoryController extends ContainerAware
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
-		$formHandler = $this->container->get('admin.category.form.insert.handler');
+		$formHandler = $this->container->get('ccdn_forum_admin.category.form.insert.handler');
 			
 		$form = $formHandler->getForm();
 		
@@ -90,7 +90,7 @@ class CategoryController extends ContainerAware
 		else
 		{
 			// setup crumb trail.
-			$crumb_trail = $this->container->get('crumb_trail')
+			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 					$this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.category.create', array(), 'CCDNForumAdminBundle'), 
@@ -121,14 +121,14 @@ class CategoryController extends ContainerAware
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
-		$category = $this->container->get('category.repository')->findOneById($category_id);
+		$category = $this->container->get('ccdn_forum_forum.category.repository')->findOneById($category_id);
 
 		if ( ! $category)
 		{
 			throw new NotFoundHTTPException('category not found!');
 		}
 		
-		$formHandler = $this->container->get('admin.category.form.update.handler');		
+		$formHandler = $this->container->get('ccdn_forum_admin.category.form.update.handler');		
 		$formHandler->setOptions(array('category_entity' => $category));
 		
 		$form = $formHandler->getForm();
@@ -143,7 +143,7 @@ class CategoryController extends ContainerAware
 		else
 		{
 			// setup crumb trail.
-			$crumb_trail = $this->container->get('crumb_trail')
+			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 					$this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.category.edit', array('%category_name%' => $category->getName()), 'CCDNForumAdminBundle'), 
@@ -170,7 +170,7 @@ class CategoryController extends ContainerAware
 			throw new AccessDeniedException('You do not have permission to access this page!');
 		}
 			
-		$category = $this->container->get('category.repository')->findOneById($category_id);
+		$category = $this->container->get('ccdn_forum_forum.category.repository')->findOneById($category_id);
 
 		if ( ! $category)
 		{
@@ -178,7 +178,7 @@ class CategoryController extends ContainerAware
 		}
 
 		// setup crumb trail.
-		$crumb_trail = $this->container->get('crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), 
 				$this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 			->add($this->container->get('translator')->trans('crumbs.category.delete', array('%category_name%' => $category->getName()), 'CCDNForumAdminBundle'),
@@ -204,14 +204,14 @@ class CategoryController extends ContainerAware
 		}
 		
 		$doctrine = $this->container->get('doctrine');
-		$category = $this->container->get('category.repository')->findOneById($category_id);
+		$category = $this->container->get('ccdn_forum_forum.category.repository')->findOneById($category_id);
 
 		if ( ! $category)
 		{
 			throw new NotFoundHTTPException('category not found!');
 		}
 			
-		$this->container->get('admin.category.manager')->remove($category)->flushNow();
+		$this->container->get('ccdn_forum_admin.category.manager')->remove($category)->flushNow();
 		
 		$this->container->get('session')->setFlash('notice', 
 			$this->container->get('translator')->trans('flash.category.delete.success', array(), 'CCDNForumAdminBundle'));
@@ -232,7 +232,7 @@ class CategoryController extends ContainerAware
 			throw new AccessDeniedException('You do not have permission to access this page!');
 		}
 		
-		$categories = $this->container->get('category.repository')->findCategoriesOrderedByPriority();
+		$categories = $this->container->get('ccdn_forum_forum.category.repository')->findCategoriesOrderedByPriority();
 		
 		if ( ! $categories)
 		{
@@ -246,7 +246,7 @@ class CategoryController extends ContainerAware
 			return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
 		}
 		
-		$this->container->get('admin.category.manager')->reorder($categories, $category_id, $direction)->flushNow();
+		$this->container->get('ccdn_forum_admin.category.manager')->reorder($categories, $category_id, $direction)->flushNow();
 		
 		$this->container->get('session')->setFlash('notice', 
 			$this->container->get('translator')->trans('flash.category.reorder.success', array(), 'CCDNForumAdminBundle'));
