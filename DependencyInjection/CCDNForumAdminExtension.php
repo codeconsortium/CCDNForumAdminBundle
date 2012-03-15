@@ -42,6 +42,7 @@ class CCDNForumAdminExtension extends Extension
         $loader->load('services.yml');
 
 		$container->setParameter('ccdn_forum_admin.template.engine', $config['template']['engine']);
+		$container->setParameter('ccdn_forum_admin.template.theme', $config['template']['theme']);
 		$container->setParameter('ccdn_forum_admin.user.profile_route', $config['user']['profile_route']);
 		
 		$this->getCategorySection($container, $config);

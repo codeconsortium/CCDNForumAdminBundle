@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('bundles/ccdncomponentcommon/css/form.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
@@ -34,9 +33,9 @@
 		<div class="h_align_centre v_align_middle margin_10 padding_10">
 			{{ 'category.delete.confirmation_question'  | trans({'%category_name%' : category.name }, 'CCDNForumAdminBundle') }}
 			<br /><br />
-			<a href="{{ path('cc_admin_forum_category_delete_confirmed', {'category_id': category.id })}}">{{ 'delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_link" href="{{ path('cc_admin_forum_category_delete_confirmed', {'category_id': category.id })}}">{{ 'delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') }}</a>
 			&nbsp;&nbsp;&nbsp;
-			<a href="{{ path('cc_admin_forum_category_index')}}">{{ 'delete.confirm_no' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_link" href="{{ path('cc_admin_forum_category_index')}}">{{ 'delete.confirm_no' | trans({}, 'CCDNForumAdminBundle') }}</a>
 		</div>
 	</div>
 </div>

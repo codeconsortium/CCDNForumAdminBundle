@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('bundles/ccdncomponentcommon/css/form.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
@@ -30,34 +29,29 @@
 	<div class="common_box_header">
 		<span class="heading_glow">{{ 'title.category.edit' | trans({'%category_name%': category.name}, 'CCDNForumAdminBundle') }}</span>
 	</div>
-	<div class="common_box_panel common_tool_strip">
+	<div class="common_box_panel">
 		<span class="common_h2">
 			<img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_board.png') }}" />
 			<a class="board_link" href="{{ path('cc_forum_category_show', {'category_id': category.getId }) }}">{{ category.getName }}</a>
 		</span>
 	</div>
 	<div class="common_box_panel">
+		{% form_theme form param('ccdn_forum_admin.template.theme') %}
 		<form action="{{ path('cc_admin_forum_category_edit', {'category_id': category.id}) }}" method="post" {{ form_enctype(form) }}>
 			{{ form_row(form._token) }}
 			<div class="errors">{{ form_errors(form) }}</div>
 			<table class="common_list">
-				<thead>
-					<th style="width: 30%;"></th>
-					<th style="width: 70%;"></th>
-				</thead>
-				<tfoot>
-				</tfoot>
 				<tbody>
 					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="h_align_right v_align_middle">{{ form_label(form.name, null, { 'label': 'form.label.category.name'| trans({}, 'CCDNForumAdminBundle') }) }}</td>
-						<td class="h_align_left v_align_middle">
+						<td class="form_label">{{ form_label(form.name, null, { 'label': 'form.label.category.name'| trans({}, 'CCDNForumAdminBundle') }) }}</td>
+						<td class="form_widget">
 							{{ form_errors(form.name) }}
 							{{ form_widget(form.name) }}
 						</td>
 					</tr>
 					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="h_align_centre v_align_middle" colspan="2">
-							<input type="submit" value="{{ 'form.button.category.edit' | trans({}, 'CCDNForumAdminBundle') }}" />
+						<td class="form_tool_strip" colspan="2">
+							<input type="submit" class="widget_submit" value="{{ 'form.button.category.edit' | trans({}, 'CCDNForumAdminBundle') }}" />
 						</td>
 					</tr>
 				</tbody>
