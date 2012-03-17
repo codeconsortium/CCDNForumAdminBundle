@@ -32,7 +32,7 @@
 	<div class="common_box_panel h_align_centre v_align_middle">
 		<div class="h_align_centre v_align_middle margin_10 padding_10">
 			{{ 'category.delete.confirmation_question'  | trans({'%category_name%' : category.name }, 'CCDNForumAdminBundle') }}
-			<br /><br />
+			<br><br>
 			<a class="button_link" href="{{ path('cc_admin_forum_category_delete_confirmed', {'category_id': category.id })}}">{{ 'delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') }}</a>
 			&nbsp;&nbsp;&nbsp;
 			<a class="button_link" href="{{ path('cc_admin_forum_category_index')}}">{{ 'delete.confirm_no' | trans({}, 'CCDNForumAdminBundle') }}</a>
