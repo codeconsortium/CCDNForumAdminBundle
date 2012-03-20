@@ -9,6 +9,8 @@ parameters:
     ccdn_forum_admin.board.form.update.handler.class:     CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler
     ccdn_forum_admin.board.form.type.class:               CCDNForum\AdminBundle\Form\Type\BoardType
     
+    ccdn_forum_admin.dashboard_integrator.class:          CCDNForum\AdminBundle\Component\Dashboard\DashboardIntegrator
+    
 services:
     ccdn_forum_admin.category.form.type:
         class:  %ccdn_forum_admin.category.form.type.class%
@@ -35,3 +37,10 @@ services:
     ccdn_forum_admin.board.form.update.handler:
         class:  %ccdn_forum_admin.board.form.update.handler.class%
         arguments:  [@form.factory, @service_container, @ccdn_forum_admin.board.manager]
+        
+        
+    ccdn_forum_admin.dashboard_integrator:
+        class: %ccdn_forum_admin.dashboard_integrator.class%
+        arguments: [@service_container]
+        tags:
+            - { name: ccdn_component_dashboard.registry }

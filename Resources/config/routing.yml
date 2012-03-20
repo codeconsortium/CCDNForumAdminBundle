@@ -3,10 +3,8 @@
 #    defaults: { _controller: CCDNForumAdminBundle:Default:index }
 #
 cc_admin_forum_cp:
-    pattern: /{_locale}/admin/forum/category/index
-    defaults: { _controller: CCDNForumAdminBundle:Category:index, _locale: en }
-    requirements:
-        _locale: en
+    pattern: /{_locale}/dashboard/admin
+    defaults: { _controller: CCDNComponentDashboardBundle:Dashboard:show, _locale: en }
 
 ##### CATEGORY
 cc_admin_forum_category_index:
