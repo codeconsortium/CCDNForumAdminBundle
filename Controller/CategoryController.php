@@ -48,6 +48,8 @@ class CategoryController extends ContainerAware
 		$topics_per_page = $this->container->getParameter('ccdn_forum_admin.board.topics_per_page');
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home");
 		
 		return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Category:index.html.' . $this->getEngine(), array(
@@ -87,6 +89,8 @@ class CategoryController extends ContainerAware
 		{
 			// setup crumb trail.
 			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.category.create', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_create'), "edit");
 					
@@ -134,6 +138,8 @@ class CategoryController extends ContainerAware
 		{
 			// setup crumb trail.
 			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.category.edit', array('%category_name%' => $category->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_edit', array('category_id' => $category_id)), "edit");
 					
@@ -167,6 +173,8 @@ class CategoryController extends ContainerAware
 
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 			->add($this->container->get('translator')->trans('crumbs.category.delete', array('%category_name%' => $category->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_delete', array('category_id' => $category->getId())), "trash");
 		
