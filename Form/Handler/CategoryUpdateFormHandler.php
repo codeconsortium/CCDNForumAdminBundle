@@ -61,7 +61,7 @@ class CategoryUpdateFormHandler
 	 *
 	 * @access protected
 	 */
-	protected $options;
+	protected $defaults = array();
 	
 	
 	/**
@@ -78,7 +78,7 @@ class CategoryUpdateFormHandler
 	 */
 	public function __construct(FormFactory $factory, ContainerInterface $container, EntityManagerInterface $manager)
 	{
-		$this->options = array();
+		$this->defaults = array();
 		$this->factory = $factory;
 		$this->container = $container;
 		$this->manager = $manager;
@@ -93,9 +93,9 @@ class CategoryUpdateFormHandler
 	 * @param Array() $options
 	 * @return $this
 	 */
-	public function setOptions(array $options = null )
+	public function setDefaultValues(array $defaults = null)
 	{
-		$this->options = $options;
+		$this->defaults = array_merge($this->defaults, $defaults);
 		
 		return $this;
 	}
@@ -137,7 +137,7 @@ class CategoryUpdateFormHandler
 	{
 		if ( ! $this->form)
 		{
-			$this->form = $this->factory->create($this->container->get('ccdn_forum_admin.category.form.type'), $this->options['category_entity']);
+			$this->form = $this->factory->create($this->container->get('ccdn_forum_admin.category.form.type'), $this->defaults['category_entity']);
 		}
 
 		return $this->form;

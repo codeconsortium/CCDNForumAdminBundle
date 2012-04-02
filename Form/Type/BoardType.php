@@ -36,7 +36,7 @@ class BoardType extends AbstractType
 	 *
 	 * @access protected
 	 */
-	protected $defaults;
+	protected $defaults = array();
 	
 	
 	/**
@@ -73,9 +73,11 @@ class BoardType extends AbstractType
 	 * @access public
 	 * @param Array() $defaults
 	 */
-	public function setDefaultValues($defaults)
+	public function setDefaultValues(array $defaults = null)
 	{
-		$this->defaults = $defaults;
+		$this->defaults = array_merge($this->defaults, $defaults);
+		
+		return $this;
 	}
 	
 	

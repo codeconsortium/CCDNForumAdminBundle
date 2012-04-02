@@ -61,7 +61,7 @@ class BoardUpdateFormHandler
 	 *
 	 * @access protected
 	 */
-	protected $options;
+	protected $defaults = array();
 	
 	
 	/**
@@ -78,7 +78,7 @@ class BoardUpdateFormHandler
 	 */
 	public function __construct(FormFactory $factory, ContainerInterface $container, EntityManagerInterface $manager)
 	{
-		$this->options = array();
+		$this->defaults = array();
 		$this->factory = $factory;
 		$this->container = $container;
 		$this->manager = $manager;
@@ -93,9 +93,9 @@ class BoardUpdateFormHandler
 	 * @param Array() $options
 	 * @return $this
 	 */
-	public function setOptions(array $options = null )
+	public function setDefaultValues(array $defaults = null)
 	{
-		$this->options = $options;
+		$this->defaults = array_merge($this->defaults, $defaults);
 		
 		return $this;
 	}
@@ -138,8 +138,8 @@ class BoardUpdateFormHandler
 		if ( ! $this->form)
 		{
 			$board = $this->container->get('ccdn_forum_admin.board.form.type');
-			$board->setDefaultValues(array('category' => $this->options['board_entity']->getCategory()->getId()));
-			$this->form = $this->factory->create($board, $this->options['board_entity']);
+			$board->setDefaultValues(array('category' => $this->defaults['board_entity']->getCategory()->getId()));
+			$this->form = $this->factory->create($board, $this->defaults['board_entity']);
 		}
 
 		return $this->form;

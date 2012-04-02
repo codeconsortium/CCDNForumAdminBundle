@@ -61,7 +61,7 @@ class CategoryInsertFormHandler
 	 *
 	 * @access protected
 	 */
-	protected $options;
+	protected $defaults = array();
 	
 	
 	/**
@@ -78,7 +78,7 @@ class CategoryInsertFormHandler
 	 */
 	public function __construct(FormFactory $factory, ContainerInterface $container, EntityManagerInterface $manager)
 	{
-		$this->options = array();
+		$this->defaults = array();
 		$this->factory = $factory;
 		$this->container = $container;
 		$this->manager = $manager;
@@ -93,9 +93,9 @@ class CategoryInsertFormHandler
 	 * @param Array() $options
 	 * @return $this
 	 */
-	public function setOptions(array $options = null )
+	public function setDefaultValues(array $defaults = null)
 	{
-		$this->options = $options;
+		$this->defaults = array_merge($this->defaults, $defaults);
 		
 		return $this;
 	}

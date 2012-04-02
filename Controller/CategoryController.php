@@ -126,7 +126,7 @@ class CategoryController extends ContainerAware
 			throw new NotFoundHTTPException('category not found!');
 		}
 		
-		$formHandler = $this->container->get('ccdn_forum_admin.category.form.update.handler')->setOptions(array('category_entity' => $category));
+		$formHandler = $this->container->get('ccdn_forum_admin.category.form.update.handler')->setDefaultValues(array('category_entity' => $category));
 		
 		if ($formHandler->process())	
 		{

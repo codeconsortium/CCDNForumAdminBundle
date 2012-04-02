@@ -46,7 +46,7 @@ class BoardController extends ContainerAware
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
-		$formHandler = $this->container->get('ccdn_forum_admin.board.form.insert.handler')->setOptions(array('category_id' => $category_id));
+		$formHandler = $this->container->get('ccdn_forum_admin.board.form.insert.handler')->setDefaultValues(array('category_id' => $category_id));
 		
 		if ($formHandler->process())	
 		{
@@ -95,7 +95,7 @@ class BoardController extends ContainerAware
 			throw new NotFoundHTTPException('No such board exists!');
 		}
 		
-		$formHandler = $this->container->get('ccdn_forum_admin.board.form.update.handler')->setOptions(array('board_entity' => $board));
+		$formHandler = $this->container->get('ccdn_forum_admin.board.form.update.handler')->setDefaultValues(array('board_entity' => $board));
 				
 		if ($formHandler->process())	
 		{	
