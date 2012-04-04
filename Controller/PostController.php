@@ -46,7 +46,7 @@ class PostController extends ContainerAware
 
 		$user = $this->container->get('security.context')->getToken()->getUser();
 
-		$posts_paginated = $this->container->get('ccdn_forum_forum.post.repository')->findLockedPostsForModeratorsPaginated();
+		$posts_paginated = $this->container->get('ccdn_forum_forum.post.repository')->findDeletedPostsForAdminsPaginated();
 			
 		$posts_per_page = $this->container->getParameter('ccdn_forum_moderator.post.posts_per_page');
 		$posts_paginated->setMaxPerPage($posts_per_page);
