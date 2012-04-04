@@ -2,6 +2,9 @@ sidebar.header.tools: Admin Tools
 sidebar.link.category.create: Create Category
 sidebar.link.board.create: Create Board
 
+sidebar.link.topics.deleted: 'Deleted Topics'
+sidebar.link.posts.deleted: 'Deleted Posts'
+
 # crumbs
 crumbs.category.index: Index
 crumbs.category.create: Create Category
@@ -12,6 +15,9 @@ crumbs.board.create: Create Board
 crumbs.board.edit: Edit Board %board_name%
 crumbs.board.delete: Delete Board %board_name%
 
+crumbs.topic.deleted: 'Deleted Topics'
+crumbs.post.deleted: 'Deleted Posts'
+
 title.category: Forum Admin.
 title.category.create: Create new category.
 title.category.edit: Edit category %category_name%.
@@ -19,6 +25,8 @@ title.category.delete: Delete category %category_name%?
 title.board.create: Create new board.
 title.board.edit: Edit board %board_name%.
 title.board.delete: Delete board %board_name%?
+title.topic.deleted: 'Deleted Topics'
+title.post.deleted: 'Deleted Posts'
 
 # index
 link.item.move_up: Move Up

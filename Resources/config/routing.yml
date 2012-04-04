@@ -6,7 +6,9 @@ cc_admin_forum_cp:
     pattern: /{_locale}/dashboard/admin
     defaults: { _controller: CCDNComponentDashboardBundle:Dashboard:show, _locale: en }
 
-##### CATEGORY
+#
+# Category Management.
+#
 cc_admin_forum_category_index:
     pattern: /{_locale}/admin/forum/category/index
     defaults: { _controller: CCDNForumAdminBundle:Category:index, _locale: en }
@@ -49,7 +51,9 @@ cc_admin_forum_category_move_down_priority:
     requirements:
         _locale: en
 
-##### BOARD
+#
+# Board Management.
+#
 cc_admin_forum_board_create:
     pattern: /{_locale}/admin/forum/board/create
     defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en, category_id: 1 }
@@ -91,3 +95,33 @@ cc_admin_forum_board_move_down_priority:
    defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'down' }
    requirements:
        _locale: en
+       
+#
+# Topic Management.
+#
+cc_admin_forum_topic_deleted_show:
+    pattern: /{_locale}/admin/forum/topics/deleted/show
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showTrashed, _locale: en, page: 1 }
+
+cc_admin_forum_topic_deleted_show_paginated:
+    pattern: /{_locale}/admin/forum/topics/deleted/show/page/{page}
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showTrashed, _locale: en, page: 1 }
+
+cc_admin_forum_topics_bulk_action:
+    pattern: /{_locale}/admin/forum/topics/deleted/bulk/action
+    defaults: { _controller: CCDNForumAdminBundle:Topic:bulk, _locale: en }
+
+#
+# Post Management.
+#
+cc_admin_forum_post_deleted_show:
+   pattern: /{_locale}/admin/forum/posts/deleted/show
+   defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
+
+cc_admin_forum_post_deleted_show_paginated:
+   pattern: /{_locale}/admin/forum/posts/deleted/show/page/{page}
+   defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
+
+cc_admin_forum_post_bulk_action:
+   pattern: /{_locale}/admin/forum/posts/deleted/bulk/action
+   defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }

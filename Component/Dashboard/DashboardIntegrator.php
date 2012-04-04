@@ -44,6 +44,8 @@ class DashboardIntegrator extends BaseIntegrator implements IntegratorInterface
 			'admin' => array(
 				'Forum Administration' => array(
 					'cc_admin_forum_category_index' => array('auth' => 'ROLE_ADMIN', 'url' => $this->baseUrl . '/' . $this->locale . '/admin/forum/category/index', 'name' => 'Edit Categories', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_category.png'),
+					'cc_admin_forum_topics_deleted' => array('auth' => 'ROLE_ADMIN', 'url' => $this->baseUrl . '/' . $this->locale . '/admin/forum/topics/deleted/show', 'name' => 'Deleted Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
+					'cc_admin_forum_posts_deleted' => array('auth' => 'ROLE_ADMIN', 'url' => $this->baseUrl . '/' . $this->locale . '/admin/forum/posts/deleted/show', 'name' => 'Deleted Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
 				),
 			),
 
