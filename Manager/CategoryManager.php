@@ -11,17 +11,17 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNForum\AdminBundle\Entity\Manager;
+namespace CCDNForum\AdminBundle\Manager;
 
-use CCDNComponent\CommonBundle\Entity\Manager\EntityManagerInterface;
-use CCDNComponent\CommonBundle\Entity\Manager\BaseManager;
+use CCDNComponent\CommonBundle\Manager\ManagerInterface;
+use CCDNComponent\CommonBundle\Manager\BaseManager;
 
 /**
  * 
  * @author Reece Fowell <reece@codeconsortium.com> 
  * @version 1.0
  */
-class CategoryManager extends BaseManager implements EntityManagerInterface
+class CategoryManager extends BaseManager implements ManagerInterface
 {
 	
 		

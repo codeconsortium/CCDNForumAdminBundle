@@ -1,7 +1,7 @@
 parameters:
     
-    ccdn_forum_admin.category.manager.class:              CCDNForum\AdminBundle\Entity\Manager\CategoryManager
-    ccdn_forum_admin.board.manager.class:                 CCDNForum\AdminBundle\Entity\Manager\BoardManager
+    ccdn_forum_admin.category.manager.class:              CCDNForum\AdminBundle\Manager\CategoryManager
+    ccdn_forum_admin.board.manager.class:                 CCDNForum\AdminBundle\Manager\BoardManager
     
     ccdn_forum_admin.category.form.type.class:            CCDNForum\AdminBundle\Form\Type\CategoryType
     ccdn_forum_admin.category.form.insert.handler.class:  CCDNForum\AdminBundle\Form\Handler\CategoryInsertFormHandler
