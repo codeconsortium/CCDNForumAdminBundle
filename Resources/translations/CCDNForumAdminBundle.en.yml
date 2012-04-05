@@ -6,6 +6,9 @@ sidebar.link.topics.deleted: 'Deleted Topics'
 sidebar.link.posts.deleted: 'Deleted Posts'
 
 # crumbs
+crumbs.dashboard: 'Dashboard'
+crumbs.dashboard.admin: 'Admin Panel'
+
 crumbs.category.index: Index
 crumbs.category.create: Create Category
 crumbs.category.edit: Edit Category %category_name%

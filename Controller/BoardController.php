@@ -17,7 +17,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-//use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -58,8 +57,8 @@ class BoardController extends ContainerAware
 		{
 			// setup crumb trail.
 			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
-				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
-				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
+				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.board.create', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_board_create'), "edit");
 					
@@ -107,8 +106,8 @@ class BoardController extends ContainerAware
 		{
 			// setup crumb trail.
 			$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
-				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
-				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
+				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.board.edit', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_board_edit', array('board_id' => $board_id)), "edit");
 					
@@ -142,8 +141,8 @@ class BoardController extends ContainerAware
 		
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
-			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNUserAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
+			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 			->add($this->container->get('translator')->trans('crumbs.board.delete', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_board_delete', array('board_id' => $board->getId())), "trash");
 		

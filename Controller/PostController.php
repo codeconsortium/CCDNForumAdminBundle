@@ -17,7 +17,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-//use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -54,8 +53,8 @@ class PostController extends ContainerAware
 		
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
-			->add('Dashboard', $this->container->get('router')->generate('cc_dashboard_index'), 'sitemap')
-			->add('Admin', $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), 'sitemap')
+			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
+			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.post.deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_post_deleted_show'), "trash");
 				
 		return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.' . $this->getEngine(), array(
