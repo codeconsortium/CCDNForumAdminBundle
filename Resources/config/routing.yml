@@ -1,7 +1,3 @@
-#CCDNForumAdminBundle_homepage:
-#    pattern:  /hello/{name}
-#    defaults: { _controller: CCDNForumAdminBundle:Default:index }
-#
 cc_admin_forum_cp:
     pattern: /{_locale}/dashboard/admin
     defaults: { _controller: CCDNComponentDashboardBundle:Dashboard:show, _locale: en }
@@ -12,44 +8,30 @@ cc_admin_forum_cp:
 cc_admin_forum_category_index:
     pattern: /{_locale}/admin/forum/category/index
     defaults: { _controller: CCDNForumAdminBundle:Category:index, _locale: en }
-    requirements:
-        _locale: en
 
 cc_admin_forum_category_create:
     pattern: /{_locale}/admin/forum/category/create
     defaults: { _controller: CCDNForumAdminBundle:Category:create, _locale: en }
-    requirements:
-        _locale: en
 
 cc_admin_forum_category_edit:
-    pattern: /{_locale}/admin/forum/category/edit/{category_id}
+    pattern: /{_locale}/admin/forum/category/{category_id}/edit
     defaults: { _controller: CCDNForumAdminBundle:Category:edit, _locale: en }
-    requirements:
-        _locale: en
 
 cc_admin_forum_category_delete:
-    pattern: /{_locale}/admin/forum/category/delete/{category_id}
+    pattern: /{_locale}/admin/forum/category/{category_id}/delete
     defaults: { _controller: CCDNForumAdminBundle:Category:delete, _locale: en }
-    requirements:
-        _locale: en   
 
 cc_admin_forum_category_delete_confirmed:
-    pattern: /{_locale}/admin/forum/category/delete/{category_id}/confirmed
+    pattern: /{_locale}/admin/forum/category/{category_id}/confirmed/delete
     defaults: { _controller: CCDNForumAdminBundle:Category:deleteConfirmed, _locale: en }
-    requirements:
-        _locale: en
    
 cc_admin_forum_category_move_up_priority:
     pattern: /{_locale}/admin/forum/category/{category_id}/reorder/up
     defaults: { _controller: CCDNForumAdminBundle:Category:reorder, _locale: en, direction: 'up' }
-    requirements:
-        _locale: en
         
 cc_admin_forum_category_move_down_priority:
     pattern: /{_locale}/admin/forum/category/{category_id}/reorder/down
     defaults: { _controller: CCDNForumAdminBundle:Category:reorder, _locale: en, direction: 'down' }
-    requirements:
-        _locale: en
 
 #
 # Board Management.
@@ -57,44 +39,30 @@ cc_admin_forum_category_move_down_priority:
 cc_admin_forum_board_create:
     pattern: /{_locale}/admin/forum/board/create
     defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en, category_id: 1 }
-    requirements:
-        _locale: en
 
 cc_admin_forum_board_create_on_category:
     pattern: /{_locale}/admin/forum/board/create/on/category/{category_id}
     defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en }
-    requirements:
-        _locale: en
                 
 cc_admin_forum_board_edit:
-    pattern: /{_locale}/admin/forum/board/edit/{board_id}
+    pattern: /{_locale}/admin/forum/board/{board_id}/edit
     defaults: { _controller: CCDNForumAdminBundle:Board:edit, _locale: en }
-    requirements:
-        _locale: en
     
 cc_admin_forum_board_delete:
-    pattern: /{_locale}/admin/forum/board/delete/{board_id}
+    pattern: /{_locale}/admin/forum/board/{board_id}/delete
     defaults: { _controller: CCDNForumAdminBundle:Board:delete, _locale: en }
-    requirements:
-        _locale: en
 
 cc_admin_forum_board_delete_confirmed:
-    pattern: /{_locale}/admin/forum/board/delete/{board_id}/confirmed
+    pattern: /{_locale}/admin/forum/board/{board_id}/delete/confirmed
     defaults: { _controller: CCDNForumAdminBundle:Board:deleteConfirmed, _locale: en }
-    requirements:
-        _locale: en
 
 cc_admin_forum_board_move_up_priority:
-   pattern: /{_locale}/admin/forum/board/{board_id}/reorder/up
-   defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'up' }
-   requirements:
-       _locale: en
+    pattern: /{_locale}/admin/forum/board/{board_id}/reorder/up
+    defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'up' }
 
 cc_admin_forum_board_move_down_priority:
-   pattern: /{_locale}/admin/forum/board/{board_id}/reorder/down
-   defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'down' }
-   requirements:
-       _locale: en
+    pattern: /{_locale}/admin/forum/board/{board_id}/reorder/down
+    defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'down' }
        
 #
 # Topic Management.
@@ -115,13 +83,13 @@ cc_admin_forum_topics_bulk_action:
 # Post Management.
 #
 cc_admin_forum_post_deleted_show:
-   pattern: /{_locale}/admin/forum/posts/deleted/show
-   defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
+    pattern: /{_locale}/admin/forum/posts/deleted/show
+    defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
 
 cc_admin_forum_post_deleted_show_paginated:
-   pattern: /{_locale}/admin/forum/posts/deleted/show/page/{page}
-   defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
+    pattern: /{_locale}/admin/forum/posts/deleted/show/page/{page}
+    defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
 
 cc_admin_forum_post_bulk_action:
-   pattern: /{_locale}/admin/forum/posts/deleted/bulk/action
-   defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }
+    pattern: /{_locale}/admin/forum/posts/deleted/bulk/action
+    defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }

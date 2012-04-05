@@ -1,23 +1,36 @@
 parameters:
+    
     ccdn_forum_admin.category.manager.class:              CCDNForum\AdminBundle\Entity\Manager\CategoryManager
+    ccdn_forum_admin.board.manager.class:                 CCDNForum\AdminBundle\Entity\Manager\BoardManager
+    
+    ccdn_forum_admin.category.form.type.class:            CCDNForum\AdminBundle\Form\Type\CategoryType
     ccdn_forum_admin.category.form.insert.handler.class:  CCDNForum\AdminBundle\Form\Handler\CategoryInsertFormHandler
     ccdn_forum_admin.category.form.update.handler.class:  CCDNForum\AdminBundle\Form\Handler\CategoryUpdateFormHandler
-    ccdn_forum_admin.category.form.type.class:            CCDNForum\AdminBundle\Form\Type\CategoryType
                     
-    ccdn_forum_admin.board.manager.class:                 CCDNForum\AdminBundle\Entity\Manager\BoardManager
+    ccdn_forum_admin.board.form.type.class:               CCDNForum\AdminBundle\Form\Type\BoardType    
     ccdn_forum_admin.board.form.insert.handler.class:     CCDNForum\AdminBundle\Form\Handler\BoardInsertFormHandler
     ccdn_forum_admin.board.form.update.handler.class:     CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler
-    ccdn_forum_admin.board.form.type.class:               CCDNForum\AdminBundle\Form\Type\BoardType
     
     ccdn_forum_admin.dashboard.integrator.class:          CCDNForum\AdminBundle\Component\Dashboard\DashboardIntegrator
     
 services:
-    ccdn_forum_admin.category.form.type:
-        class:  %ccdn_forum_admin.category.form.type.class%
-        arguments:  [@doctrine]        
+
+    #
+    # Managers.
+    #
     ccdn_forum_admin.category.manager:
         class:  %ccdn_forum_admin.category.manager.class%
         arguments:  [@doctrine, @service_container]              
+    ccdn_forum_admin.board.manager:
+        class:  %ccdn_forum_admin.board.manager.class%
+        arguments:  [@doctrine, @service_container]   
+
+    #
+    # Category Forms.
+    #
+    ccdn_forum_admin.category.form.type:
+        class:  %ccdn_forum_admin.category.form.type.class%
+        arguments:  [@doctrine]        
     ccdn_forum_admin.category.form.insert.handler:
         class:  %ccdn_forum_admin.category.form.insert.handler.class%
         arguments:  [@form.factory, @service_container, @ccdn_forum_admin.category.manager]
@@ -25,12 +38,12 @@ services:
         class:  %ccdn_forum_admin.category.form.update.handler.class%
         arguments:  [@form.factory, @service_container, @ccdn_forum_admin.category.manager]
         
+    #
+    # Board Forms.
+    #
     ccdn_forum_admin.board.form.type:
         class:  %ccdn_forum_admin.board.form.type.class%
         arguments:  [@doctrine]        
-    ccdn_forum_admin.board.manager:
-        class:  %ccdn_forum_admin.board.manager.class%
-        arguments:  [@doctrine, @service_container]   
     ccdn_forum_admin.board.form.insert.handler:
         class:  %ccdn_forum_admin.board.form.insert.handler.class%
         arguments:  [@form.factory, @service_container, @ccdn_forum_admin.board.manager]
@@ -38,7 +51,9 @@ services:
         class:  %ccdn_forum_admin.board.form.update.handler.class%
         arguments:  [@form.factory, @service_container, @ccdn_forum_admin.board.manager]
         
-        
+    #
+    # Dashboard Integrator.
+    #
     ccdn_forum_admin.dashboard.integrator:
         class: %ccdn_forum_admin.dashboard.integrator.class%
         arguments: [@service_container]
