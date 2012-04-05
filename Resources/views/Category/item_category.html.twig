@@ -15,7 +15,7 @@
 			<a class="button_link" href="{{ path('cc_admin_forum_category_move_down_priority', {'category_id': category.getId }) }}">{{ 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') }}</a>
 		</div>
 	</div>
-	<div class="common_box_panel">
+	<div class="common_table_panel">
 		<table class="common_list">
 			<tbody>
 			{% for row, board in category.boards %}
