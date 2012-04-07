@@ -21,15 +21,15 @@ crumbs.board.delete: Delete Board %board_name%
 crumbs.topic.deleted: 'Deleted Topics'
 crumbs.post.deleted: 'Deleted Posts'
 
-title.category: Forum Admin.
-title.category.create: Create new category.
-title.category.edit: Edit category %category_name%.
-title.category.delete: Delete category %category_name%?
-title.board.create: Create new board.
-title.board.edit: Edit board %board_name%.
-title.board.delete: Delete board %board_name%?
-title.topic.deleted: 'Deleted Topics'
-title.post.deleted: 'Deleted Posts'
+title.category: 'Forum Admin.'
+title.category.create: 'Create new category.'
+title.category.edit: 'Edit category %category_name%.'
+title.category.delete: 'Delete category %category_name%?'
+title.board.create: 'Create new board.'
+title.board.edit: 'Edit board %board_name%.'
+title.board.delete: 'Delete board %board_name%?'
+title.topic.deleted: 'Deleted Topics.'
+title.post.deleted: 'Deleted Posts.'
 
 # index
 link.item.move_up: Move Up
@@ -67,3 +67,6 @@ board.delete.confirmation_question: Are you sure you want to delete the board %b
 
 delete.confirm_yes: Yes
 delete.confirm_no: No
+
+posts.deleted.table.empty: 'There are no deleted posts.'
+topics.deleted.table.empty: 'There are no deleted topics.'
