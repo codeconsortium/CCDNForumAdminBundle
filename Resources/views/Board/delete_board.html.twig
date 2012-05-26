@@ -30,7 +30,7 @@
 	</div>
 	
 	<div class="section_panel h_align_centre v_align_middle">
-		<div class="h_align_centre v_align_middle margin_10 padding_10">	
+		<div class="">	
 			{{ 'board.delete.confirmation_question' | trans({'%board_name%': board.name }, 'CCDNForumAdminBundle') }}
 			<br><br>
 			<a class="button_link" href="{{ path('cc_admin_forum_board_delete_confirmed', {'board_id': board.id })}}">{{ 'delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') }}</a>
