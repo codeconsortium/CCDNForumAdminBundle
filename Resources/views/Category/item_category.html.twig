@@ -1,8 +1,4 @@
-<div class="section_wrap_square">
-	<div class="section_header">
-		<h2>{{ category.name }}</h2>
-	</div>
-	
+<div class="section_wrap_standalone">	
 	<div class="section_tool_strip">
 		<div class="float_left">
 			<h2>
@@ -11,11 +7,11 @@
 			</h2>
 		</div>
 		<div class="float_right">
-			<a class="button_link" href="{{ path('cc_admin_forum_category_edit', {'category_id': category.getId }) }}">{{ 'link.category.edit' | trans({}, 'CCDNForumAdminBundle') }}</a>
-			<a class="button_link" href="{{ path('cc_admin_forum_category_delete', {'category_id': category.getId }) }}">{{ 'link.category.delete' | trans({}, 'CCDNForumAdminBundle') }}</a>
-			<a class="button_link" href="{{ path('cc_admin_forum_board_create_on_category', {'category_id': category.getId }) }}">{{ 'link.board.add' | trans({}, 'CCDNForumAdminBundle') }}</a>
-			<a class="button_link" href="{{ path('cc_admin_forum_category_move_up_priority', {'category_id': category.getId }) }}">{{ 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') }}</a>
-			<a class="button_link" href="{{ path('cc_admin_forum_category_move_down_priority', {'category_id': category.getId }) }}">{{ 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_red" href="{{ path('cc_admin_forum_category_edit', {'category_id': category.getId }) }}">{{ 'link.category.edit' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_red" href="{{ path('cc_admin_forum_category_delete', {'category_id': category.getId }) }}">{{ 'link.category.delete' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_red" href="{{ path('cc_admin_forum_board_create_on_category', {'category_id': category.getId }) }}">{{ 'link.board.add' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_red" href="{{ path('cc_admin_forum_category_move_up_priority', {'category_id': category.getId }) }}">{{ 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<a class="button_red" href="{{ path('cc_admin_forum_category_move_down_priority', {'category_id': category.getId }) }}">{{ 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') }}</a>
 		</div>
 	</div>
 	<div class="section_table_panel">
