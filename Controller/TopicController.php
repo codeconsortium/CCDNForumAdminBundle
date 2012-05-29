@@ -126,21 +126,25 @@ class TopicController extends ContainerAware
 		
 		if (isset($_POST['submit_close']))
 		{
-			$this->container->get('ccdn_forum_forum.topic.manager')->bulkClose($topics)->flushNow();
+			$this->container->get('ccdn_forum_admin.topic.manager')->bulkClose($topics)->flushNow();
 		}
 		if (isset($_POST['submit_reopen']))
 		{
-			$this->container->get('ccdn_forum_forum.topic.manager')->bulkReopen($topics)->flushNow();
+			$this->container->get('ccdn_forum_admin.topic.manager')->bulkReopen($topics)->flushNow();
 		}
 		if (isset($_POST['submit_restore']))
 		{
-			$this->container->get('ccdn_forum_forum.topic.manager')->bulkRestore($topics)->flushNow();
+			$this->container->get('ccdn_forum_admin.topic.manager')->bulkRestore($topics)->flushNow();
 		}
-		if (isset($_POST['submit_delete']))
+		if (isset($_POST['submit_soft_delete']))
 		{
-			$this->container->get('ccdn_forum_forum.topic.manager')->bulkHardDelete($topics)->flushNow();
+			$this->container->get('ccdn_forum_admin.topic.manager')->bulkSoftDelete($topics, $user)->flushNow();
 		}
-
+		if (isset($_POST['submit_hard_delete']))
+		{
+			$this->container->get('ccdn_forum_admin.topic.manager')->bulkHardDelete($topics)->flushNow();
+		}
+		
 		return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_topic_deleted_show'));
 	}
 

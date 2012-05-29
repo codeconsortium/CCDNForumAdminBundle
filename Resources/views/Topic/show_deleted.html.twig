@@ -44,10 +44,11 @@
 <div class="section_wrap_standalone">	
 	<form method="POST" action="{{ path('cc_admin_forum_topics_bulk_action') }}">
 	<div class="section_tool_strip">
-		<input type="submit" class="button_blue" value="{{ 'link.topic.close' |trans({}, 'CCDNForumModeratorBundle') }}" name="submit_close">
-		<input type="submit" class="button_blue" value="{{ 'link.topic.reopen' |trans({}, 'CCDNForumModeratorBundle') }}" name="submit_reopen">
-		<input type="submit" class="button_blue" value="{{ 'link.topic.restore' |trans({}, 'CCDNForumModeratorBundle') }}" name="submit_restore">
-		<input type="submit" class="button_red" value="{{ 'link.topic.delete' |trans({}, 'CCDNForumModeratorBundle') }}" name="submit_delete">
+		<input type="submit" class="button_blue" value="{{ 'link.topic.close' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_close">
+		<input type="submit" class="button_blue" value="{{ 'link.topic.reopen' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_reopen">
+		<input type="submit" class="button_blue" value="{{ 'link.topic.restore' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_restore">
+		<input type="submit" class="button_blue" value="{{ 'link.topic.delete.soft' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_soft_delete">
+		<input type="submit" class="button_red" value="{{ 'link.topic.delete.hard' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_hard_delete">
 	</div>
 	{% if pager.haveToPaginate %}
 	<div class="pagerfanta">

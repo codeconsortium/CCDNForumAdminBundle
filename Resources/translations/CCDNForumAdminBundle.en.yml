@@ -34,11 +34,25 @@ title.post.deleted: 'Deleted Posts.'
 # index
 link.item.move_up: Move Up
 link.item.move_down: Move Down
+
 link.category.edit: Edit Category
 link.category.delete: Delete Category
+
 link.board.add: Add Board
 link.board.edit: Edit Board
 link.board.delete: Delete Board
+
+link.topic.close: Close
+link.topic.reopen: 'Re-Open'
+link.topic.restore: Restore
+link.topic.delete.soft: 'Soft Delete'
+link.topic.delete.hard: 'Hard Delete'
+
+link.post.lock: 'Lock'
+link.post.unlock: 'Unlock'
+link.post.restore: 'Restore'
+link.post.delete.soft: 'Soft Delete'
+link.post.delete.hard: 'Hard Delete'
 
 flash.category.create.success: 'Category Created Successfully.'
 flash.category.edit.success: 'Category Edited Successfully.'

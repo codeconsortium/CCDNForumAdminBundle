@@ -25,6 +25,7 @@ class BoardManager extends BaseManager implements ManagerInterface
 {
 	
 	
+	
 	/**
 	 *
 	 * @access public
@@ -55,6 +56,7 @@ class BoardManager extends BaseManager implements ManagerInterface
 	}	
 	
 	
+	
 	/**
 	 *
 	 * @access public
@@ -68,6 +70,7 @@ class BoardManager extends BaseManager implements ManagerInterface
 		
 		return $this;
 	}
+	
 	
 	
 	/**

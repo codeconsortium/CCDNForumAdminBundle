@@ -2,6 +2,8 @@ parameters:
     
     ccdn_forum_admin.category.manager.class:              CCDNForum\AdminBundle\Manager\CategoryManager
     ccdn_forum_admin.board.manager.class:                 CCDNForum\AdminBundle\Manager\BoardManager
+    ccdn_forum_admin.topic.manager.class:                 CCDNForum\AdminBundle\Manager\TopicManager
+    ccdn_forum_admin.post.manager.class:                  CCDNForum\AdminBundle\Manager\PostManager
     
     ccdn_forum_admin.category.form.type.class:            CCDNForum\AdminBundle\Form\Type\CategoryType
     ccdn_forum_admin.category.form.insert.handler.class:  CCDNForum\AdminBundle\Form\Handler\CategoryInsertFormHandler
@@ -24,7 +26,13 @@ services:
     ccdn_forum_admin.board.manager:
         class:  %ccdn_forum_admin.board.manager.class%
         arguments:  [@doctrine, @service_container]   
-
+    ccdn_forum_admin.topic.manager:
+        class: %ccdn_forum_admin.topic.manager.class%
+        arguments:  [@doctrine, @service_container]
+    ccdn_forum_admin.post.manager:
+        class: %ccdn_forum_admin.post.manager.class%
+        arguments:  [@doctrine, @service_container]
+        
     #
     # Category Forms.
     #

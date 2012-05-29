@@ -24,7 +24,8 @@ use CCDNComponent\CommonBundle\Manager\BaseManager;
 class CategoryManager extends BaseManager implements ManagerInterface
 {
 	
-		
+
+	
 	/**
 	 *
 	 * @access public
@@ -53,6 +54,7 @@ class CategoryManager extends BaseManager implements ManagerInterface
 	}	
 	
 	
+	
 	/**
 	 *
 	 * @access public
@@ -66,6 +68,7 @@ class CategoryManager extends BaseManager implements ManagerInterface
 		
 		return $this;
 	}
+	
 	
 	
 	/**
