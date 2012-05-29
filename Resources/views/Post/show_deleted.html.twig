@@ -105,8 +105,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="table_data">
-							{% if post.getCreatedDate %}{{ post.getCreatedDate |date("d/m/Y - H:i:s") }}{% endif %}
+							<span class="item_timestamp">
+							{% if post.getCreatedDate %}{{ post.getCreatedDate |date("d-m-Y - H:i") }}{% endif %}
 							</span>
 						</td>
 						
@@ -116,8 +116,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="table_data">
-							{% if post.getLockedDate %}{{ post.getLockedDate |date("d/m/Y - H:i:s") }}{% endif %}
+							<span class="item_timestamp">
+							{% if post.getLockedDate %}{{ post.getLockedDate |date("d-m-Y - H:i") }}{% endif %}
 							</span>
 						</td>
 						
@@ -127,8 +127,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="table_data">
-							{% if post.getDeletedDate %}{{ post.getDeletedDate |date("d/m/Y - H:i:s") }}{% endif %}
+							<span class="item_timestamp">
+							{% if post.getDeletedDate %}{{ post.getDeletedDate |date("d-m-Y - H:i") }}{% endif %}
 							</span>
 						</td>
 					</tr>

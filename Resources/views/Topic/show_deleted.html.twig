@@ -121,8 +121,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="table_data">
-							{% if topic.getClosedDate %}{{ topic.getClosedDate |date("d/m/Y - H:i:s") }}{% endif %}
+							<span class="item_timestamp">
+							{% if topic.getClosedDate %}{{ topic.getClosedDate |date("d-m-Y - H:i") }}{% endif %}
 							</span>
 						</td>
 
@@ -132,8 +132,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="table_data">
-							{% if topic.getDeletedDate %}{{ topic.getDeletedDate |date("d/m/Y - H:i:s") }}{% endif %}
+							<span class="item_timestamp">
+							{% if topic.getDeletedDate %}{{ topic.getDeletedDate |date("d-m-Y - H:i") }}{% endif %}
 							</span>
 						</td>
 					</tr>
