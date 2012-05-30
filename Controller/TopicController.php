@@ -126,7 +126,7 @@ class TopicController extends ContainerAware
 		
 		if (isset($_POST['submit_close']))
 		{
-			$this->container->get('ccdn_forum_admin.topic.manager')->bulkClose($topics)->flushNow();
+			$this->container->get('ccdn_forum_admin.topic.manager')->bulkClose($topics, $user)->flushNow();
 		}
 		if (isset($_POST['submit_reopen']))
 		{

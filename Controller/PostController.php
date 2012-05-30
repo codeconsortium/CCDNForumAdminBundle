@@ -122,7 +122,7 @@ class PostController extends ContainerAware
 
 		if (isset($_POST['submit_lock']))
 		{
-			$this->container->get('ccdn_forum_admin.post.manager')->bulkLock($posts)->flushNow();
+			$this->container->get('ccdn_forum_admin.post.manager')->bulkLock($posts, $user)->flushNow();
 		}
 		if (isset($_POST['submit_unlock']))
 		{
@@ -134,11 +134,11 @@ class PostController extends ContainerAware
 		}
 		if (isset($_POST['submit_soft_delete']))
 		{
-			$this->container->get('ccdn_forum_admin.post.manager')->bulkHardDelete($posts)->flushNow();
+			$this->container->get('ccdn_forum_admin.post.manager')->bulkSoftDelete($posts, $user)->flushNow();
 		}
-		if (isset($_POST['submit_soft_delete']))
+		if (isset($_POST['submit_hard_delete']))
 		{
-			$this->container->get('ccdn_forum_admin.post.manager')->bulkSoftDelete($posts)->flushNow();
+			$this->container->get('ccdn_forum_admin.post.manager')->bulkHardDelete($posts)->flushNow();
 		}
 
 		return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_post_deleted_show'));

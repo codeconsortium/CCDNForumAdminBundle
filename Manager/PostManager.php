@@ -35,87 +35,110 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 	public function bulkHardDelete($posts)
 	{
 		
-		$postsToDelete = array();
-		$topicsToDelete = array();
-		$boardsToUpdate = array();
+		$posts_to_delete = array();
+		$topics_to_delete = array();
+		$boards_to_update = array();
+		$users_post_count_to_update = array();
 		
 		foreach($posts as $post)
 		{
-			$topic = $post->getTopic();
-
 			if ($post->getTopic())
 			{
 				$topic = $post->getTopic();
 
-				if ($topic->getFirstPost())
+				// If post is the topics last post unlink it.
+				if ($topic->getLastPost())
 				{
-					if ($topic->getFirstPost()->getId() == $post->getId())
+					if ($topic->getLastPost()->getId() == $post->getId())
 					{
-						$topic->setFirstPost(null);
-						$this->persist($topic);
+						$topic->setLastPost(null);
 						
-						$this->flushNow();
-						
-						if ( ! array_key_exists($topic->getId(), $topicsToDelete))
+						// If post is topics last, it is likely linked as 
+						// last on the board too if it is the last topic.
+						if ($topic->getBoard())
 						{
-							$topicsToDelete[$topic->getId()] = $topic;
-						}
-					}
-				}
-
-				if ($topic->getBoard())
-				{
-					$board = $topic->getBoard();
-
-					if ($board->getLastPost())
-					{
-						if ($board->getLastPost()->getId() == $post->getId())
-						{
-							$board->setLastPost(null);		
-							$this->persist($board);
+							$board = $topic->getBoard();
+							
+							if ($board->getLastPost()->getId() == $post->getId())
+							{
+								// Add the board of the topic to be updated.				
+								if ( ! array_key_exists($board->getId(), $boards_to_update))
+								{
+									$boards_to_update[$board->getId()] = $board;
+								}
+								
+								$board->setLastPost(null);
+								
+								$this->persist($board);
+							}
 						}
 					}
 				}
 				
-				if ($topic->getLastPost())
+				// If post is the topics first post unlink it.
+				if ($topic->getFirstPost())
 				{
-					// we need to unlink a topics last post
-					// to avoid an integrity constraint.
-					if ($topic->getLastPost()->getId() == $post->getId())
+					if ($topic->getFirstPost()->getId() == $post->getId())
 					{
-						$topic->setLastPost(null);
-						$this->persist($topic);
+						// We will hard delete the topic too
+						// if it is the only post in the topic.
+						if ($topic->getCacheReplyCount() < 1)
+						{
+							if ( ! array_key_exists($topic->getId(), $topics_to_delete))
+							{
+								$topics_to_delete[$topic->getId()] = $topic;
+							}
+						}
+						
+						$topic->setFirstPost(null);
 					}
 				}
-
-				// if we remove the last post we need to update board stats.
-				if ($topic->getBoard())
-				{
-					if ( ! array_key_exists($topic->getBoard()->getId(), $boardsToUpdate))
-					{
-						$boardsToUpdate[$topic->getBoard()->getId()] = $topic->getBoard();
-					}
-				}
+				
+				// Finally unlink the post from the topic.
+				$post->setTopic(null);
+				
+				// Flush all the changes to the topic as we go.
+				$this->persist($topic)->flushNow();			
 			}
 			
-			if ( ! array_key_exists($post->getId(), $postsToDelete))
+			// Add post to the delete chain
+			if ( ! array_key_exists($post->getId(), $posts_to_delete))
 			{
-				$postsToDelete[$post->getId()] = $post;
+				$posts_to_delete[$post->getId()] = $post;
+			}
+			
+			// Add author to chain of cached post counts to update.
+			if ($post->getCreatedBy())
+			{
+				$author = $post->getCreatedBy();
+				
+				if ( ! array_key_exists($author->getId(), $users_post_count_to_update))
+				{
+					$users_post_count_to_update[$author->getId()] = $author;						
+				}
 			}
 		}
 	
+		// Flush all the unlinking.
 		$this->flushNow();
 
-		foreach($postsToDelete as $post)
+		// Drop the post records from the db.
+		foreach($posts_to_delete as $post)
 		{
-			$this->remove($post);
+			$this->refresh($post);
+			
+			if ($post)
+			{
+				$this->remove($post);
+			}
 		}
 
 		$this->flushNow();
 		
-		foreach($topicsToDelete as $topic)
+		// Drop the topic records from the db.
+		foreach($topics_to_delete as $topic)
 		{
-			$this->update($topic);
+			$this->refresh($topic);
 			
 			if ($topic)
 			{
@@ -125,14 +148,11 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 		
 		$this->flushNow();
 		
-		$boardManager = $this->container->get('ccdn_forum_forum.board.manager');
+		// Update all affected Board stats.
+		$this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boards_to_update)->flushNow();
 		
-		foreach($boardsToUpdate as $board)
-		{
-			$boardManager->updateBoardStats($board);
-		}
-				
-		$boardManager->flushNow();
+		// Update all affected Users cached post counts.
+		$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($users_post_count_to_update);
 				
 		return $this;
 	}

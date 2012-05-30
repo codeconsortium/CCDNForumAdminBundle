@@ -32,7 +32,7 @@ class BoardManager extends BaseManager implements ManagerInterface
 	 * @param $board
 	 * @return $this
 	 */
-	public function insert($board)
+	public function insert($board)				/// <----- fix me
 	{
 		$board_count_query = $this->entityManager->createQuery('
 			SELECT COUNT(b.id)
