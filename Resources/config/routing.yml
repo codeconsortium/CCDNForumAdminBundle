@@ -1,7 +1,3 @@
-cc_admin_forum_cp:
-    pattern: /{_locale}/dashboard/admin
-    defaults: { _controller: CCDNComponentDashboardBundle:Dashboard:show, _locale: en }
-
 #
 # Category Management.
 #
