@@ -30,6 +30,7 @@ class CCDNForumAdminExtension extends Extension
 {
 	
 	
+	
     /**
      * {@inheritDoc}
      */
@@ -47,7 +48,11 @@ class CCDNForumAdminExtension extends Extension
 		
 		$this->getCategorySection($container, $config);
 		$this->getBoardSection($container, $config);
+		$this->getTopicSection($container, $config);
+		$this->getPostSection($container, $config);
+		
     }
+	
 	
 	
     /**
@@ -57,6 +62,7 @@ class CCDNForumAdminExtension extends Extension
 	{
 		return 'ccdn_forum_admin';
 	}
+	
 	
 	
 	/**
@@ -73,6 +79,7 @@ class CCDNForumAdminExtension extends Extension
 	}
 
 
+
 	/**
 	 *
 	 * @access private
@@ -85,6 +92,34 @@ class CCDNForumAdminExtension extends Extension
 		$container->setParameter('ccdn_forum_admin.board.layout_templates.create', $config['board']['layout_templates']['create']);
 		$container->setParameter('ccdn_forum_admin.board.layout_templates.delete_board', $config['board']['layout_templates']['delete_board']);
 		$container->setParameter('ccdn_forum_admin.board.layout_templates.edit', $config['board']['layout_templates']['edit']);
+	}
+	
+	
+
+	/**
+	 *
+	 * @access private
+	 * @param $container, $config
+	 */	
+	private function getTopicSection($container, $config)
+	{
+		$container->setParameter('ccdn_forum_admin.topic.topics_per_page', $config['topic']['topics_per_page']);
+		$container->setParameter('ccdn_forum_admin.topic.truncate_topic_title', $config['topic']['truncate_topic_title']);
+		$container->setParameter('ccdn_forum_admin.topic.layout_templates.show_deleted', $config['topic']['layout_templates']['show_deleted']);
+	}
+	
+	
+
+	/**
+	 *
+	 * @access private
+	 * @param $container, $config
+	 */	
+	private function getPostSection($container, $config)
+	{
+		$container->setParameter('ccdn_forum_admin.post.posts_per_page', $config['post']['posts_per_page']);
+		$container->setParameter('ccdn_forum_admin.post.truncate_topic_title', $config['post']['truncate_topic_title']);
+		$container->setParameter('ccdn_forum_admin.post.layout_templates.show_deleted', $config['post']['layout_templates']['show_deleted']);
 	}
 	
 }

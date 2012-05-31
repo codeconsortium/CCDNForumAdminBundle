@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_moderator.topic.layout_templates.show_closed') %}
+{% extends param('ccdn_forum_admin.topic.layout_templates.show_deleted') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -87,17 +87,15 @@
 						</td>
 						<td class="left">
 							<span class="table_data">
-							<a class="topic_link" href="{{ path('cc_forum_topic_show', {'topic_id': topic.getId }) }}">{{ topic.getTitle }}</a><br>
+							<a class="topic_link" href="{{ path('cc_forum_topic_show', {'topic_id': topic.getId }) }}" title="{{ topic.getTitle }}">{{ truncDot(topic.getTitle, param('ccdn_forum_admin.topic.truncate_topic_title')) }}</a><br>
 							</span>
 							<span class="first_post">
 							{{ 'post.posted_by' | trans({}, 'CCDNForumForumBundle') }}
 							{% if topic.getFirstPost %}
 								{% if topic.getFirstPost.getCreatedBy %}
-									{% if topic.getFirstPost %}
 									<a href="{{ path(user_profile_route, {'user_id': topic.getFirstPost.getCreatedBy.getId } ) }}">{{ topic.getFirstPost.getCreatedBy }}</a>
-									{% else %}
+								{% else %}
 									Guest
-									{% endif %}
 								{% endif %}
 							{% endif %}
 							</span>&nbsp;&nbsp;

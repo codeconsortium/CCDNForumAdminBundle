@@ -113,6 +113,16 @@ ccdn_forum_admin:
             create: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
             delete_board: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
             edit: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
+    topic:
+        topics_per_page: 40
+        truncate_topic_title: 17
+        layout_templates:
+            show_deleted: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
+    post:
+        posts_per_page: 40
+        truncate_topic_title: 17
+        layout_templates:
+            show_deleted: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
 
 ```
 

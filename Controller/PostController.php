@@ -47,7 +47,7 @@ class PostController extends ContainerAware
 
 		$posts_paginated = $this->container->get('ccdn_forum_forum.post.repository')->findDeletedPostsForAdminsPaginated();
 			
-		$posts_per_page = $this->container->getParameter('ccdn_forum_moderator.post.posts_per_page');
+		$posts_per_page = $this->container->getParameter('ccdn_forum_admin.post.posts_per_page');
 		$posts_paginated->setMaxPerPage($posts_per_page);
 		$posts_paginated->setCurrentPage($page, false, true);
 		

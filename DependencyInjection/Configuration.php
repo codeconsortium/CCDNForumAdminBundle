@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
 {
 	
 	
+	
     /**
      * {@inheritDoc}
      */
@@ -57,9 +58,12 @@ class Configuration implements ConfigurationInterface
 			
 		$this->addCategorySection($rootNode);
 		$this->addBoardSection($rootNode);
+		$this->addTopicSection($rootNode);
+		$this->addPostSection($rootNode);
 		
         return $treeBuilder;
     }
+
 
 
 	/**
@@ -85,6 +89,7 @@ class Configuration implements ConfigurationInterface
 				->end()
 			->end();		
 	}
+
 	
 
 	/**
@@ -111,4 +116,53 @@ class Configuration implements ConfigurationInterface
 			->end();
 	}
 	
+
+
+	/**
+	 *
+	 * @access private
+	 * @param ArrayNodeDefinition $node
+	 */
+	private function addTopicSection(ArrayNodeDefinition $node)
+	{
+		$node
+			->children()
+				->arrayNode('topic')
+					->children()
+						->scalarNode('topics_per_page')->defaultValue('40')->end()
+						->scalarNode('truncate_topic_title')->defaultValue('17')->end()
+						->arrayNode('layout_templates')
+							->children()
+								->scalarNode('show_deleted')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_left.html.twig')->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end();	
+	}
+	
+	
+
+	/**
+	 *
+	 * @access private
+	 * @param ArrayNodeDefinition $node
+	 */
+	private function addPostSection(ArrayNodeDefinition $node)
+	{
+		$node
+			->children()
+				->arrayNode('post')
+					->children()
+						->scalarNode('posts_per_page')->defaultValue('40')->end()
+						->scalarNode('truncate_topic_title')->defaultValue('17')->end()
+						->arrayNode('layout_templates')
+							->children()
+								->scalarNode('show_deleted')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_left.html.twig')->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end();
+	}
 }
