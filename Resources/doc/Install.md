@@ -100,29 +100,6 @@ ccdn_forum_admin:
         profile_route: cc_profile_show_by_id
     template:
         engine: twig
-        theme: CCDNForumAdminBundle:Form:fields.html.twig
-    category:
-        layout_templates:
-            create: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            delete_category: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            edit: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            index: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-    board:
-        topics_per_page: 40
-        layout_templates:
-            create: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            delete_board: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            edit: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-    topic:
-        topics_per_page: 40
-        truncate_topic_title: 17
-        layout_templates:
-            show_deleted: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-    post:
-        posts_per_page: 40
-        truncate_topic_title: 17
-        layout_templates:
-            show_deleted: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
 
 ```
 
@@ -169,4 +146,5 @@ Installation should now be complete!
 
 If you need further help/support, have suggestions or want to contribute please join the community at [Code Consortium](http://www.codeconsortium.com)
 
-[Return back to the docs index](http://github.com/codeconsortium/CCDNForumAdminBundle/blob/master/Resources/doc/index.md).
+- [Return back to the docs index](index.md).
+- [Configuration Reference](configuration_reference.md).

@@ -65,11 +65,11 @@ cc_admin_forum_board_move_down_priority:
 #
 cc_admin_forum_topic_deleted_show:
     pattern: /{_locale}/admin/forum/topics/deleted/show
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showTrashed, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en, page: 1 }
 
 cc_admin_forum_topic_deleted_show_paginated:
     pattern: /{_locale}/admin/forum/topics/deleted/show/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showTrashed, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en, page: 1 }
 
 cc_admin_forum_topics_bulk_action:
     pattern: /{_locale}/admin/forum/topics/deleted/bulk/action
@@ -80,11 +80,11 @@ cc_admin_forum_topics_bulk_action:
 #
 cc_admin_forum_post_deleted_show:
     pattern: /{_locale}/admin/forum/posts/deleted/show
-    defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en, page: 1 }
 
 cc_admin_forum_post_deleted_show_paginated:
     pattern: /{_locale}/admin/forum/posts/deleted/show/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Post:showTrashed, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en, page: 1 }
 
 cc_admin_forum_post_bulk_action:
     pattern: /{_locale}/admin/forum/posts/deleted/bulk/action

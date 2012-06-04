@@ -44,10 +44,10 @@ class CategoryController extends ContainerAware
 		
 		$categories = $this->container->get('ccdn_forum_forum.category.repository')->findAllJoinedToBoard();
 		
-		$topics_per_page = $this->container->getParameter('ccdn_forum_admin.board.topics_per_page');
+		// Must be consistent with the topics per page on regular user board index.
+		$topics_per_page = $this->container->getParameter('ccdn_forum_forum.board.show.topics_per_page');
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home");
 		
@@ -88,7 +88,6 @@ class CategoryController extends ContainerAware
 		{
 			// setup crumb trail.
 			$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.category.create', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_create'), "edit");
@@ -137,7 +136,6 @@ class CategoryController extends ContainerAware
 		{
 			// setup crumb trail.
 			$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-				->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 				->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 				->add($this->container->get('translator')->trans('crumbs.category.edit', array('%category_name%' => $category->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_edit', array('category_id' => $category_id)), "edit");
@@ -172,7 +170,6 @@ class CategoryController extends ContainerAware
 
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
 			->add($this->container->get('translator')->trans('crumbs.category.delete', array('%category_name%' => $category->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_delete', array('category_id' => $category->getId())), "trash");

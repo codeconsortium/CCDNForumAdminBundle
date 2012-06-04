@@ -30,13 +30,13 @@ class PostController extends ContainerAware
 
 	/**
 	 *
-	 * Display a list of locked posts (locked from editing)
+	 * Display a list of deleted posts.
 	 *
 	 * @access public
 	 * @param int $page
 	 * @return RedirectResponse|RenderResponse
 	 */
-	public function showTrashedAction($page)
+	public function showDeletedAction($page)
 	{
 		if ( ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
@@ -47,13 +47,12 @@ class PostController extends ContainerAware
 
 		$posts_paginated = $this->container->get('ccdn_forum_forum.post.repository')->findDeletedPostsForAdminsPaginated();
 			
-		$posts_per_page = $this->container->getParameter('ccdn_forum_admin.post.posts_per_page');
+		$posts_per_page = $this->container->getParameter('ccdn_forum_admin.post.show_deleted.posts_per_page');
 		$posts_paginated->setMaxPerPage($posts_per_page);
 		$posts_paginated->setCurrentPage($page, false, true);
 		
 		// setup crumb trail.
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.post.deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_post_deleted_show'), "trash");
 				
@@ -155,4 +154,5 @@ class PostController extends ContainerAware
     {
         return $this->container->getParameter('ccdn_forum_admin.template.engine');
     }
+
 }

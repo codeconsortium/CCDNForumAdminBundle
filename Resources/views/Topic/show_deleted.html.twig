@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_admin.topic.layout_templates.show_deleted') %}
+{% extends param('ccdn_forum_admin.topic.show_deleted.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -87,7 +87,7 @@
 						</td>
 						<td class="left">
 							<span class="table_data">
-							<a class="topic_link" href="{{ path('cc_forum_topic_show', {'topic_id': topic.getId }) }}" title="{{ topic.getTitle }}">{{ truncDot(topic.getTitle, param('ccdn_forum_admin.topic.truncate_topic_title')) }}</a><br>
+							<a class="topic_link" href="{{ path('cc_forum_topic_show', {'topic_id': topic.getId }) }}" title="{{ topic.getTitle }}">{{ truncDot(topic.getTitle, param('ccdn_forum_admin.topic.show_deleted.topic_title_truncate')) }}</a><br>
 							</span>
 							<span class="first_post">
 							{{ 'post.posted_by' | trans({}, 'CCDNForumForumBundle') }}
@@ -113,8 +113,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="item_timestamp">
-							{% if topic.getClosedDate %}{{ topic.getClosedDate |date("d-m-Y - H:i") }}{% endif %}
+							<span class="table_timestamp">
+							{% if topic.getClosedDate %}{{ topic.getClosedDate |date(param('ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format')) }}{% endif %}
 							</span>
 						</td>
 
@@ -124,8 +124,8 @@
 							</span>
 						</td>
 						<td class="center">
-							<span class="item_timestamp">
-							{% if topic.getDeletedDate %}{{ topic.getDeletedDate |date("d-m-Y - H:i") }}{% endif %}
+							<span class="table_timestamp">
+							{% if topic.getDeletedDate %}{{ topic.getDeletedDate |date(param('ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format')) }}{% endif %}
 							</span>
 						</td>
 					</tr>

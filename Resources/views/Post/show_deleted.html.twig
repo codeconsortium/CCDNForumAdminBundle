@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_admin.post.layout_templates.show_deleted') %}
+{% extends param('ccdn_forum_admin.post.show_deleted.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -85,7 +85,7 @@
 						<td class="left">
 							{% if post.getTopic %}
 							<span class="table_data">
-								<a href="{{ path('cc_forum_topic_show', {'topic_id': post.getTopic.getId }) }}" title="{{ post.getTopic.getTitle }}">{{ truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.truncate_topic_title')) }}</a>
+								<a href="{{ path('cc_forum_topic_show', {'topic_id': post.getTopic.getId }) }}" title="{{ post.getTopic.getTitle }}">{{ truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.show_deleted.topic_title_truncate')) }}</a>
 							</span>
 							{% endif %}
 						</td>
@@ -104,8 +104,8 @@
 						</td>
 						<td class="center">
 							{% if post.getCreatedDate %}
-							<span class="item_timestamp">
-								{{ post.getCreatedDate |date("d-m-Y - H:i") }}
+							<span class="table_timestamp">
+								{{ post.getCreatedDate |date(param('ccdn_forum_admin.post.show_deleted.post_created_datetime_format')) }}
 							</span>
 							{% endif %}
 						</td>
@@ -119,8 +119,8 @@
 						</td>
 						<td class="center">
 							{% if post.getLockedDate %}
-							<span class="item_timestamp">
-								{{ post.getLockedDate |date("d-m-Y - H:i") }}
+							<span class="table_timestamp">
+								{{ post.getLockedDate |date(param('ccdn_forum_admin.post.show_deleted.post_locked_datetime_format')) }}
 							</span>
 							{% endif %}
 						</td>
@@ -134,8 +134,8 @@
 						</td>
 						<td class="center">
 							{% if post.getDeletedDate %}
-							<span class="item_timestamp">
-								{{ post.getDeletedDate |date("d-m-Y - H:i") }}
+							<span class="table_timestamp">
+								{{ post.getDeletedDate |date(param('ccdn_forum_admin.post.show_deleted.post_deleted_datetime_format')) }}
 							</span>
 							{% endif %}
 						</td>

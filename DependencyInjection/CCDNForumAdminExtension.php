@@ -43,7 +43,6 @@ class CCDNForumAdminExtension extends Extension
         $loader->load('services.yml');
 
 		$container->setParameter('ccdn_forum_admin.template.engine', $config['template']['engine']);
-		$container->setParameter('ccdn_forum_admin.template.theme', $config['template']['theme']);
 		$container->setParameter('ccdn_forum_admin.user.profile_route', $config['user']['profile_route']);
 		
 		$this->getCategorySection($container, $config);
@@ -72,10 +71,16 @@ class CCDNForumAdminExtension extends Extension
 	 */
 	private function getCategorySection($container, $config)
 	{
-		$container->setParameter('ccdn_forum_admin.category.layout_templates.create', $config['category']['layout_templates']['create']);
-		$container->setParameter('ccdn_forum_admin.category.layout_templates.delete_category', $config['category']['layout_templates']['delete_category']);
-		$container->setParameter('ccdn_forum_admin.category.layout_templates.edit', $config['category']['layout_templates']['edit']);
-		$container->setParameter('ccdn_forum_admin.category.layout_templates.index', $config['category']['layout_templates']['index']);
+		$container->setParameter('ccdn_forum_admin.category.index.layout_template', $config['category']['index']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.category.index.last_post_datetime_format', $config['category']['index']['last_post_datetime_format']);
+		
+		$container->setParameter('ccdn_forum_admin.category.create.layout_template', $config['category']['create']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.category.create.form_theme', $config['category']['create']['form_theme']);
+		
+		$container->setParameter('ccdn_forum_admin.category.edit.layout_template', $config['category']['edit']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.category.edit.form_theme', $config['category']['edit']['form_theme']);
+		
+		$container->setParameter('ccdn_forum_admin.category.delete.layout_template', $config['category']['delete']['layout_template']);
 	}
 
 
@@ -87,11 +92,13 @@ class CCDNForumAdminExtension extends Extension
 	 */	
 	private function getBoardSection($container, $config)
 	{
-		$container->setParameter('ccdn_forum_admin.board.topics_per_page', $config['board']['topics_per_page']);
+		$container->setParameter('ccdn_forum_admin.board.create.layout_template', $config['board']['create']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.board.create.form_theme', $config['board']['create']['form_theme']);
 		
-		$container->setParameter('ccdn_forum_admin.board.layout_templates.create', $config['board']['layout_templates']['create']);
-		$container->setParameter('ccdn_forum_admin.board.layout_templates.delete_board', $config['board']['layout_templates']['delete_board']);
-		$container->setParameter('ccdn_forum_admin.board.layout_templates.edit', $config['board']['layout_templates']['edit']);
+		$container->setParameter('ccdn_forum_admin.board.edit.layout_template', $config['board']['edit']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.board.edit.form_theme', $config['board']['edit']['form_theme']);
+		
+		$container->setParameter('ccdn_forum_admin.board.delete.layout_template', $config['board']['delete']['layout_template']);
 	}
 	
 	
@@ -103,9 +110,13 @@ class CCDNForumAdminExtension extends Extension
 	 */	
 	private function getTopicSection($container, $config)
 	{
-		$container->setParameter('ccdn_forum_admin.topic.topics_per_page', $config['topic']['topics_per_page']);
-		$container->setParameter('ccdn_forum_admin.topic.truncate_topic_title', $config['topic']['truncate_topic_title']);
-		$container->setParameter('ccdn_forum_admin.topic.layout_templates.show_deleted', $config['topic']['layout_templates']['show_deleted']);
+		$container->setParameter('ccdn_forum_admin.topic.show_deleted.layout_template', $config['topic']['show_deleted']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.topic.show_deleted.topics_per_page', $config['topic']['show_deleted']['topics_per_page']);
+		$container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_title_truncate', $config['topic']['show_deleted']['topic_title_truncate']);
+		$container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_created_datetime_format', $config['topic']['show_deleted']['topic_created_datetime_format']);
+		$container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format', $config['topic']['show_deleted']['topic_closed_datetime_format']);
+		$container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format', $config['topic']['show_deleted']['topic_deleted_datetime_format']);
+		
 	}
 	
 	
@@ -117,9 +128,13 @@ class CCDNForumAdminExtension extends Extension
 	 */	
 	private function getPostSection($container, $config)
 	{
-		$container->setParameter('ccdn_forum_admin.post.posts_per_page', $config['post']['posts_per_page']);
-		$container->setParameter('ccdn_forum_admin.post.truncate_topic_title', $config['post']['truncate_topic_title']);
-		$container->setParameter('ccdn_forum_admin.post.layout_templates.show_deleted', $config['post']['layout_templates']['show_deleted']);
+		$container->setParameter('ccdn_forum_admin.post.show_deleted.layout_template', $config['post']['show_deleted']['layout_template']);
+		$container->setParameter('ccdn_forum_admin.post.show_deleted.posts_per_page', $config['post']['show_deleted']['posts_per_page']);
+		$container->setParameter('ccdn_forum_admin.post.show_deleted.topic_title_truncate', $config['post']['show_deleted']['topic_title_truncate']);
+		$container->setParameter('ccdn_forum_admin.post.show_deleted.post_created_datetime_format', $config['post']['show_deleted']['post_created_datetime_format']);
+		$container->setParameter('ccdn_forum_admin.post.show_deleted.post_locked_datetime_format', $config['post']['show_deleted']['post_locked_datetime_format']);
+		$container->setParameter('ccdn_forum_admin.post.show_deleted.post_deleted_datetime_format', $config['post']['show_deleted']['post_deleted_datetime_format']);
+		
 	}
 	
 }
