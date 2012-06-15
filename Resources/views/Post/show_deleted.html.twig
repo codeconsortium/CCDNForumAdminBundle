@@ -30,21 +30,21 @@
 
 	<form method="POST" action="{{ path('cc_admin_forum_post_bulk_action') }}">
 
-	<input type="submit" class="btn btn-primary" value="{{ 'link.post.lock' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_lock">
-	<input type="submit" class="btn btn-primary" value="{{ 'link.post.unlock' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_unlock">
-	<input type="submit" class="btn btn-primary" value="{{ 'link.post.restore' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_restore">
-	<input type="submit" class="btn btn-danger" value="{{ 'link.post.delete.soft' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_soft_delete">
-	<input type="submit" class="btn btn-danger" value="{{ 'link.post.delete.hard' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_hard_delete">
+	<input type="submit" class="btn btn-primary disabled" value="{{ 'link.post.lock' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_lock" disabled data-responds-disabled="posts">
+	<input type="submit" class="btn btn-primary disabled" value="{{ 'link.post.unlock' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_unlock" disabled data-responds-disabled="posts">
+	<input type="submit" class="btn btn-primary disabled" value="{{ 'link.post.restore' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_restore" disabled data-responds-disabled="posts">
+	<input type="submit" class="btn btn-danger disabled" value="{{ 'link.post.delete.soft' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_soft_delete" disabled data-responds-disabled="posts">
+	<input type="submit" class="btn btn-danger disabled" value="{{ 'link.post.delete.hard' |trans({}, 'CCDNForumAdminBundle') }}" name="submit_hard_delete" disabled data-responds-disabled="posts">
 	<br><br>
 	
 	{% if pager.haveToPaginate %}
 		{{ pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}} ) }}
 	{% endif %}
 	
-	<table class="table table-striped table-bordered">
+	<table class="table">
 		<thead>
 			<tr>
-				<th class="center" style="width:18px;"><input type="checkbox" id="check_all" name="check_all"></th>
+				<th class="center" style="width:18px;"><input type="checkbox" id="check_all" name="check_all" class="hidden" data-compat='interactive-js-compat' data-action-toggle="posts" data-identifier="posts" data-qualifier="all"></th>
 				<th class="center" style="width:18px;"><i class="icon-lock"></i></th>
 				<th class="center" style="width:18px;"><i class="icon-trash"></i></th>
 				<th class="left">{{ 'board.table.head.topic_title' | trans({}, 'CCDNForumForumBundle') }}</th>
@@ -61,7 +61,7 @@
 			{% for row, post in posts %}
 				<tr class="{{ cycle(['row_odd', 'row_even'], row) }}">
 					<td class="center">
-						<input type="checkbox" id="post_{{ post.id }}" name="check_{{ post.id }}">
+						<input type="checkbox" id="post_{{ post.id }}" name="check_{{ post.id }}" data-check-all-responds="true" data-identifier="posts">
 					</td>
 					<td class="center">
 						{% if post.getLockedBy %}
