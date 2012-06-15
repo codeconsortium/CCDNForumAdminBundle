@@ -52,6 +52,7 @@ AdminBundle Provides the following features:
 	3. Unlock already soft-deleted Posts.
 	4. Restore already soft-deleted Posts.
 	5. Hard-Delete already soft-deleted Posts.
+5. Utilises Twitter-Bootstrap interface by default.
 
 Before installation of this bundle, you can download the [Sandbox](https://github.com/codeconsortium/CCDNSandBox) for testing/development and feature review, or alternatively see the product in use at [CodeConsortium](http://www.codeconsortium.com).
 
