@@ -1,32 +1,29 @@
 <tr class="{{ cycler(['row_odd', 'row_even'], 'board') }}">
-	<td class="icon32">
+	<td class="center">
 		<img class="icon32" width="32" height="32" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_board.png') }}" alt="icon">
 	</td>
 	<td class="left">
-		<a class="button_red" href="{{ path('cc_admin_forum_board_edit', {'board_id': board.getId }) }}">{{ 'link.board.edit' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<a class="button_red" href="{{ path('cc_admin_forum_board_delete', {'board_id': board.getId }) }}">{{ 'link.board.delete' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<a class="button_red" href="{{ path('cc_admin_forum_board_move_up_priority', {'board_id': board.getId }) }}">{{ 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<a class="button_red" href="{{ path('cc_admin_forum_board_move_down_priority', {'board_id': board.getId }) }}">{{ 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<span class="table_data">
-			<br><br>
+		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_edit', {'board_id': board.getId }) }}">{{ 'link.board.edit' | trans({}, 'CCDNForumAdminBundle') }}</a>
+		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_delete', {'board_id': board.getId }) }}">{{ 'link.board.delete' | trans({}, 'CCDNForumAdminBundle') }}</a>
+		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_move_up_priority', {'board_id': board.getId }) }}">{{ 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') }}</a>
+		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_move_down_priority', {'board_id': board.getId }) }}">{{ 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') }}</a>
+			<br>
 			<a href="{{ path('cc_forum_board_show', {'board_id': board.getId }) }}">{{ board.getName }}</a><br>
 			{{ board.getDescription }}
-		</span>		
-	</td>
-	<td class="center" style="width:12%;">
-		<span class="table_data">{{ board.getTopicCount }}</span>
-	</td>
-	<td class="center" style="width:12%;">
-		<span class="table_data">{{ board.getPostCount }}</span>
 	</td>
 	<td class="center">
-		<span class="table_data">
+		{{ board.getTopicCount }}
+	</td>
+	<td class="center">
+		{{ board.getPostCount }}
+	</td>
+	<td class="center">
 		{% if board.getLastPost %}
 			{% if board.getLastPost.getTopic %}
 				{% set page = divCeil(( board.getLastPost.getTopic.getReplyCount + 1), topics_per_page) %}
 				{{ 'post.posted_by' | trans({}, 'CCDNForumForumBundle') }}
 				{% if board.getLastPost.getCreatedBy %}
-					<a href="{{ path(user_profile_route, {'user_id': board.getLastPost.getCreatedBy.getId } ) }}">{{ board.getLastPost.getCreatedBy.getUsername }}</a> 
+					<a href="{{ path(user_profile_route, {'user_id': board.getLastPost.getCreatedBy.getId } ) }}">{{ board.getLastPost.getCreatedBy.getUsername |title }}</a> 
 				{% else %}
 					Guest 
 				{% endif %}
@@ -37,7 +34,6 @@
 		{% else %}
 			{{ 'info.not_applicable' | trans({}, 'CCDNForumForumBundle') }}
 		{% endif %}
-		</span>
 	</td>
 </tr>
 

@@ -10,31 +10,25 @@
 {% block sidebar %}
 	{{ parent() }}
 
-	<div class="sidebar">
-		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.tools' | trans({}, 'CCDNForumAdminBundle') }}</span></div>
-		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_admin_forum_category_create') }}">{{ 'sidebar.link.category.create' | trans({}, 'CCDNForumAdminBundle') }}</a></div>
-		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_admin_forum_board_create') }}">{{ 'sidebar.link.board.create' | trans({}, 'CCDNForumAdminBundle') }}</a></div>
-	</div>
+	{% include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' %}
+	
 {% endblock %}
+
 
 {% block body %}
 
 {% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="section_wrap_standalone">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
-{% for category in categories %}
-	{% include "CCDNForumAdminBundle:Category:item_category.html.twig" %}
-{% else %}
-	<div class="section_wrap_standalone">
-	{{ 'categories.empty' | trans({}, 'CCDNForumForumBundle') }}
-	</div>
-{% endfor %}
+	{% for category in categories %}
+		{% include "CCDNForumAdminBundle:Category:item_category.html.twig" %}
+	{% else %}
+		<div class="well center">
+		{{ 'categories.empty' | trans({}, 'CCDNForumForumBundle') }}
+		</div>
+	{% endfor %}
 
-<div class="section_wrap_standalone">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
 {% endblock %}

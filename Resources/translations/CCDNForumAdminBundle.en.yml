@@ -1,4 +1,6 @@
 sidebar.header.tools: Admin Tools
+
+sidebar.link.manage_boards: Manage Boards
 sidebar.link.category.create: Create Category
 sidebar.link.board.create: Create Board
 

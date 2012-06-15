@@ -10,63 +10,59 @@
 {% block sidebar %}
 	{{ parent() }}
 	
+	{% include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' %}
+
 {% endblock %}
+
 
 {% block body %}
 
-{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+	{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="section_wrap_top">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
-<div class="section_wrap_bottom">
-	<div class="section_header">
-		<h2>{{ 'title.board.create'| trans({}, 'CCDNForumAdminBundle') }}</h2>
-	</div>
-</div>
+
+	<h2>{{ 'title.board.create'| trans({}, 'CCDNForumAdminBundle') }}</h2>
 	
-<div class="section_wrap_standalone">
-	<div class="section_table_panel">
+	<div class="well">
 		{% form_theme form param('ccdn_forum_admin.board.create.form_theme') %}
-		<form action="{{ path('cc_admin_forum_board_create') }}" method="post" {{ form_enctype(form) }}>
-			{{ form_row(form._token) }}
-			<div class="errors">{{ form_errors(form) }}</div>
-			<table class="common_list">
-				<tbody>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.category, null, { 'label': 'form.label.board.category'| trans({}, 'CCDNForumAdminBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.category) }}
-							{{ form_widget(form.category) }}
-						</td>
-					</tr>				
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.name, null, { 'label': 'form.label.board.name'| trans({}, 'CCDNForumAdminBundle')}) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.name) }}
-							{{ form_widget(form.name) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle')}) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.description) }}
-							{{ form_widget(form.description) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_tool_strip" colspan="2">
-							<input type="submit" class="button_blue" value="{{ 'form.button.board.create' | trans({}, 'CCDNForumAdminBundle') }}">
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		
+		<form action="{{ path('cc_admin_forum_board_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+			<fieldset>
+
+				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
+
+				<div class="control-group">
+					{{ form_label(form.category, null, { 'label': 'form.label.board.category'| trans({}, 'CCDNForumAdminBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.category) }}
+						{{ form_widget(form.category) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.name, null, { 'label': 'form.label.board.name'| trans({}, 'CCDNForumAdminBundle')}) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.name) }}
+						{{ form_widget(form.name) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle')}) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.description) }}
+						{{ form_widget(form.description) }}
+					</div>
+				</div>
+				
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" value="{{ 'form.button.board.create' | trans({}, 'CCDNForumAdminBundle') }}">
+				</div>
+				
+			</fieldset>
 		</form>
 	</div>
-</div>
 
-<div class="section_wrap_standalone">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
 {% endblock %}
