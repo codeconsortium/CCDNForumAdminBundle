@@ -21,6 +21,8 @@
 		<li><a href="{{ path('cc_admin_forum_board_create') }}"><i class="icon-asterisk"></i>&nbsp;{{ 'sidebar.link.board.create' | trans({}, 'CCDNForumAdminBundle') }}</a></li>
 	{% endif %}
 	
+	<li class="divider"></li>
+	
 	{% if route == 'cc_admin_forum_topic_deleted_show' %}
 		<li class="active"><a href="{{ path('cc_admin_forum_topic_deleted_show') }}"><i class="icon-white icon-trash"></i>&nbsp;{{ 'sidebar.link.topics.deleted' | trans({}, 'CCDNForumAdminBundle') }}</a></li>
 	{% else %}
@@ -34,13 +36,3 @@
 	{% endif %}
 	
 {% endspaceless %}
-
-
-
-
-
-
-
-
-
-
