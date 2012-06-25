@@ -35,10 +35,11 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 	public function bulkHardDelete($posts)
 	{
 		
-		$posts_to_delete = array();
-		$topics_to_delete = array();
-		$boards_to_update = array();
-		$users_post_count_to_update = array();
+		$postsToDelete = array();
+		$topicsToDelete = array();
+		$topicsToUpdate = array();
+		$boardsToUpdate = array();
+		$usersPostCountToUpdate = array();
 		
 		foreach($posts as $post)
 		{
@@ -52,7 +53,13 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 					if ($topic->getLastPost()->getId() == $post->getId())
 					{
 						$topic->setLastPost(null);
-						
+
+						// Add the topic to the topics to be updated list.				
+						if ( ! array_key_exists($topic->getId(), $topicsToUpdate))
+						{
+							$topicsToUpdate[$topic->getId()] = $topic;
+						}
+												
 						// If post is topics last, it is likely linked as 
 						// last on the board too if it is the last topic.
 						if ($topic->getBoard())
@@ -62,9 +69,9 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 							if ($board->getLastPost()->getId() == $post->getId())
 							{
 								// Add the board of the topic to be updated.				
-								if ( ! array_key_exists($board->getId(), $boards_to_update))
+								if ( ! array_key_exists($board->getId(), $boardsToUpdate))
 								{
-									$boards_to_update[$board->getId()] = $board;
+									$boardsToUpdate[$board->getId()] = $board;
 								}
 								
 								$board->setLastPost(null);
@@ -80,17 +87,28 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 				{
 					if ($topic->getFirstPost()->getId() == $post->getId())
 					{
+						$topic->setFirstPost(null);
+											
 						// We will hard delete the topic too
 						// if it is the only post in the topic.
-						if ($topic->getCacheReplyCount() < 1)
+						if ($topic->getCachedReplyCount() < 1)
 						{
-							if ( ! array_key_exists($topic->getId(), $topics_to_delete))
+							if ( ! array_key_exists($topic->getId(), $topicsToDelete))
 							{
-								$topics_to_delete[$topic->getId()] = $topic;
+								$topicsToDelete[$topic->getId()] = $topic;
+
+								if (array_key_exists($topic->getId(), $topicsToUpdate))
+								{
+									unset($topicsToUpdate[$topic->getId()]);
+								}								
 							}
-						}
-						
-						$topic->setFirstPost(null);
+						} else {
+							// Add the topic to the topics to be updated list.				
+							if ( ! array_key_exists($topic->getId(), $topicsToUpdate))
+							{
+								$topicsToUpdate[$topic->getId()] = $topic;
+							}
+						}						
 					}
 				}
 				
@@ -102,9 +120,9 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 			}
 			
 			// Add post to the delete chain
-			if ( ! array_key_exists($post->getId(), $posts_to_delete))
+			if ( ! array_key_exists($post->getId(), $postsToDelete))
 			{
-				$posts_to_delete[$post->getId()] = $post;
+				$postsToDelete[$post->getId()] = $post;
 			}
 			
 			// Add author to chain of cached post counts to update.
@@ -112,9 +130,9 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 			{
 				$author = $post->getCreatedBy();
 				
-				if ( ! array_key_exists($author->getId(), $users_post_count_to_update))
+				if ( ! array_key_exists($author->getId(), $usersPostCountToUpdate))
 				{
-					$users_post_count_to_update[$author->getId()] = $author;						
+					$usersPostCountToUpdate[$author->getId()] = $author;						
 				}
 			}
 		}
@@ -123,7 +141,7 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 		$this->flushNow();
 
 		// Drop the post records from the db.
-		foreach($posts_to_delete as $post)
+		foreach($postsToDelete as $post)
 		{
 			$this->refresh($post);
 			
@@ -136,7 +154,7 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 		$this->flushNow();
 		
 		// Drop the topic records from the db.
-		foreach($topics_to_delete as $topic)
+		foreach($topicsToDelete as $topic)
 		{
 			$this->refresh($topic);
 			
@@ -149,10 +167,13 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
 		$this->flushNow();
 		
 		// Update all affected Board stats.
-		$this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boards_to_update)->flushNow();
+		$this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flushNow();
+		
+		// Update all affected Topic stats.
+		$this->container->get('ccdn_forum_forum.topic.manager')->bulkUpdateStats($topicsToUpdate)->flushNow();
 		
 		// Update all affected Users cached post counts.
-		$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($users_post_count_to_update);
+		$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
 				
 		return $this;
 	}
