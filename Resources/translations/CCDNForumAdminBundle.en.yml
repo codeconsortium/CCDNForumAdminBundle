@@ -1,8 +1,10 @@
-sidebar.header.tools: Admin Tools
+sidebar.header.tools: Forum Admin
 
 sidebar.link.manage_boards: Manage Boards
 sidebar.link.category.create: Create Category
 sidebar.link.board.create: Create Board
+
+sidebar.link.repair: 'Repair'
 
 sidebar.link.topics.deleted: 'Deleted Topics'
 sidebar.link.posts.deleted: 'Deleted Posts'
@@ -23,6 +25,8 @@ crumbs.board.delete: Delete Board %board_name%
 crumbs.topic.deleted: 'Deleted Topics'
 crumbs.post.deleted: 'Deleted Posts'
 
+crumbs.tools.repair: 'Repair'
+
 title.category: 'Forum Admin.'
 title.category.create: 'Create new category.'
 title.category.edit: 'Edit category: %category_name%.'
@@ -32,6 +36,7 @@ title.board.edit: 'Edit board: %board_name%.'
 title.board.delete: 'Delete board: %board_name%?'
 title.topic.deleted: 'Deleted Topics.'
 title.post.deleted: 'Deleted Posts.'
+title.tools.repair: 'Repair'
 
 # index
 link.item.move_up: Move Up
@@ -55,6 +60,14 @@ link.post.unlock: 'Unlock'
 link.post.restore: 'Restore'
 link.post.delete.soft: 'Soft Delete'
 link.post.delete.hard: 'Hard Delete'
+
+link.repair.category_table: 'Repair Category Table'
+link.repair.board_table: 'Repair Board Table'
+link.repair.topic_table: 'Repair Topic Table'
+link.repair.post_table: 'Repair Post Table'
+link.repair.subscription_table: 'Repair Subscription Table'
+link.repair.draft_table: 'Repair Draft Table'
+link.repair.registry_table: 'Repair Registry Table'
 
 flash.category.create.success: 'Category Created Successfully.'
 flash.category.edit.success: 'Category Edited Successfully.'
@@ -86,3 +99,4 @@ delete.confirm_no: No
 
 posts.deleted.table.empty: 'There are no deleted posts.'
 topics.deleted.table.empty: 'There are no deleted topics.'
+

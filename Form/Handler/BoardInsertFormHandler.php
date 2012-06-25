@@ -118,8 +118,8 @@ class BoardInsertFormHandler
 		
 			$formData = $this->form->getData();
 
-			$formData->setTopicCount(0);
-			$formData->setPostcount(0);
+			$formData->setCachedTopicCount(0);
+			$formData->setCachedPostcount(0);
 			
 			if ($this->form->isValid())
 			{	

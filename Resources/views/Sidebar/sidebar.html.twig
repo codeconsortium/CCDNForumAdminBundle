@@ -23,6 +23,14 @@
 	
 	<li class="divider"></li>
 	
+	{% if route == 'cc_admin_forum_repair_tools' %}
+		<li class="active"><a href="{{ path('cc_admin_forum_repair_tools') }}"><i class="icon-white icon-wrench"></i>&nbsp;{{ 'sidebar.link.repair' | trans({}, 'CCDNForumAdminBundle') }}</a></li>
+	{% else %}
+		<li><a href="{{ path('cc_admin_forum_repair_tools') }}"><i class="icon-wrench"></i>&nbsp;{{ 'sidebar.link.repair' | trans({}, 'CCDNForumAdminBundle') }}</a></li>
+	{% endif %}
+	
+	
+	<li class="divider"></li>
 	{% if route == 'cc_admin_forum_topic_deleted_show' %}
 		<li class="active"><a href="{{ path('cc_admin_forum_topic_deleted_show') }}"><i class="icon-white icon-trash"></i>&nbsp;{{ 'sidebar.link.topics.deleted' | trans({}, 'CCDNForumAdminBundle') }}</a></li>
 	{% else %}
