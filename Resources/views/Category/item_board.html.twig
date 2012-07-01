@@ -27,7 +27,7 @@
 				{% else %}
 					Guest 
 				{% endif %}
-				<br>{{ 'actioned.at' | trans({}, 'CCDNForumForumBundle') }}<a class="date_link_small" href="{{ path('cc_forum_topic_show_paginated', {'topic_id': board.getLastPost.getTopic.getId, 'page':page } ) }}#{{ board.getLastPost.getId }}">{{ board.getLastPost.getCreatedDate |date(param('ccdn_forum_admin.category.index.last_post_datetime_format')) }}</a>
+				<br>{{ 'actioned.at' | trans({}, 'CCDNForumForumBundle') }}<a href="{{ path('cc_forum_topic_show_paginated', {'topic_id': board.getLastPost.getTopic.getId, 'page':page } ) }}#{{ board.getLastPost.getId }}">{{ board.getLastPost.getCreatedDate |date(param('ccdn_forum_admin.category.index.last_post_datetime_format')) }}</a>
 			{% else %}
 				{{ 'info.not_applicable' | trans({}, 'CCDNForumForumBundle') }}
 			{% endif %}
