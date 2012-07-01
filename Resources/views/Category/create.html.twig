@@ -30,9 +30,11 @@
 		<form action="{{ path('cc_admin_forum_category_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 			<fieldset>
 				
+				{{ form_errors(form) }}
+				
 				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
 				
-				<div class="control-group">
+				<div class="control-group{{ (form.name.vars.errors|length > 0) ? ' error': '' }}">
 					{{ form_label(form.name, null, { 'label': 'form.label.category.name' | trans({}, 'CCDNForumAdminBundle') }) }}
 					<div class="controls row-fluid">
 						{{ form_errors(form.name) }}

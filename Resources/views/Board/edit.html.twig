@@ -28,9 +28,12 @@
 		
 		<form action="{{ path('cc_admin_forum_board_edit', {'board_id': board.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 			<fieldset>
+				
+				{{ form_errors(form) }}
+				
 				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
 			
-				<div class="control-group">
+				<div class="control-group{{ (form.category.vars.errors|length > 0) ? ' error': '' }}">
 					{{ form_label(form.category, null, { 'label': 'form.label.board.category'| trans({}, 'CCDNForumAdminBundle') }) }}
 					<div class="controls row-fluid">
 						{{ form_errors(form.category) }}
@@ -38,7 +41,7 @@
 					</div>
 				</div>
 				
-				<div class="control-group">
+				<div class="control-group{{ (form.name.vars.errors|length > 0) ? ' error': '' }}">
 					{{ form_label(form.name, null, { 'label': 'form.label.board.name'| trans({}, 'CCDNForumAdminBundle') }) }}
 					<div class="controls row-fluid">
 					{{ form_errors(form.name) }}
@@ -46,7 +49,7 @@
 					</div>
 				</div>
 				
-				<div class="control-group">
+				<div class="control-group{{ (form.description.vars.errors|length > 0) ? ' error': '' }}">
 					{{ form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle') }) }}
 					<div class="controls row-fluid">
 						{{ form_errors(form.description) }}
