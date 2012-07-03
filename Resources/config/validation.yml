@@ -1,0 +1,15 @@
+CCDNForum\ForumBundle\Entity\Category:
+    properties:
+        name:
+            - NotBlank: { groups: [admin_category]}
+            - MinLength: { limit: 20, groups: [admin_category] }
+    
+CCDNForum\ForumBundle\Entity\Board:
+    properties:
+        name:
+            - NotBlank: { groups: [admin_board] }
+            - MinLength: { limit: 20, groups: [admin_board] }
+        description:
+            - NotBlank: { groups: [admin_board] }
+            - MinLength: { limit: 20, groups: [admin_board] }
+            
