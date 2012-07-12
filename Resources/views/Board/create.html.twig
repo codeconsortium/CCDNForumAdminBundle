@@ -21,49 +21,48 @@
 
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
 
-	<h2>{{ 'title.board.create'| trans({}, 'CCDNForumAdminBundle') }}</h2>
+	<h2>{{- 'title.board.create'| trans({}, 'CCDNForumAdminBundle') -}}</h2>
 	
-	<div class="well">
-		{% form_theme form param('ccdn_forum_admin.board.create.form_theme') %}
-		
-		<form action="{{ path('cc_admin_forum_board_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+	{%- spaceless -%}
+		{%- form_theme form param('ccdn_forum_admin.board.create.form_theme') -%}
+		<form action="{{- path('cc_admin_forum_board_create') -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 			<fieldset>
 
-				{{ form_errors(form) }}
+				{{- form_errors(form) -}}
 
-				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
+				<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
 
-				<div class="control-group{{ (form.category.vars.errors|length > 0) ? ' error': '' }}">
-					{{ form_label(form.category, null, { 'label': 'form.label.board.category'| trans({}, 'CCDNForumAdminBundle') }) }}
+				<div class="control-group{{- (form.category.vars.errors|length > 0) ? ' error': '' -}}">
+					{{- form_label(form.category, null, { 'label': 'form.label.board.category'| trans({}, 'CCDNForumAdminBundle') }) -}}
 					<div class="controls row-fluid">
-						{{ form_errors(form.category) }}
-						{{ form_widget(form.category) }}
+						{{- form_errors(form.category) -}}
+						{{- form_widget(form.category) -}}
 					</div>
 				</div>
 
-				<div class="control-group{{ (form.name.vars.errors|length > 0) ? ' error': '' }}">
-					{{ form_label(form.name, null, { 'label': 'form.label.board.name'| trans({}, 'CCDNForumAdminBundle')}) }}
+				<div class="control-group{{- (form.name.vars.errors|length > 0) ? ' error': '' -}}">
+					{{- form_label(form.name, null, { 'label': 'form.label.board.name'| trans({}, 'CCDNForumAdminBundle')}) -}}
 					<div class="controls row-fluid">
-						{{ form_errors(form.name) }}
-						{{ form_widget(form.name) }}
+						{{- form_errors(form.name) -}}
+						{{- form_widget(form.name) -}}
 					</div>
 				</div>
 
-				<div class="control-group{{ (form.description.vars.errors|length > 0) ? ' error': '' }}">
-					{{ form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle')}) }}
+				<div class="control-group{{- (form.description.vars.errors|length > 0) ? ' error': '' -}}">
+					{{- form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle')}) -}}
 					<div class="controls row-fluid">
-						{{ form_errors(form.description) }}
-						{{ form_widget(form.description) }}
+						{{- form_errors(form.description) -}}
+						{{- form_widget(form.description) -}}
 					</div>
 				</div>
-				
+			
 				<div class="form-actions">
-					<input type="submit" class="btn btn-primary" value="{{ 'form.button.board.create' | trans({}, 'CCDNForumAdminBundle') }}">
+					<input type="submit" class="btn btn-primary" value="{{- 'form.button.board.create' | trans({}, 'CCDNForumAdminBundle') -}}">
 				</div>
-				
+			
 			</fieldset>
 		</form>
-	</div>
+	{%- endspaceless -%}
 
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
 
