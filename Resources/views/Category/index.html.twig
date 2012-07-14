@@ -2,33 +2,37 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{- asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{ 'title.category' | trans({}, 'CCDNForumAdminBundle') }}{% endblock %}
+{% block title %}{{- 'title.category' | trans({}, 'CCDNForumAdminBundle') -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
 
-	{% include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' %}
+	{%- include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' -%}
 	
 {% endblock %}
 
 
 {% block body %}
 
-{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+	{%- spaceless -%}
+	
+	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
-	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	{% for category in categories %}
-		{% include "CCDNForumAdminBundle:Category:item_category.html.twig" %}
-	{% else %}
+	{%- for category in categories -%}
+		{%- include "CCDNForumAdminBundle:Category:item_category.html.twig" -%}
+	{%- else -%}
 		<div class="well center">
-		{{ 'categories.empty' | trans({}, 'CCDNForumForumBundle') }}
+		{{- 'categories.empty' | trans({}, 'CCDNForumForumBundle') -}}
 		</div>
-	{% endfor %}
+	{%- endfor -%}
 
-	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	{%- endspaceless -%}
 
 {% endblock %}

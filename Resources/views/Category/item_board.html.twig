@@ -1,39 +1,40 @@
-<tr class="{{ cycler(['row_odd', 'row_even'], 'board') }}">
+{%- spaceless -%}
+<tr class="{{- cycler(['row_odd', 'row_even'], 'board') -}}">
 	<td class="center">
-		<img class="icon32" width="32" height="32" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_board.png') }}" alt="icon">
+		<img class="icon32" width="32" height="32" src="{{- asset('bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_board.png') -}}" alt="icon">
 	</td>
 	<td class="left">
-		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_edit', {'board_id': board.getId }) }}">{{ 'link.board.edit' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_delete', {'board_id': board.getId }) }}">{{ 'link.board.delete' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_move_up_priority', {'board_id': board.getId }) }}">{{ 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') }}</a>
-		<a class="btn btn-danger" href="{{ path('cc_admin_forum_board_move_down_priority', {'board_id': board.getId }) }}">{{ 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') }}</a>
+		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_edit', {'board_id': board.getId }) -}}">{{- 'link.board.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_delete', {'board_id': board.getId }) -}}">{{- 'link.board.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_move_up_priority', {'board_id': board.getId }) -}}">{{- 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_move_down_priority', {'board_id': board.getId }) -}}">{{- 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
 			<br>
-			<a href="{{ path('cc_forum_board_show', {'board_id': board.getId }) }}">{{ board.getName }}</a><br>
-			{{ board.getDescription }}
+			<a href="{{- path('cc_forum_board_show', {'board_id': board.getId }) -}}">{{- board.getName -}}</a><br>
+			{{- board.getDescription -}}
 	</td>
 	<td class="center">
-		{{ board.getCachedTopicCount }}
+		{{- board.getCachedTopicCount -}}
 	</td>
 	<td class="center">
-		{{ board.getCachedPostCount }}
+		{{- board.getCachedPostCount -}}
 	</td>
 	<td class="center">
-		{% if board.getLastPost %}
-			{% if board.getLastPost.getTopic %}
-				{% set page = divCeil(( board.getLastPost.getTopic.getCachedReplyCount + 1), topics_per_page) %}
-				{{ 'post.posted_by' | trans({}, 'CCDNForumForumBundle') }}
-				{% if board.getLastPost.getCreatedBy %}
-					<a href="{{ path(user_profile_route, {'user_id': board.getLastPost.getCreatedBy.getId } ) }}">{{ board.getLastPost.getCreatedBy.getUsername |title }}</a> 
-				{% else %}
+		{%- if board.getLastPost -%}
+			{%- if board.getLastPost.getTopic -%}
+				{%- set page = divCeil(( board.getLastPost.getTopic.getCachedReplyCount + 1), topics_per_page) -%}
+				{{- 'post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
+				{%- if board.getLastPost.getCreatedBy -%}
+					<a href="{{- path(user_profile_route, {'user_id': board.getLastPost.getCreatedBy.getId }) -}}">{{- board.getLastPost.getCreatedBy.getUsername |title -}}</a> 
+				{%- else -%}
 					Guest 
-				{% endif %}
-				<br>{{ 'actioned.at' | trans({}, 'CCDNForumForumBundle') }}<a href="{{ path('cc_forum_topic_show_paginated', {'topic_id': board.getLastPost.getTopic.getId, 'page':page } ) }}#{{ board.getLastPost.getId }}">{{ board.getLastPost.getCreatedDate |date(param('ccdn_forum_admin.category.index.last_post_datetime_format')) }}</a>
-			{% else %}
-				{{ 'info.not_applicable' | trans({}, 'CCDNForumForumBundle') }}
-			{% endif %}
-		{% else %}
-			{{ 'info.not_applicable' | trans({}, 'CCDNForumForumBundle') }}
-		{% endif %}
+				{%- endif -%}
+				<br>{{- 'actioned.at' | trans({}, 'CCDNForumForumBundle') -}}<a href="{{- path('cc_forum_topic_show_paginated', {'topic_id': board.getLastPost.getTopic.getId, 'page':page }) -}}#{{- board.getLastPost.getId -}}">{{- board.getLastPost.getCreatedDate |date(param('ccdn_forum_admin.category.index.last_post_datetime_format')) -}}</a>
+			{%- else -%}
+				{{- 'info.not_applicable' | trans({}, 'CCDNForumForumBundle') -}}
+			{%- endif -%}
+		{%- else -%}
+			{{- 'info.not_applicable' | trans({}, 'CCDNForumForumBundle') -}}
+		{%- endif -%}
 	</td>
 </tr>
-
+{%- endspaceless -%}
