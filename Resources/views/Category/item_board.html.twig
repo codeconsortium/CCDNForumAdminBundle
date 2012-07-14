@@ -10,7 +10,7 @@
 		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_move_down_priority', {'board_id': board.getId }) -}}">{{- 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
 			<br>
 			<a href="{{- path('cc_forum_board_show', {'board_id': board.getId }) -}}">{{- board.getName -}}</a><br>
-			{{- board.getDescription -}}
+			{{- BBCode(board.getDescription | raw) | raw -}}			
 	</td>
 	<td class="center">
 		{{- board.getCachedTopicCount -}}

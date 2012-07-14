@@ -52,6 +52,7 @@
 				{{- form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.description) -}}
+					{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
 					{{- form_widget(form.description) -}}
 				</div>
 			</div>
