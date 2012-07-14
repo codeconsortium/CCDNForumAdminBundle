@@ -34,6 +34,16 @@ class CCDNForumAdminExtension extends Extension
     /**
      * {@inheritDoc}
      */
+	public function getAlias()
+	{
+		return 'ccdn_forum_admin';
+	}
+		
+	
+	
+    /**
+     * {@inheritDoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
@@ -52,16 +62,6 @@ class CCDNForumAdminExtension extends Extension
 		$this->getPostSection($container, $config);
 		
     }
-	
-	
-	
-    /**
-     * {@inheritDoc}
-     */
-	public function getAlias()
-	{
-		return 'ccdn_forum_admin';
-	}
 	
 	
 	
