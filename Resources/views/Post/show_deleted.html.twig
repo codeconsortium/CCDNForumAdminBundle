@@ -9,7 +9,7 @@
 	<script src="{{- asset('bundles/ccdncomponentcommon/js/ccdn/jquery.checkboxes.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- 'title.post.deleted' | trans({}, 'CCDNForumAdminBundle') -}}{% endblock %}
+{% block title %}{{- truncDot('title.post.deleted' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}

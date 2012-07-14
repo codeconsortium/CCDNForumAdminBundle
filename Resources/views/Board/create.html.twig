@@ -4,7 +4,7 @@
 	{{ parent() }}
 {% endblock %}
 
-{% block title %}{{- 'title.board.create'| trans({}, 'CCDNForumAdminBundle') -}}{% endblock %}
+{% block title %}{{- truncDot('title.board.create'| trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}

@@ -9,7 +9,7 @@
 
 {% endblock %}
 
-{% block title %}{{- 'title.tools.repair' | trans({}, 'CCDNForumAdminBundle') -}}{% endblock %}
+{% block title %}{{- truncDot('title.tools.repair' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
