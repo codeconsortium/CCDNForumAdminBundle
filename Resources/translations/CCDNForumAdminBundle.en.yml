@@ -80,6 +80,7 @@ flash.board.delete.success: 'Board Deleted Successfully.'
 flash.board.reorder.success: 'Board Re-Ordered Successfully.'
 
 # category create
+form.field.required: 'This field is required'
 form.label.category.name: 'Category Name:'
 form.button.category.create: 'Create Category'
 form.button.category.edit: 'Save Changes'
