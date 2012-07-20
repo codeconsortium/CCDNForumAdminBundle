@@ -3,7 +3,7 @@ CCDNForum\ForumBundle\Entity\Category:
         name:
             - Type: { type: string, groups: [admin_category] }
             - NotBlank: { groups: [admin_category] }
-            - MinLength: { limit: 20, groups: [admin_category] }
+            - MinLength: { limit: 2, groups: [admin_category] }
             - MaxLength: { limit: 255, groups: [admin_category] }
     
 CCDNForum\ForumBundle\Entity\Board:
@@ -11,7 +11,7 @@ CCDNForum\ForumBundle\Entity\Board:
         name:
             - Type: { type: string, groups: [admin_board] }
             - NotBlank: { groups: [admin_board] }
-            - MinLength: { limit: 20, groups: [admin_board] }
+            - MinLength: { limit: 2, groups: [admin_board] }
             - MaxLength: { limit: 255, groups: [admin_board] }
         description:
             - Type: { type: string, groups: [admin_board] }
