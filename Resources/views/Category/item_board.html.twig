@@ -8,13 +8,11 @@
 		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_delete', {'board_id': board.getId }) -}}">{{- 'link.board.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
 		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_move_up_priority', {'board_id': board.getId }) -}}">{{- 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
 		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_move_down_priority', {'board_id': board.getId }) -}}">{{- 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
-			<br>
-			<a href="{{- path('cc_forum_board_show', {'board_id': board.getId }) -}}">{{- board.getName -}}</a><br>
-			{%- if param('ccdn_forum_admin.category.index.enable_bb_parser') -%}
-				{{- BBCode(board.getDescription | raw) | raw -}}	
-			{%- else -%}
-				{{- board.getDescription -}}
-			{%- endif -%}			
+		<br>
+		<a href="{{- path('cc_forum_board_show', {'board_id': board.getId }) -}}">{{- board.getName -}}</a><br>
+		<span class="common_body">
+			{{- BBCode(board.getDescription | raw, param('ccdn_forum_admin.category.index.enable_bb_parser')) | raw -}}	
+		</span>
 	</td>
 	<td class="center">
 		{{- board.getCachedTopicCount -}}
