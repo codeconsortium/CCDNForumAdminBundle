@@ -16,7 +16,7 @@ CCDNForum\ForumBundle\Entity\Board:
         description:
             - Type: { type: string, groups: [admin_board] }
             - NotBlank: { groups: [admin_board] }
-            - MinLength: { limit: 20, groups: [admin_board] }
+            - MinLength: { limit: 5, groups: [admin_board] }
             - MaxLength: { limit: 1000, groups: [admin_board] }
             
             
