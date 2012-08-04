@@ -8,7 +8,7 @@
 
 {% block sidebar %}
 	{{ parent() }}
-	
+
 	{%- include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' -%}
 
 {% endblock %}
@@ -27,11 +27,11 @@
 	{%- form_theme form param('ccdn_forum_admin.board.edit.form_theme') -%}
 	<form action="{{- path('cc_admin_forum_board_edit', {'board_id': board.id}) -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 		<fieldset>
-		
+
 			{{- form_errors(form) -}}
-		
+
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
-	
+
 			<div class="control-group{{- (form.category.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.category, null, { 'label': 'form.label.board.category'| trans({}, 'CCDNForumAdminBundle') }) -}}
 				<div class="controls row-fluid">
@@ -39,7 +39,7 @@
 					{{- form_widget(form.category) -}}
 				</div>
 			</div>
-		
+
 			<div class="control-group{{- (form.name.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.name, null, { 'label': 'form.label.board.name'| trans({}, 'CCDNForumAdminBundle') }) -}}
 				<div class="controls row-fluid">
@@ -47,7 +47,7 @@
 				{{- form_widget(form.name) -}}
 				</div>
 			</div>
-		
+
 			<div class="control-group{{- (form.description.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.description, null, { 'label': 'form.label.board.description'| trans({}, 'CCDNForumAdminBundle') }) -}}
 				<div class="controls row-fluid">
@@ -58,14 +58,14 @@
 					{{- form_widget(form.description) -}}
 				</div>
 			</div>
-		
+
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'form.button.board.edit'| trans({}, 'CCDNForumAdminBundle') -}}">
 			</div>
-		
+
 		</fieldset>
 	</form>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}

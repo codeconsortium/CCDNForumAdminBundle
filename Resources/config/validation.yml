@@ -5,7 +5,7 @@ CCDNForum\ForumBundle\Entity\Category:
             - NotBlank: { groups: [admin_category] }
             - MinLength: { limit: 2, groups: [admin_category] }
             - MaxLength: { limit: 255, groups: [admin_category] }
-    
+
 CCDNForum\ForumBundle\Entity\Board:
     properties:
         name:
@@ -18,5 +18,3 @@ CCDNForum\ForumBundle\Entity\Board:
             - NotBlank: { groups: [admin_board] }
             - MinLength: { limit: 5, groups: [admin_board] }
             - MaxLength: { limit: 1000, groups: [admin_board] }
-            
-            

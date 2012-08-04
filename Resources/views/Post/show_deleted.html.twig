@@ -37,11 +37,11 @@
 	<input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete.soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="posts">&nbsp;
 	<input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete.hard' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_hard_delete" disabled data-responds-disabled="posts">
 	<br><br>
-	
+
 	{%- if pager.haveToPaginate -%}
 		{{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}} ) -}}
 	{%- endif -%}
-	
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -93,7 +93,7 @@
 							{{- post.getCreatedDate |date(param('ccdn_forum_admin.post.show_deleted.post_created_datetime_format')) -}}
 						{%- endif -%}
 					</td>
-					
+
 					<td class="center">
 						{%- if post.getLockedBy -%}
 							<a href="{{- path(user_profile_route, {'user_id': post.getDeletedBy }) -}}">{{- post.getLockedBy.getUsername |title -}}</a>
@@ -104,7 +104,7 @@
 							{{- post.getLockedDate |date(param('ccdn_forum_admin.post.show_deleted.post_locked_datetime_format')) -}}
 						{%- endif -%}
 					</td>
-					
+
 					<td class="center">
 						{%- if post.getDeletedBy -%}
 							<a href="{{- path(user_profile_route, {'user_id': post.getDeletedBy }) -}}">{{- post.getDeletedBy.getUsername |title -}}</a>
@@ -125,11 +125,11 @@
 			{%- endfor -%}
 		</tbody>
 	</table>
-	
+
 	{%- if pager.haveToPaginate -%}
 		{{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}} ) -}}
 	{%- endif -%}
-	
+
 	</form>
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}

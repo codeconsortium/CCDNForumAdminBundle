@@ -8,7 +8,7 @@
 
 {% block sidebar %}
 	{{ parent() }}
-	
+
 	{%- include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' -%}
 
 {% endblock %}
@@ -17,7 +17,7 @@
 {% block body %}
 
 	{%- spaceless -%}
-	
+
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
@@ -27,11 +27,11 @@
 	{%- form_theme form param('ccdn_forum_admin.category.create.form_theme') -%}
 	<form action="{{- path('cc_admin_forum_category_create') -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 		<fieldset>
-			
+
 			{{- form_errors(form) -}}
-			
+
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
-			
+
 			<div class="control-group{{- (form.name.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.name, null, { 'label': 'form.label.category.name' | trans({}, 'CCDNForumAdminBundle') }) -}}
 				<div class="controls row-fluid">
@@ -39,11 +39,11 @@
 					{{- form_widget(form.name) -}}
 				</div>
 			</div>
-			
+
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'form.button.category.create' | trans({}, 'CCDNForumAdminBundle') -}}">
 			</div>
-			
+
 		</fieldset>
 	</form>
 

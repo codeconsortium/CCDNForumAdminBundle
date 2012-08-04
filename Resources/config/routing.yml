@@ -20,11 +20,11 @@ cc_admin_forum_category_delete:
 cc_admin_forum_category_delete_confirmed:
     pattern: /{_locale}/admin/forum/category/{category_id}/confirmed/delete
     defaults: { _controller: CCDNForumAdminBundle:Category:deleteConfirmed, _locale: en }
-   
+
 cc_admin_forum_category_move_up_priority:
     pattern: /{_locale}/admin/forum/category/{category_id}/reorder/up
     defaults: { _controller: CCDNForumAdminBundle:Category:reorder, _locale: en, direction: 'up' }
-        
+
 cc_admin_forum_category_move_down_priority:
     pattern: /{_locale}/admin/forum/category/{category_id}/reorder/down
     defaults: { _controller: CCDNForumAdminBundle:Category:reorder, _locale: en, direction: 'down' }
@@ -39,11 +39,11 @@ cc_admin_forum_board_create:
 cc_admin_forum_board_create_on_category:
     pattern: /{_locale}/admin/forum/board/create/on/category/{category_id}
     defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en }
-                
+
 cc_admin_forum_board_edit:
     pattern: /{_locale}/admin/forum/board/{board_id}/edit
     defaults: { _controller: CCDNForumAdminBundle:Board:edit, _locale: en }
-    
+
 cc_admin_forum_board_delete:
     pattern: /{_locale}/admin/forum/board/{board_id}/delete
     defaults: { _controller: CCDNForumAdminBundle:Board:delete, _locale: en }

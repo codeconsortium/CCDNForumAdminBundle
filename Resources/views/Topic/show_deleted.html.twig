@@ -30,7 +30,7 @@
 	<h2>{{- 'title.topic.deleted' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
 
 	<form method="POST" action="{{- path('cc_admin_forum_topics_bulk_action') -}}">
-	
+
 	<input type="submit" class="btn btn-primary disabled" value="{{- 'link.topic.close' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_close" disabled data-responds-disabled="posts">&nbsp;
 	<input type="submit" class="btn btn-primary disabled" value="{{- 'link.topic.reopen' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_reopen" disabled data-responds-disabled="posts">&nbsp;
 	<input type="submit" class="btn btn-primary disabled" value="{{- 'link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts">&nbsp;
@@ -41,7 +41,7 @@
 	{%- if pager.haveToPaginate -%}
 		{{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_topic_deleted_show_paginated', 'routeParams':{}} ) -}}
 	{%- endif -%}
-	
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -114,13 +114,13 @@
 			{%- endfor -%}
 		</tbody>
 	</table>
-	
+
 	{%- if pager.haveToPaginate -%}
 	    {{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_topic_deleted_show_paginated', 'routeParams':{}} ) -}}
 	{%- endif -%}
-	
+
 	</form>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}

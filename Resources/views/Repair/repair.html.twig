@@ -28,7 +28,7 @@
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	<h2>{{- 'title.tools.repair' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
-	
+
 	<table class="table">
 		<tbody>
 
@@ -38,12 +38,12 @@
 					<span class="label {{- board_integrity['unlinkedLastPostCount'] ? 'label-important': 'label-success' -}}">{{- board_integrity['unlinkedLastPostCount'] -}} unlinked last posts</span><br>
 					<span class="label {{- board_integrity['unsetTopicCount'] ? 'label-important': 'label-success' -}}">{{- board_integrity['unsetTopicCount'] -}} topic counts unset</span><br>
 					<span class="label {{- board_integrity['unsetPostCount'] ? 'label-important': 'label-success' -}}">{{- board_integrity['unsetPostCount'] -}} post counts unset</span><br>
-				</td>				
+				</td>
 				<td class="left">
 {#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.board_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td class="right">
 					<span class="label {{- topic_integrity['orphanedTopicCount'] ? 'label-important': 'label-success' -}}">{{- topic_integrity['orphanedTopicCount'] -}} orphaned topics</span><br>
@@ -59,7 +59,7 @@
 {#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.topic_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td class="right">
 					<span class="label {{- post_integrity['orphanedPostCount'] ? 'label-important': 'label-success' -}}">{{- post_integrity['orphanedPostCount'] -}} orphaned posts</span><br>
@@ -71,17 +71,17 @@
 {#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.post_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td class="right">
 					<span class="label {{- draft_integrity['orphanedDraftCount'] ? 'label-important': 'label-success' -}}">{{- draft_integrity['orphanedDraftCount'] -}} orphaned drafts</span><br>
 			{#		<span class="label label-success">0 lost attachments</span><br> #}
-				</td>	
+				</td>
 				<td class="left">
 {#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.draft_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
-						
+
 			<tr>
 				<td class="right">
 					<span class="label {{- subscribed_integrity['orphanedSubscriptionCount'] ? 'label-important': 'label-success' -}}">{{- subscribed_integrity['orphanedSubscriptionCount'] -}} orphaned subscriptions</span><br>
@@ -92,7 +92,7 @@
 {#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.subscription_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td class="right">
 					<span class="label {{- registry_integrity['orphanedRegistryCount'] ? 'label-important': 'label-success' -}}">{{- registry_integrity['orphanedRegistryCount'] -}} orphaned registries</span><br>
@@ -104,12 +104,12 @@
 {#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.registry_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
-			
+
 		</tbody>
 	</table>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}
-	
+
 {% endblock %}
