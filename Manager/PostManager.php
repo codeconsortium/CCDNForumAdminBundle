@@ -13,7 +13,7 @@
 
 namespace CCDNForum\AdminBundle\Manager;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\ManagerInterface;
 use CCDNForum\ModeratorBundle;
 
 /**
@@ -100,7 +100,7 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
                 $post->setTopic(null);
 
                 // Flush all the changes to the topic as we go.
-                $this->persist($topic)->flushNow();
+                $this->persist($topic)->flush();
             }
 
             // Add post to the delete chain
@@ -119,7 +119,7 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
         }
 
         // Flush all the unlinking.
-        $this->flushNow();
+        $this->flush();
 
         // Drop the post records from the db.
         foreach ($postsToDelete as $post) {
@@ -130,7 +130,7 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
             }
         }
 
-        $this->flushNow();
+        $this->flush();
 
         // Drop the topic records from the db.
         foreach ($topicsToDelete as $topic) {
@@ -141,13 +141,13 @@ class PostManager extends ModeratorBundle\Manager\PostManager implements Manager
             }
         }
 
-        $this->flushNow();
+        $this->flush();
 
         // Update all affected Board stats.
-        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flushNow();
+        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
 
         // Update all affected Topic stats.
-        $this->container->get('ccdn_forum_forum.topic.manager')->bulkUpdateStats($topicsToUpdate)->flushNow();
+        $this->container->get('ccdn_forum_forum.topic.manager')->bulkUpdateStats($topicsToUpdate)->flush();
 
         // Update all affected Users cached post counts.
         $this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);

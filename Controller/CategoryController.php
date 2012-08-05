@@ -185,7 +185,7 @@ class CategoryController extends ContainerAware
             throw new NotFoundHTTPException('category not found!');
         }
 
-        $this->container->get('ccdn_forum_admin.category.manager')->remove($category)->flushNow();
+        $this->container->get('ccdn_forum_admin.category.manager')->remove($category)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.category.delete.success', array(), 'CCDNForumAdminBundle'));
 
@@ -217,7 +217,7 @@ class CategoryController extends ContainerAware
             return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
         }
 
-        $this->container->get('ccdn_forum_admin.category.manager')->reorder($categories, $category_id, $direction)->flushNow();
+        $this->container->get('ccdn_forum_admin.category.manager')->reorder($categories, $category_id, $direction)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.category.reorder.success', array(), 'CCDNForumAdminBundle'));
 

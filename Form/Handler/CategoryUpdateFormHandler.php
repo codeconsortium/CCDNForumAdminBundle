@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\ManagerInterface;
 
 /**
  *
@@ -138,7 +138,7 @@ class CategoryUpdateFormHandler
      */
     protected function onSuccess($entity)
     {
-        return $this->manager->update($entity)->flushNow();
+        return $this->manager->update($entity)->flush();
     }
 
 }

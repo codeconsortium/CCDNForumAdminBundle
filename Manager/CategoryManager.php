@@ -13,8 +13,8 @@
 
 namespace CCDNForum\AdminBundle\Manager;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
-use CCDNComponent\CommonBundle\Manager\BaseManager;
+use CCDNForum\AdminBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\BaseManager;
 
 /**
  *

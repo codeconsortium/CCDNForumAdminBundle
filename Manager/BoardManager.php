@@ -13,8 +13,8 @@
 
 namespace CCDNForum\AdminBundle\Manager;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
-use CCDNComponent\CommonBundle\Manager\BaseManager;
+use CCDNForum\AdminBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\BaseManager;
 
 /**
  *
@@ -112,7 +112,7 @@ class BoardManager extends BaseManager implements ManagerInterface
 
         foreach ($boards as $board) { $this->persist($board); }
 
-        //$this->flushNow();
+        //$this->flush();
         return $this;
     }
 

@@ -13,7 +13,7 @@
 
 namespace CCDNForum\AdminBundle\Manager;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\ManagerInterface;
 use CCDNForum\ModeratorBundle;
 
 /**
@@ -60,10 +60,10 @@ class TopicManager extends ModeratorBundle\Manager\TopicManager implements Manag
             $this->remove($topic);
         }
 
-        $this->flushNow();
+        $this->flush();
 
         // Update all affected Board stats.
-        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boards_to_update)->flushNow();
+        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boards_to_update)->flush();
 
         // Update all affected Users cached post counts.
         $this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($users_post_count_to_update);

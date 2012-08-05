@@ -155,7 +155,7 @@ class BoardController extends ContainerAware
             throw new NotFoundHTTPException('No such board exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.board.manager')->remove($board)->flushNow();
+        $this->container->get('ccdn_forum_admin.board.manager')->remove($board)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.board.delete.success', array(), 'CCDNForumAdminBundle'));
 
@@ -188,7 +188,7 @@ class BoardController extends ContainerAware
             return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
         }
 
-        $this->container->get('ccdn_forum_admin.board.manager')->reorder($boards, $board_id, $direction)->flushNow();
+        $this->container->get('ccdn_forum_admin.board.manager')->reorder($boards, $board_id, $direction)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.board.reorder.success', array(), 'CCDNForumAdminBundle'));
 
