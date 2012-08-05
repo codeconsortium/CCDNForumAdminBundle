@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the CCDN AdminBundle
+ * This file is part of the CCDNForum AdminBundle
  *
  * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
  *
