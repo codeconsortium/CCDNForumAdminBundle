@@ -43,10 +43,10 @@ class DashboardIntegrator extends BaseIntegrator implements IntegratorInterface
         $resources = array(
             'admin' => array(
                 'Forum Administration' => array(
-                    'cc_admin_forum_category_index' => array('auth' => 'ROLE_ADMIN', 'name' => 'Edit Categories', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_category.png'),
-                    'cc_admin_forum_topic_deleted_show' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
-                    'cc_admin_forum_post_deleted_show' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
-                    'cc_admin_forum_repair_tools' => array('auth' => 'ROLE_ADMIN', 'name' => 'Repair', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/black/32x32/32x32_repair.png'),
+                    'ccdn_forum_admin_category_index' => array('auth' => 'ROLE_ADMIN', 'name' => 'Edit Categories', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_category.png'),
+                    'ccdn_forum_admin_topic_deleted_show' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
+                    'ccdn_forum_admin_post_deleted_show' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
+                    'ccdn_forum_admin_repair_tools' => array('auth' => 'ROLE_ADMIN', 'name' => 'Repair', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/black/32x32/32x32_repair.png'),
                 ),
             ),
 

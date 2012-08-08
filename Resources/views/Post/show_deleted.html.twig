@@ -29,7 +29,7 @@
 
 	<h2>{{- 'title.post.deleted' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
 
-	<form method="POST" action="{{- path('cc_admin_forum_post_bulk_action') -}}">
+	<form method="POST" action="{{- path('ccdn_forum_admin_post_bulk_action') -}}">
 
 	<div class="btn-toolbar" style="display:block !important;clear:both !important;">
 		<div class="pull-left">
@@ -41,7 +41,7 @@
 		</div>
 		{%- if pager.haveToPaginate -%}
 			<div class="pull-right">
-		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}}) -}}
+		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_post_deleted_show_paginated', 'routeParams':{}}) -}}
 			</div>
 		{%- endif -%}
 		<br><br>
@@ -81,11 +81,11 @@
 					</td>
 					<td class="left">
 						{%- if post.getTopic -%}
-							<a href="{{- path('cc_forum_topic_show', {'topic_id': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.show_deleted.topic_title_truncate')) -}}</a>
+							<a href="{{- path('ccdn_forum_forum_topic_show', {'topic_id': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.show_deleted.topic_title_truncate')) -}}</a>
 						{%- endif -%}
 					</td>
 					<td class="center">
-						<a href="{{- path('cc_forum_post_show', {'post_id': post.getId }) -}}">#{{- post.getId -}}</a>
+						<a href="{{- path('ccdn_forum_forum_post_show', {'post_id': post.getId }) -}}">#{{- post.getId -}}</a>
 					</td>
 
 					<td class="center">
@@ -134,7 +134,7 @@
 	<div class="btn-toolbar" style="display:block !important;clear:both !important;">
 		{%- if pager.haveToPaginate -%}
 			<div class="pull-right">
-		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}}) -}}
+		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_post_deleted_show_paginated', 'routeParams':{}}) -}}
 			</div>
 		{%- endif -%}
 		<br><br>

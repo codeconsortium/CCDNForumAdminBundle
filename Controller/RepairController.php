@@ -47,8 +47,8 @@ class RepairController extends ContainerAware
 
         // setup crumb trail.
         $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->container->get('translator')->trans('crumbs.tools.repair', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_repair_tools'), "repair");
+            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+            ->add($this->container->get('translator')->trans('crumbs.tools.repair', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_repair_tools'), "repair");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Repair:repair.html.' . $this->getEngine(), array(
             'crumbs' => $crumb_trail,
@@ -97,7 +97,7 @@ class RepairController extends ContainerAware
         // Don't bother if there are no flags to process.
         //
         if (count($itemIds) < 1) {
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_topic_deleted_show'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
         }
 
         $user = $this->container->get('security.context')->getToken()->getUser();
@@ -107,7 +107,7 @@ class RepairController extends ContainerAware
         if ( ! $topics || empty($topics)) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.topic.no_topics_found', array(), 'CCDNForumModeratorBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_topic_deleted_show'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
         }
 
         if (isset($_POST['submit_close'])) {
@@ -126,7 +126,7 @@ class RepairController extends ContainerAware
             $this->container->get('ccdn_forum_admin.topic.manager')->bulkHardDelete($topics)->flush();
         }
 
-        return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_topic_deleted_show'));
+        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
     }
 
     /**

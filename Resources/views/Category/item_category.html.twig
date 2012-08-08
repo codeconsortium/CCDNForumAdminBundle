@@ -3,15 +3,15 @@
 	<div class="pull-left">
 		<h2>
 			<i class="icon-folder"></i>
-			<a href="{{- path('cc_forum_category_show', {'category_id': category.id }) -}}">{{- category.name -}}</a>
+			<a href="{{- path('ccdn_forum_forum_category_show', {'category_id': category.id }) -}}">{{- category.name -}}</a>
 		</h2>
 	</div>
 	<div class="pull-right">
-		<a class="btn btn-danger" href="{{- path('cc_admin_forum_category_edit', {'category_id': category.getId }) -}}">{{- 'link.category.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('cc_admin_forum_category_delete', {'category_id': category.getId }) -}}">{{- 'link.category.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('cc_admin_forum_board_create_on_category', {'category_id': category.getId }) -}}">{{- 'link.board.add' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('cc_admin_forum_category_move_up_priority', {'category_id': category.getId }) -}}">{{- 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('cc_admin_forum_category_move_down_priority', {'category_id': category.getId }) -}}">{{- 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_edit', {'category_id': category.getId }) -}}">{{- 'link.category.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_delete', {'category_id': category.getId }) -}}">{{- 'link.category.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_create_on_category', {'category_id': category.getId }) -}}">{{- 'link.board.add' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_priority_move_up', {'category_id': category.getId }) -}}">{{- 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_priority_move_down', {'category_id': category.getId }) -}}">{{- 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
 	</div>
 </div>
 

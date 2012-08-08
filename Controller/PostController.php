@@ -49,8 +49,8 @@ class PostController extends ContainerAware
 
         // setup crumb trail.
         $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->container->get('translator')->trans('crumbs.post.deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_post_deleted_show'), "trash");
+            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+            ->add($this->container->get('translator')->trans('crumbs.post.deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_moderator.user.profile_route'),
@@ -94,7 +94,7 @@ class PostController extends ContainerAware
         // Don't bother if there are no flags to process.
         //
         if (count($itemIds) < 1) {
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_post_deleted_show'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'));
         }
 
         $user = $this->container->get('security.context')->getToken()->getUser();
@@ -104,7 +104,7 @@ class PostController extends ContainerAware
         if ( ! $posts || empty($posts)) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.post.no_posts_found', array(), 'CCDNForumModeratorBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_post_deleted_show'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'));
         }
 
         if (isset($_POST['submit_lock'])) {
@@ -123,7 +123,7 @@ class PostController extends ContainerAware
             $this->container->get('ccdn_forum_admin.post.manager')->bulkHardDelete($posts)->flush();
         }
 
-        return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_post_deleted_show'));
+        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'));
     }
 
     /**

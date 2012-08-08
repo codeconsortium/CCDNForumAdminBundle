@@ -48,13 +48,13 @@ class BoardController extends ContainerAware
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.board.create.success', array(), 'CCDNForumAdminBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-                ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
-                ->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
-                ->add($this->container->get('translator')->trans('crumbs.board.create', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_board_create'), "edit");
+                ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+                ->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_category_index'), "home")
+                ->add($this->container->get('translator')->trans('crumbs.board.create', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_board_create'), "edit");
 
             return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Board:create.html.' . $this->getEngine(), array(
                 'crumbs' => $crumb_trail,
@@ -91,13 +91,13 @@ class BoardController extends ContainerAware
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.board.edit.success', array(), 'CCDNForumAdminBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-                ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
-                ->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
-                ->add($this->container->get('translator')->trans('crumbs.board.edit', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_board_edit', array('board_id' => $board_id)), "edit");
+                ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+                ->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_category_index'), "home")
+                ->add($this->container->get('translator')->trans('crumbs.board.edit', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_board_edit', array('board_id' => $board_id)), "edit");
 
             return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Board:edit.html.' . $this->getEngine(), array(
                 'board' => $board,
@@ -127,9 +127,9 @@ class BoardController extends ContainerAware
 
         // setup crumb trail.
         $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_category_index'), "home")
-            ->add($this->container->get('translator')->trans('crumbs.board.delete', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('cc_admin_forum_board_delete', array('board_id' => $board->getId())), "trash");
+            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+            ->add($this->container->get('translator')->trans('crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_category_index'), "home")
+            ->add($this->container->get('translator')->trans('crumbs.board.delete', array('%board_name%' => $board->getName()), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_board_delete', array('board_id' => $board->getId())), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Board:delete_board.html.' . $this->getEngine(), array(
             'board' => $board,
@@ -159,7 +159,7 @@ class BoardController extends ContainerAware
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.board.delete.success', array(), 'CCDNForumAdminBundle'));
 
-        return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
+        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
     }
 
     /**
@@ -178,21 +178,21 @@ class BoardController extends ContainerAware
         $boards = $this->container->get('ccdn_forum_forum.board.repository')->findBoardsOrderedByPriorityInCategory($category_id);
 
         if (! $boards) {
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
         }
 
         $board_count = count($boards);
 
         // if there is only 1 category, it cannot be re-ordered.
         if ($board_count < 2) {
-            return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
         }
 
         $this->container->get('ccdn_forum_admin.board.manager')->reorder($boards, $board_id, $direction)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.board.reorder.success', array(), 'CCDNForumAdminBundle'));
 
-        return new RedirectResponse($this->container->get('router')->generate('cc_admin_forum_category_index'));
+        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
     }
 
     /**

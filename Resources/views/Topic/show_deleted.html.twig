@@ -29,7 +29,7 @@
 
 	<h2>{{- 'title.topic.deleted' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
 
-	<form method="POST" action="{{- path('cc_admin_forum_topics_bulk_action') -}}">
+	<form method="POST" action="{{- path('ccdn_forum_admin_topic_bulk_action') -}}">
 
 	<div class="btn-toolbar" style="display:block !important;clear:both !important;">
 		<div class="pull-left">
@@ -41,7 +41,7 @@
 		</div>
 		{%- if pager.haveToPaginate -%}
 			<div class="pull-right">
-		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'cc_admin_forum_topic_deleted_show_paginated', 'routeParams':{}}) -}}
+		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_deleted_show_paginated', 'routeParams':{}}) -}}
 			</div>
 		{%- endif -%}
 		<br><br>
@@ -79,7 +79,7 @@
 						{%- endif -%}
 					</td>
 					<td class="left">
-						<a class="topic_link" href="{{- path('cc_forum_topic_show', {'topic_id': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, param('ccdn_forum_admin.topic.show_deleted.topic_title_truncate')) -}}</a><br>
+						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topic_id': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, param('ccdn_forum_admin.topic.show_deleted.topic_title_truncate')) -}}</a><br>
 						{{- 'post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
 						{%- if topic.getFirstPost -%}
 							{%- if topic.getFirstPost.getCreatedBy -%}
@@ -123,7 +123,7 @@
 	<div class="btn-toolbar" style="display:block !important;clear:both !important;">
 		{%- if pager.haveToPaginate -%}
 			<div class="pull-right">
-		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'cc_admin_forum_topic_deleted_show_paginated', 'routeParams':{}}) -}}
+		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_deleted_show_paginated', 'routeParams':{}}) -}}
 			</div>
 		{%- endif -%}
 		<br><br>
