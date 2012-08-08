@@ -31,17 +31,22 @@
 
 	<form method="POST" action="{{- path('cc_admin_forum_post_bulk_action') -}}">
 
-	<input type="submit" class="btn btn-primary disabled" value="{{- 'link.post.lock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_lock" disabled data-responds-disabled="posts">&nbsp;
-	<input type="submit" class="btn btn-primary disabled" value="{{- 'link.post.unlock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_unlock" disabled data-responds-disabled="posts">&nbsp;
-	<input type="submit" class="btn btn-primary disabled" value="{{- 'link.post.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts">&nbsp;
-	<input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete.soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="posts">&nbsp;
-	<input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete.hard' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_hard_delete" disabled data-responds-disabled="posts">
-	<br><br>
-
-	{%- if pager.haveToPaginate -%}
-		{{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}} ) -}}
-	{%- endif -%}
-
+	<div class="btn-toolbar" style="display:block !important;clear:both !important;">
+		<div class="pull-left">
+			<input type="submit" class="btn btn-primary disabled" value="{{- 'link.post.lock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_lock" disabled data-responds-disabled="posts">&nbsp;
+			<input type="submit" class="btn btn-primary disabled" value="{{- 'link.post.unlock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_unlock" disabled data-responds-disabled="posts">&nbsp;
+			<input type="submit" class="btn btn-primary disabled" value="{{- 'link.post.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts">&nbsp;
+			<input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete.soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="posts">&nbsp;
+			<input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete.hard' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_hard_delete" disabled data-responds-disabled="posts">
+		</div>
+		{%- if pager.haveToPaginate -%}
+			<div class="pull-right">
+		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}}) -}}
+			</div>
+		{%- endif -%}
+		<br><br>
+	</div>
+	
 	<table class="table">
 		<thead>
 			<tr>
@@ -126,9 +131,14 @@
 		</tbody>
 	</table>
 
-	{%- if pager.haveToPaginate -%}
-		{{- pagerfanta(pager, 'twitter_bootstrap', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}} ) -}}
-	{%- endif -%}
+	<div class="btn-toolbar" style="display:block !important;clear:both !important;">
+		{%- if pager.haveToPaginate -%}
+			<div class="pull-right">
+		    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'cc_admin_forum_post_deleted_show_paginated', 'routeParams':{}}) -}}
+			</div>
+		{%- endif -%}
+		<br><br>
+	</div>
 
 	</form>
 
