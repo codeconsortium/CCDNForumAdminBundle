@@ -30,8 +30,8 @@ class PostController extends ContainerAware
      * Display a list of deleted posts.
      *
      * @access public
-     * @param  int                             $page
-     * @return RedirectResponse|RenderResponse
+     * @param  Int $page
+     * @return RenderResponse
      */
     public function showDeletedAction($page)
     {
@@ -41,23 +41,23 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $posts_paginated = $this->container->get('ccdn_forum_forum.post.repository')->findDeletedPostsForAdminsPaginated();
+        $postsPager = $this->container->get('ccdn_forum_forum.post.repository')->findDeletedPostsForAdminsPaginated();
 
-        $posts_per_page = $this->container->getParameter('ccdn_forum_admin.post.show_deleted.posts_per_page');
-        $posts_paginated->setMaxPerPage($posts_per_page);
-        $posts_paginated->setCurrentPage($page, false, true);
+        $postsPerPage = $this->container->getParameter('ccdn_forum_admin.post.show_deleted.posts_per_page');
+        $postsPager->setMaxPerPage($postsPerPage);
+        $postsPager->setCurrentPage($page, false, true);
 
         // setup crumb trail.
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
             ->add($this->container->get('translator')->trans('crumbs.post.deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_moderator.user.profile_route'),
             'user' => $user,
-            'crumbs' => $crumb_trail,
-            'posts' => $posts_paginated,
-            'pager' => $posts_paginated,
+            'crumbs' => $crumbs,
+            'posts' => $postsPager,
+            'pager' => $postsPager,
         ));
     }
 
@@ -129,7 +129,7 @@ class PostController extends ContainerAware
     /**
      *
      * @access protected
-     * @return string
+     * @return String
      */
     protected function getEngine()
     {

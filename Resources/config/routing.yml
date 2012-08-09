@@ -10,23 +10,23 @@ ccdn_forum_admin_category_create:
     defaults: { _controller: CCDNForumAdminBundle:Category:create, _locale: en }
 
 ccdn_forum_admin_category_edit:
-    pattern: /{_locale}/admin/forum/category/{category_id}/edit
+    pattern: /{_locale}/admin/forum/category/{categoryId}/edit
     defaults: { _controller: CCDNForumAdminBundle:Category:edit, _locale: en }
 
 ccdn_forum_admin_category_delete:
-    pattern: /{_locale}/admin/forum/category/{category_id}/delete
+    pattern: /{_locale}/admin/forum/category/{categoryId}/delete
     defaults: { _controller: CCDNForumAdminBundle:Category:delete, _locale: en }
 
 ccdn_forum_admin_category_delete_confirmed:
-    pattern: /{_locale}/admin/forum/category/{category_id}/confirmed/delete
+    pattern: /{_locale}/admin/forum/category/{categoryId}/confirmed/delete
     defaults: { _controller: CCDNForumAdminBundle:Category:deleteConfirmed, _locale: en }
 
 ccdn_forum_admin_category_priority_move_up:
-    pattern: /{_locale}/admin/forum/category/{category_id}/reorder/up
+    pattern: /{_locale}/admin/forum/category/{categoryId}/reorder/up
     defaults: { _controller: CCDNForumAdminBundle:Category:reorder, _locale: en, direction: 'up' }
 
 ccdn_forum_admin_category_priority_move_down:
-    pattern: /{_locale}/admin/forum/category/{category_id}/reorder/down
+    pattern: /{_locale}/admin/forum/category/{categoryId}/reorder/down
     defaults: { _controller: CCDNForumAdminBundle:Category:reorder, _locale: en, direction: 'down' }
 
 #
@@ -34,30 +34,30 @@ ccdn_forum_admin_category_priority_move_down:
 #
 ccdn_forum_admin_board_create:
     pattern: /{_locale}/admin/forum/board/create
-    defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en, category_id: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en, categoryId: 1 }
 
 ccdn_forum_admin_board_create_on_category:
-    pattern: /{_locale}/admin/forum/board/create/on/category/{category_id}
+    pattern: /{_locale}/admin/forum/board/create/on/category/{categoryId}
     defaults: { _controller: CCDNForumAdminBundle:Board:create, _locale: en }
 
 ccdn_forum_admin_board_edit:
-    pattern: /{_locale}/admin/forum/board/{board_id}/edit
+    pattern: /{_locale}/admin/forum/board/{boardId}/edit
     defaults: { _controller: CCDNForumAdminBundle:Board:edit, _locale: en }
 
 ccdn_forum_admin_board_delete:
-    pattern: /{_locale}/admin/forum/board/{board_id}/delete
+    pattern: /{_locale}/admin/forum/board/{boardId}/delete
     defaults: { _controller: CCDNForumAdminBundle:Board:delete, _locale: en }
 
 ccdn_forum_admin_board_delete_confirmed:
-    pattern: /{_locale}/admin/forum/board/{board_id}/delete/confirmed
+    pattern: /{_locale}/admin/forum/board/{boardId}/delete/confirmed
     defaults: { _controller: CCDNForumAdminBundle:Board:deleteConfirmed, _locale: en }
 
 ccdn_forum_admin_board_priority_move_up:
-    pattern: /{_locale}/admin/forum/board/{board_id}/reorder/up
+    pattern: /{_locale}/admin/forum/board/{boardId}/reorder/up
     defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'up' }
 
 ccdn_forum_admin_board_priority_move_down:
-    pattern: /{_locale}/admin/forum/board/{board_id}/reorder/down
+    pattern: /{_locale}/admin/forum/board/{boardId}/reorder/down
     defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'down' }
 
 #

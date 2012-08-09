@@ -46,12 +46,12 @@ class RepairController extends ContainerAware
         $registryIntegrity 		= $this->container->get('ccdn_forum_forum.registry.repository')->getTableIntegrityStatus();
 
         // setup crumb trail.
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
             ->add($this->container->get('translator')->trans('crumbs.tools.repair', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_repair_tools'), "repair");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Repair:repair.html.' . $this->getEngine(), array(
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
             'board_integrity' => $boardIntegrity,
             'topic_integrity' => $topicIntegrity,
             'post_integrity' => $postIntegrity,
@@ -67,7 +67,7 @@ class RepairController extends ContainerAware
      * item present in a form. This can only be done via a member with role_admin!
      *
      * @access public
-     * @return RedirectResponse|RenderResponse
+     * @return RedirectResponse
      */
     public function bulkAction()
     {
@@ -132,7 +132,7 @@ class RepairController extends ContainerAware
     /**
      *
      * @access protected
-     * @return string
+     * @return String
      */
     protected function getEngine()
     {

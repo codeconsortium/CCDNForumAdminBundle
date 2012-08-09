@@ -79,11 +79,11 @@
 						{%- endif -%}
 					</td>
 					<td class="left">
-						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topic_id': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, param('ccdn_forum_admin.topic.show_deleted.topic_title_truncate')) -}}</a><br>
+						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, param('ccdn_forum_admin.topic.show_deleted.topic_title_truncate')) -}}</a><br>
 						{{- 'post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
 						{%- if topic.getFirstPost -%}
 							{%- if topic.getFirstPost.getCreatedBy -%}
-								<a href="{{- path(user_profile_route, {'user_id': topic.getFirstPost.getCreatedBy.getId }) -}}">{{- topic.getFirstPost.getCreatedBy |title -}}</a>
+								<a href="{{- path(user_profile_route, {'userId': topic.getFirstPost.getCreatedBy.getId }) -}}">{{- topic.getFirstPost.getCreatedBy |title -}}</a>
 							{%- else -%}
 								Guest
 							{%- endif -%}
@@ -97,14 +97,14 @@
 					</td>
 
 					<td class="center">
-						{%- if topic.getClosedBy -%}<a href="{{- path(user_profile_route, {'user_id': topic.getClosedBy.getId }) -}}">{{- topic.getClosedBy.getUsername |title -}}</a>{%- endif -%}
+						{%- if topic.getClosedBy -%}<a href="{{- path(user_profile_route, {'userId': topic.getClosedBy.getId }) -}}">{{- topic.getClosedBy.getUsername |title -}}</a>{%- endif -%}
 					</td>
 					<td class="center">
 						{%- if topic.getClosedDate -%}{{- topic.getClosedDate |date(param('ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format')) -}}{%- endif -%}
 					</td>
 
 					<td class="center">
-						{%- if topic.getDeletedBy -%}<a href="{{- path(user_profile_route, {'user_id': topic.getDeletedBy.getId }) -}}">{{- topic.getDeletedBy.getUsername |title -}}</a>{%- endif -%}
+						{%- if topic.getDeletedBy -%}<a href="{{- path(user_profile_route, {'userId': topic.getDeletedBy.getId }) -}}">{{- topic.getDeletedBy.getUsername |title -}}</a>{%- endif -%}
 					</td>
 					<td class="center">
 						{%- if topic.getDeletedDate -%}{{- topic.getDeletedDate |date(param('ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format')) -}}{%- endif -%}

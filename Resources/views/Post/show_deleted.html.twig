@@ -81,16 +81,16 @@
 					</td>
 					<td class="left">
 						{%- if post.getTopic -%}
-							<a href="{{- path('ccdn_forum_forum_topic_show', {'topic_id': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.show_deleted.topic_title_truncate')) -}}</a>
+							<a href="{{- path('ccdn_forum_forum_topic_show', {'topicId': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.show_deleted.topic_title_truncate')) -}}</a>
 						{%- endif -%}
 					</td>
 					<td class="center">
-						<a href="{{- path('ccdn_forum_forum_post_show', {'post_id': post.getId }) -}}">#{{- post.getId -}}</a>
+						<a href="{{- path('ccdn_forum_forum_post_show', {'postId': post.getId }) -}}">#{{- post.getId -}}</a>
 					</td>
 
 					<td class="center">
 						{%- if post.getCreatedBy -%}
-							<a href="{{- path(user_profile_route, {'user_id': post.getDeletedBy }) -}}">{{- post.getCreatedBy.getUsername |title -}}</a>
+							<a href="{{- path(user_profile_route, {'userId': post.getDeletedBy }) -}}">{{- post.getCreatedBy.getUsername |title -}}</a>
 						{%- endif -%}
 					</td>
 					<td class="center">
@@ -101,7 +101,7 @@
 
 					<td class="center">
 						{%- if post.getLockedBy -%}
-							<a href="{{- path(user_profile_route, {'user_id': post.getDeletedBy }) -}}">{{- post.getLockedBy.getUsername |title -}}</a>
+							<a href="{{- path(user_profile_route, {'userId': post.getDeletedBy }) -}}">{{- post.getLockedBy.getUsername |title -}}</a>
 						{%- endif -%}
 					</td>
 					<td class="center">
@@ -112,7 +112,7 @@
 
 					<td class="center">
 						{%- if post.getDeletedBy -%}
-							<a href="{{- path(user_profile_route, {'user_id': post.getDeletedBy }) -}}">{{- post.getDeletedBy.getUsername |title -}}</a>
+							<a href="{{- path(user_profile_route, {'userId': post.getDeletedBy }) -}}">{{- post.getDeletedBy.getUsername |title -}}</a>
 						{%- endif -%}
 					</td>
 					<td class="center">

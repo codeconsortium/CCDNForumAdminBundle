@@ -30,7 +30,8 @@ class TopicController extends ContainerAware
      * Displays a list of soft deleted topics
      *
      * @access public
-     * @return RedirectResponse|RenderResponse
+	 * @param Int $page
+     * @return RenderResponse
      */
     public function showDeletedAction($page)
     {
@@ -40,23 +41,23 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topics_paginated = $this->container->get('ccdn_forum_forum.topic.repository')->findClosedTopicsForModeratorsPaginated();
+        $topicsPager = $this->container->get('ccdn_forum_forum.topic.repository')->findClosedTopicsForModeratorsPaginated();
 
-        $topics_per_page = $this->container->getParameter('ccdn_forum_admin.topic.show_deleted.topics_per_page');
-        $topics_paginated->setMaxPerPage($topics_per_page);
-        $topics_paginated->setCurrentPage($page, false, true);
+        $topicsPerPage = $this->container->getParameter('ccdn_forum_admin.topic.show_deleted.topics_per_page');
+        $topicsPager->setMaxPerPage($topicsPerPage);
+        $topicsPager->setCurrentPage($page, false, true);
 
         // setup crumb trail.
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
             ->add($this->container->get('translator')->trans('crumbs.topic.deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.' . $this->getEngine(), array(
             'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'user' => $user,
-            'topics' => $topics_paginated,
-            'crumbs' => $crumb_trail,
-            'pager' => $topics_paginated,
+            'crumbs' => $crumbs,
+            'topics' => $topicsPager,
+            'pager' => $topicsPager,
         ));
     }
 
@@ -66,7 +67,7 @@ class TopicController extends ContainerAware
      * item present in a form. This can only be done via a member with role_admin!
      *
      * @access public
-     * @return RedirectResponse|RenderResponse
+     * @return RedirectResponse
      */
     public function bulkAction()
     {
@@ -131,7 +132,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access protected
-     * @return string
+     * @return String
      */
     protected function getEngine()
     {

@@ -32,17 +32,17 @@ class CategoryManager extends BaseManager implements ManagerInterface
      */
     public function insert($category)
     {
-        $category_count_query = $this->entityManager->createQuery('
+        $categoryCountQuery = $this->em->createQuery('
             SELECT COUNT(c.id)
             FROM CCDNForumForumBundle:Category c');
 
         try {
-            $category_count = $category_count_query->getSingleResult();
+            $categoryCount = $categoryCountQuery->getSingleResult();
         } catch (\Doctrine\ORM\NoResultException $e) {
-
+			$categoryCount = 0;
         }
 
-        $category->setListOrderPriority(++$category_count[1]);
+        $category->setListOrderPriority(++$categoryCount[1]);
 
         // insert a new row
         $this->persist($category);
@@ -67,20 +67,20 @@ class CategoryManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $categories, $category_id, $direction
+     * @param Int $categories, Int $categoryId, String $direction
      * @return $this
      */
-    public function reorder($categories, $category_id, $direction)
+    public function reorder($categories, $categoryId, $direction)
     {
-        $category_count = count($categories);
-        for ($index = 0, $priority = 1, $align = false; $index < $category_count; $index++, $priority++) {
-            if ($categories[$index]->getId() == $category_id) {
+        $categoryCount = count($categories);
+        for ($index = 0, $priority = 1, $align = false; $index < $categoryCount; $index++, $priority++) {
+            if ($categories[$index]->getId() == $categoryId) {
                 if ($align == false) { // if aligning then other indices priorities are being corrected
                     // **************
                     // **** DOWN ****
                     // **************
                     if ($direction == 'down') {
-                        if ($index < ($category_count - 1)) { // <-- must be lower because we need to alter an offset of the next index.
+                        if ($index < ($categoryCount - 1)) { // <-- must be lower because we need to alter an offset of the next index.
                             $categories[$index]->setListOrderPriority($priority+1); // move this down the page
                             $categories[$index+1]->setListOrderPriority($priority); // move this up the page
                             $index+=1; $priority++; // the next index has already been changed
@@ -97,7 +97,7 @@ class CategoryManager extends BaseManager implements ManagerInterface
                             $categories[$index-1]->setListOrderPriority($priority); // move this down the page
                             $index+=1; $priority++;
                         } else {
-                            $categories[$index]->setListOrderPriority($category_count); // move to the bottom of the page
+                            $categories[$index]->setListOrderPriority($categoryCount); // move to the bottom of the page
                             $index = -1; $priority = -1; // alter offsets for alignment of all other priorities
                         }
                     } // end down / up direction
@@ -110,6 +110,8 @@ class CategoryManager extends BaseManager implements ManagerInterface
 
         foreach ($categories as $category) { $this->persist($category); }
 
+		$this->flush();
+		
         return $this;
     }
 

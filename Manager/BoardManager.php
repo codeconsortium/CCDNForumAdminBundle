@@ -32,7 +32,7 @@ class BoardManager extends BaseManager implements ManagerInterface
      */
     public function insert($board)				/// <----- fix me
     {
-        $board_count_query = $this->entityManager->createQuery('
+        $boardCountQuery = $this->em->createQuery('
             SELECT COUNT(b.id)
             FROM CCDNForumForumBundle:Board b
             WHERE b.category = :id
@@ -40,12 +40,12 @@ class BoardManager extends BaseManager implements ManagerInterface
             ->setParameter('id', $board->getCategory()->getId());
 
         try {
-            $board_count = $board_count_query->getSingleResult();
+            $boardCount = $boardCountQuery->getSingleResult();
         } catch (\Doctrine\ORM\NoResultException $e) {
-
+			$boardCount = 0;
         }
 
-        $board->setListOrderPriority(++$board_count[1]);
+        $board->setListOrderPriority(++$boardCount[1]);
         // insert a new row
         $this->persist($board);
 
@@ -69,20 +69,20 @@ class BoardManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $boards, $board_id, $direction
+     * @param $boards, $boardId, $direction
      * @return $this
      */
-    public function reorder($boards, $board_id, $direction)
+    public function reorder($boards, $boardId, $direction)
     {
-        $board_count = count($boards);
-        for ($index = 0, $priority = 1, $align = false; $index < $board_count; $index++, $priority++) {
-            if ($boards[$index]->getId() == $board_id) {
+        $boardCount = count($boards);
+        for ($index = 0, $priority = 1, $align = false; $index < $boardCount; $index++, $priority++) {
+            if ($boards[$index]->getId() == $boardId) {
                 if ($align == false) { // if aligning then other indices priorities are being corrected
                     // **************
                     // **** DOWN ****
                     // **************
                     if ($direction == 'down') {
-                        if ($index < ($board_count - 1)) { // <-- must be lower because we need to alter an offset of the next index.
+                        if ($index < ($boardCount - 1)) { // <-- must be lower because we need to alter an offset of the next index.
                             $boards[$index]->setListOrderPriority($priority+1); // move this down the page
                             $boards[$index+1]->setListOrderPriority($priority); // move this up the page
                             $index+=1; $priority++; // the next index has already been changed
@@ -99,7 +99,7 @@ class BoardManager extends BaseManager implements ManagerInterface
                             $boards[$index-1]->setListOrderPriority($priority); // move this down the page
                             $index+=1; $priority++;
                         } else {
-                            $boards[$index]->setListOrderPriority($board_count); // move to the bottom of the page
+                            $boards[$index]->setListOrderPriority($boardCount); // move to the bottom of the page
                             $index = -1; $priority = -1; // alter offsets for alignment of all other priorities
                         }
                     } // end down / up direction
@@ -112,7 +112,8 @@ class BoardManager extends BaseManager implements ManagerInterface
 
         foreach ($boards as $board) { $this->persist($board); }
 
-        //$this->flush();
+		$this->flush();
+		
         return $this;
     }
 

@@ -25,7 +25,7 @@
 	<h2>{{- 'title.category.edit' | trans({'%category_name%': category.name}, 'CCDNForumAdminBundle') -}}</h2>
 
 	{%- form_theme form param('ccdn_forum_admin.category.edit.form_theme') -%}
-	<form action="{{- path('ccdn_forum_admin_category_edit', {'category_id': category.id}) -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+	<form action="{{- path('ccdn_forum_admin_category_edit', {'categoryId': category.id}) -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 		<fieldset>
 
 			{{- form_errors(form) -}}
