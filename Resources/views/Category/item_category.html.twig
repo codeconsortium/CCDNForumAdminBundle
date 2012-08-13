@@ -7,11 +7,11 @@
 		</h2>
 	</div>
 	<div class="pull-right">
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_edit', {'categoryId': category.getId }) -}}">{{- 'link.category.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_delete', {'categoryId': category.getId }) -}}">{{- 'link.category.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_create_on_category', {'categoryId': category.getId }) -}}">{{- 'link.board.add' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_priority_move_up', {'categoryId': category.getId }) -}}">{{- 'link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_priority_move_down', {'categoryId': category.getId }) -}}">{{- 'link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_edit', {'categoryId': category.getId }) -}}">{{- 'ccdn_forum_admin.link.category.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_delete', {'categoryId': category.getId }) -}}">{{- 'ccdn_forum_admin.link.category.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_create_on_category', {'categoryId': category.getId }) -}}">{{- 'ccdn_forum_admin.link.board.add' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_priority_move_up', {'categoryId': category.getId }) -}}">{{- 'ccdn_forum_admin.link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_priority_move_down', {'categoryId': category.getId }) -}}">{{- 'ccdn_forum_admin.link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
 	</div>
 </div>
 
@@ -20,10 +20,10 @@
 		<thead>
 			<tr>
 				<th class="center" style="width:34px;"></th>
-				<th class="left">{{- 'board.table.head.board' | trans({}, 'CCDNForumForumBundle') -}}</th>
-				<th class="center" style="width: 80px;">{{- 'board.table.head.topic_count' | trans({}, 'CCDNForumForumBundle') -}}</th>
-				<th class="center" style="width: 80px;">{{- 'board.table.head.post_count' | trans({}, 'CCDNForumForumBundle') -}}</th>
-				<th class="center" style="width: 170px;">{{- 'board.table.head.last_post' | trans({}, 'CCDNForumForumBundle') -}}</th>
+				<th class="left">{{- 'ccdn_forum_admin.board.table.head.board' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+				<th class="center" style="width: 80px;">{{- 'ccdn_forum_admin.board.table.head.topic_count' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+				<th class="center" style="width: 80px;">{{- 'ccdn_forum_admin.board.table.head.post_count' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+				<th class="center" style="width: 170px;">{{- 'ccdn_forum_admin.board.table.head.last_post' | trans({}, 'CCDNForumAdminBundle') -}}</th>
 			</tr>
 		</thead>
 		<tbody>

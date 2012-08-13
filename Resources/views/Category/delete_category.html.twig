@@ -4,7 +4,7 @@
 	{{ parent() }}
 {% endblock %}
 
-{% block title %}{{- truncDot('title.category.delete'| trans({'%category_name%': category.name}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.category.delete'| trans({'%category_name%': category.name}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -22,17 +22,17 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- 'title.category.delete'| trans({'%category_name%': category.name}, 'CCDNForumAdminBundle') -}}</h2>
+	<h2>{{- 'ccdn_forum_admin.title.category.delete'| trans({'%category_name%': category.name}, 'CCDNForumAdminBundle') -}}</h2>
 
 	<div class="form-confirmation">
 
 		<div class="form-question">
-			<h3>{{- 'category.delete.confirmation_question'  | trans({'%category_name%' : category.name }, 'CCDNForumAdminBundle') -}}</h3>
+			<h3>{{- 'ccdn_forum_admin.category.delete.confirmation_question'  | trans({'%category_name%' : category.name }, 'CCDNForumAdminBundle') -}}</h3>
 		</div>
 
 		<div class="form-answer">
-			<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_delete_confirmed', {'categoryId': category.id }) -}}">{{- 'delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-			<a class="btn" href="{{- path('ccdn_forum_admin_category_index') -}}">{{- 'delete.confirm_no' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+			<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_category_delete_confirmed', {'categoryId': category.id }) -}}">{{- 'ccdn_forum_admin.delete.confirm_yes' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
+			<a class="btn" href="{{- path('ccdn_forum_admin_category_index') -}}">{{- 'ccdn_forum_admin.delete.confirm_no' | trans({}, 'CCDNForumAdminBundle') -}}</a>
 		</div>
 
 	</div>

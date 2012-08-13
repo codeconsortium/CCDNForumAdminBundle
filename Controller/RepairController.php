@@ -47,8 +47,8 @@ class RepairController extends ContainerAware
 
         // setup crumb trail.
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->container->get('translator')->trans('crumbs.tools.repair', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_repair_tools'), "repair");
+            ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+            ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.tools.repair', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_repair_tools'), "repair");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Repair:repair.html.' . $this->getEngine(), array(
             'crumbs' => $crumbs,

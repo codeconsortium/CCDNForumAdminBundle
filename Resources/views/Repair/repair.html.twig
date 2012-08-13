@@ -9,7 +9,7 @@
 
 {% endblock %}
 
-{% block title %}{{- truncDot('title.tools.repair' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.tools.repair' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -27,7 +27,7 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- 'title.tools.repair' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
+	<h2>{{- 'ccdn_forum_admin.title.tools.repair' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
 
 	<table class="table">
 		<tbody>
@@ -40,7 +40,7 @@
 					<span class="label {{- board_integrity['unsetPostCount'] ? 'label-important': 'label-success' -}}">{{- board_integrity['unsetPostCount'] -}} post counts unset</span><br>
 				</td>
 				<td class="left">
-{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.board_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
+{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.link.repair.board_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
 
@@ -56,7 +56,7 @@
 					<span class="label {{- topic_integrity['unsetViewCount'] ? 'label-important': 'label-success' -}}">{{- topic_integrity['unsetViewCount'] -}} reply counts unset</span><br>
 				</td>
 				<td class="left">
-{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.topic_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
+{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.link.repair.topic_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
 
@@ -68,7 +68,7 @@
 			{#		<span class="label {{- post_integrity['lostAttachmentCount'] ? 'label-important': 'label-success' -}}">{{- post_integrity['lostAttachmentCount'] -}} lost attachments</span><br> #}
 				</td>
 				<td class="left">
-{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.post_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
+{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.link.repair.post_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
 
@@ -78,7 +78,7 @@
 			{#		<span class="label label-success">0 lost attachments</span><br> #}
 				</td>
 				<td class="left">
-{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.draft_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
+{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.link.repair.draft_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
 
@@ -89,7 +89,7 @@
 					<span class="label {{- subscribed_integrity['nullReadCount'] ? 'label-important': 'label-success' -}}">{{- subscribed_integrity['nullReadCount'] -}} null read</span><br>
 				</td>
 				<td class="left">
-{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.subscription_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
+{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.link.repair.subscription_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
 
@@ -101,7 +101,7 @@
 					<span class="label {{- registry_integrity['unsetCachedKarmaNegativeCount'] ? 'label-important': 'label-success' -}}">{{- registry_integrity['unsetCachedKarmaNegativeCount'] -}} karma positive null</span><br>
 				</td>
 				<td class="left">
-{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'link.repair.registry_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
+{#					<a href="" class="btn btn-primary"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.link.repair.registry_table' |trans({}, 'CCDNForumAdminBundle') -}}</a>#}
 				</td>
 			</tr>
 

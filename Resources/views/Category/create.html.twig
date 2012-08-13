@@ -4,7 +4,7 @@
 	{{ parent() }}
 {% endblock %}
 
-{% block title %}{{- truncDot('title.category.create'| trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.category.create'| trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -22,7 +22,7 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- 'title.category.create'| trans({}, 'CCDNForumAdminBundle') -}}</h2>
+	<h2>{{- 'ccdn_forum_admin.title.category.create'| trans({}, 'CCDNForumAdminBundle') -}}</h2>
 
 	{%- form_theme form param('ccdn_forum_admin.category.create.form_theme') -%}
 	<form action="{{- path('ccdn_forum_admin_category_create') -}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
@@ -33,7 +33,7 @@
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
 
 			<div class="control-group{{- (form.name.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.name, null, { 'label': 'form.label.category.name' | trans({}, 'CCDNForumAdminBundle') }) -}}
+				{{- form_label(form.name, null, { 'label': 'ccdn_forum_admin.form.label.category.name' | trans({}, 'CCDNForumAdminBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.name) -}}
 					{{- form_widget(form.name) -}}
@@ -41,7 +41,8 @@
 			</div>
 
 			<div class="form-actions">
-				<input type="submit" class="btn btn-primary" value="{{- 'form.button.category.create' | trans({}, 'CCDNForumAdminBundle') -}}">
+				<input type="submit" class="btn btn-primary" value="{{- 'ccdn_forum_admin.form.button.category.create' | trans({}, 'CCDNForumAdminBundle') -}}">&nbsp;
+				<a class="btn" href="{{- path('ccdn_forum_admin_category_index') -}}">{{- 'ccdn_forum_admin.form.button.cancel' |trans({}, 'CCDNForumAdminBundle') -}}</a>
 			</div>
 
 		</fieldset>

@@ -1,102 +1,129 @@
-sidebar.header.tools: Forum Admin
+#
+# Page Titles.
+#
+ccdn_forum_admin.title.category: 'Forum Admin.'
+ccdn_forum_admin.title.category.create: 'Create new category.'
+ccdn_forum_admin.title.category.edit: 'Edit category: %category_name%.'
+ccdn_forum_admin.title.category.delete: 'Delete category: %category_name%?'
+ccdn_forum_admin.title.board.create: 'Create new board.'
+ccdn_forum_admin.title.board.edit: 'Edit board: %board_name%.'
+ccdn_forum_admin.title.board.delete: 'Delete board: %board_name%?'
+ccdn_forum_admin.title.topic.deleted: 'Deleted Topics.'
+ccdn_forum_admin.title.post.deleted: 'Deleted Posts.'
+ccdn_forum_admin.title.tools.repair: 'Repair'
 
-sidebar.link.manage_boards: Manage Boards
-sidebar.link.category.create: Create Category
-sidebar.link.board.create: Create Board
+#
+# Crumbs.
+#
+ccdn_forum_admin.crumbs.dashboard.index: 'Dashboard'
+ccdn_forum_admin.crumbs.dashboard.admin: 'Admin Panel'
+ccdn_forum_admin.crumbs.category.index: 'Index'
+ccdn_forum_admin.crumbs.category.create: 'Create Category'
+ccdn_forum_admin.crumbs.category.edit: 'Edit Category %category_name%'
+ccdn_forum_admin.crumbs.category.delete: 'Delete Category %category_name%'
+ccdn_forum_admin.crumbs.board.create: 'Create Board'
+ccdn_forum_admin.crumbs.board.edit: 'Edit Board %board_name%'
+ccdn_forum_admin.crumbs.board.delete: 'Delete Board %board_name%'
+ccdn_forum_admin.crumbs.topic.deleted: 'Deleted Topics'
+ccdn_forum_admin.crumbs.post.deleted: 'Deleted Posts'
+ccdn_forum_admin.crumbs.tools.repair: 'Repair'
 
-sidebar.link.repair: 'Repair'
+#
+# Flash Messages.
+#
+ccdn_forum_admin.flash.category.create.success: 'Category Created Successfully.'
+ccdn_forum_admin.flash.category.edit.success: 'Category Edited Successfully.'
+ccdn_forum_admin.flash.category.delete.success: 'Category Deleted Successfully.'
+ccdn_forum_admin.flash.category.reorder.success: 'Category Re-Ordered Successfully.'
+ccdn_forum_admin.flash.board.create.success: 'Board Created Successfully.'
+ccdn_forum_admin.flash.board.edit.success: 'Board Edited Successfully.'
+ccdn_forum_admin.flash.board.delete.success: 'Board Deleted Successfully.'
+ccdn_forum_admin.flash.board.reorder.success: 'Board Re-Ordered Successfully.'
 
-sidebar.link.topics.deleted: 'Deleted Topics'
-sidebar.link.posts.deleted: 'Deleted Posts'
+#
+# Sidebar.
+#
+ccdn_forum_admin.sidebar.header.tools: 'Forum Admin'
+ccdn_forum_admin.sidebar.link.manage_boards: 'Manage Boards'
+ccdn_forum_admin.sidebar.link.category.create: 'Create Category'
+ccdn_forum_admin.sidebar.link.board.create: 'Create Board'
+ccdn_forum_admin.sidebar.link.repair: 'Repair'
+ccdn_forum_admin.sidebar.link.topics.deleted: 'Deleted Topics'
+ccdn_forum_admin.sidebar.link.posts.deleted: 'Deleted Posts'
 
-# crumbs
-crumbs.dashboard: 'Dashboard'
-crumbs.dashboard.admin: 'Admin Panel'
 
-crumbs.category.index: Index
-crumbs.category.create: Create Category
-crumbs.category.edit: Edit Category %category_name%
-crumbs.category.delete: Delete Category %category_name%
+#
+# Link Labels.
+#
+ccdn_forum_admin.link.category.edit: 'Edit Category'
+ccdn_forum_admin.link.category.delete: 'Delete Category'
+ccdn_forum_admin.link.board.add: 'Add Board'
+ccdn_forum_admin.link.board.edit: 'Edit Board'
+ccdn_forum_admin.link.board.delete: 'Delete Board'
+ccdn_forum_admin.link.item.move_up: 'Move Up'
+ccdn_forum_admin.link.item.move_down: 'Move Down'
+ccdn_forum_admin.link.topic.close: 'Close'
+ccdn_forum_admin.link.topic.reopen: 'Re-Open'
+ccdn_forum_admin.link.topic.restore: 'Restore'
+ccdn_forum_admin.link.topic.delete.soft: 'Soft Delete'
+ccdn_forum_admin.link.topic.delete.hard: 'Hard Delete'
+ccdn_forum_admin.link.post.lock: 'Lock'
+ccdn_forum_admin.link.post.unlock: 'Unlock'
+ccdn_forum_admin.link.post.restore: 'Restore'
+ccdn_forum_admin.link.post.delete.soft: 'Soft Delete'
+ccdn_forum_admin.link.post.delete.hard: 'Hard Delete'
+ccdn_forum_admin.link.repair.category_table: 'Repair Category Table'
+ccdn_forum_admin.link.repair.board_table: 'Repair Board Table'
+ccdn_forum_admin.link.repair.topic_table: 'Repair Topic Table'
+ccdn_forum_admin.link.repair.post_table: 'Repair Post Table'
+ccdn_forum_admin.link.repair.subscription_table: 'Repair Subscription Table'
+ccdn_forum_admin.link.repair.draft_table: 'Repair Draft Table'
+ccdn_forum_admin.link.repair.registry_table: 'Repair Registry Table'
 
-crumbs.board.create: Create Board
-crumbs.board.edit: Edit Board %board_name%
-crumbs.board.delete: Delete Board %board_name%
+#
+# Forms.
+#
+ccdn_forum_admin.form.field.required: 'This field is required'
+ccdn_forum_admin.form.label.category.name: 'Category Name:'
+ccdn_forum_admin.form.button.category.create: 'Create Category'
+ccdn_forum_admin.form.button.category.edit: 'Save Changes'
+ccdn_forum_admin.form.label.board.category: 'Category: '
+ccdn_forum_admin.form.label.board.name: 'Board Name: '
+ccdn_forum_admin.form.label.board.description: 'Board Description: '
+ccdn_forum_admin.form.button.board.create: 'Create Board'
+ccdn_forum_admin.form.button.board.edit: 'Save Changes'
+ccdn_forum_admin.form.button.cancel: 'Cancel'
 
-crumbs.topic.deleted: 'Deleted Topics'
-crumbs.post.deleted: 'Deleted Posts'
+#
+# Table Labels.
+#
+ccdn_forum_admin.posts.deleted.table.empty: 'There are no deleted posts.'
+ccdn_forum_admin.topics.deleted.table.empty: 'There are no deleted topics.'
+ccdn_forum_admin.board.table.head.board: 'Board'
+ccdn_forum_admin.board.table.head.topic_count: 'Topics'
+ccdn_forum_admin.board.table.head.post_count: 'Posts'
+ccdn_forum_admin.board.table.head.last_post: 'Last Post'
 
-crumbs.tools.repair: 'Repair'
+ccdn_forum_admin.board.table.head.topic_title: 'Topic'
+ccdn_forum_admin.board.table.head.reply_count: 'Replies'
+ccdn_forum_admin.board.table.head.view_count: 'Views'
+ccdn_forum_admin.board.table.head.closed_by: 'Closed By'
+ccdn_forum_admin.board.table.head.closed_on: 'Closed At'
+ccdn_forum_admin.board.table.head.deleted_by: 'Deleted By'
+ccdn_forum_admin.board.table.head.deleted_on: 'Deleted At'
+ccdn_forum_admin.board.table.head.post_number: 'Post #'
+ccdn_forum_admin.board.table.head.created_by: 'Created By'
+ccdn_forum_admin.board.table.head.created_on: 'Created At'
+ccdn_forum_admin.board.table.head.locked_by: 'Locked By'
+ccdn_forum_admin.board.table.head.locked_on: 'Locked At'
 
-title.category: 'Forum Admin.'
-title.category.create: 'Create new category.'
-title.category.edit: 'Edit category: %category_name%.'
-title.category.delete: 'Delete category: %category_name%?'
-title.board.create: 'Create new board.'
-title.board.edit: 'Edit board: %board_name%.'
-title.board.delete: 'Delete board: %board_name%?'
-title.topic.deleted: 'Deleted Topics.'
-title.post.deleted: 'Deleted Posts.'
-title.tools.repair: 'Repair'
-
-# index
-link.item.move_up: Move Up
-link.item.move_down: Move Down
-
-link.category.edit: Edit Category
-link.category.delete: Delete Category
-
-link.board.add: Add Board
-link.board.edit: Edit Board
-link.board.delete: Delete Board
-
-link.topic.close: Close
-link.topic.reopen: 'Re-Open'
-link.topic.restore: Restore
-link.topic.delete.soft: 'Soft Delete'
-link.topic.delete.hard: 'Hard Delete'
-
-link.post.lock: 'Lock'
-link.post.unlock: 'Unlock'
-link.post.restore: 'Restore'
-link.post.delete.soft: 'Soft Delete'
-link.post.delete.hard: 'Hard Delete'
-
-link.repair.category_table: 'Repair Category Table'
-link.repair.board_table: 'Repair Board Table'
-link.repair.topic_table: 'Repair Topic Table'
-link.repair.post_table: 'Repair Post Table'
-link.repair.subscription_table: 'Repair Subscription Table'
-link.repair.draft_table: 'Repair Draft Table'
-link.repair.registry_table: 'Repair Registry Table'
-
-flash.category.create.success: 'Category Created Successfully.'
-flash.category.edit.success: 'Category Edited Successfully.'
-flash.category.delete.success: 'Category Deleted Successfully.'
-flash.category.reorder.success: 'Category Re-Ordered Successfully.'
-
-flash.board.create.success: 'Board Created Successfully.'
-flash.board.edit.success: 'Board Edited Successfully.'
-flash.board.delete.success: 'Board Deleted Successfully.'
-flash.board.reorder.success: 'Board Re-Ordered Successfully.'
-
-# category create
-form.field.required: 'This field is required'
-form.label.category.name: 'Category Name:'
-form.button.category.create: 'Create Category'
-form.button.category.edit: 'Save Changes'
-
-form.label.board.category: 'Category: '
-form.label.board.name: 'Board Name: '
-form.label.board.description: 'Board Description: '
-form.button.board.create: 'Create Board'
-form.button.board.edit: 'Save Changes'
-
-# category delete
-category.delete.confirmation_question: Are you sure you want to delete the category %category_name%?
-board.delete.confirmation_question: Are you sure you want to delete the board %board_name%?
-
-delete.confirm_yes: Yes
-delete.confirm_no: No
-
-posts.deleted.table.empty: 'There are no deleted posts.'
-topics.deleted.table.empty: 'There are no deleted topics.'
+#
+# Generic.
+#
+ccdn_forum_admin.category.delete.confirmation_question: 'Are you sure you want to delete the category %category_name%?'
+ccdn_forum_admin.board.delete.confirmation_question: 'Are you sure you want to delete the board %board_name%?'
+ccdn_forum_admin.delete.confirm_yes: 'Yes'
+ccdn_forum_admin.delete.confirm_no: 'No'
+ccdn_forum_admin.post.posted_by: 'Posted by '
+ccdn_forum_admin.actioned_at: ' at '
+ccdn_forum_admin.info.not_applicable: 'N/A'
