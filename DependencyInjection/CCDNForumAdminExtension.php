@@ -114,6 +114,13 @@ class CCDNForumAdminExtension extends Extension
      */
     private function getTopicSection($container, $config)
     {
+        $container->setParameter('ccdn_forum_admin.topic.show_closed.layout_template', $config['topic']['show_closed']['layout_template']);
+        $container->setParameter('ccdn_forum_admin.topic.show_closed.topics_per_page', $config['topic']['show_closed']['topics_per_page']);
+        $container->setParameter('ccdn_forum_admin.topic.show_closed.topic_title_truncate', $config['topic']['show_closed']['topic_title_truncate']);
+        $container->setParameter('ccdn_forum_admin.topic.show_closed.post_created_datetime_format', $config['topic']['show_closed']['post_created_datetime_format']);
+        $container->setParameter('ccdn_forum_admin.topic.show_closed.topic_closed_datetime_format', $config['topic']['show_closed']['topic_closed_datetime_format']);
+        $container->setParameter('ccdn_forum_admin.topic.show_closed.topic_deleted_datetime_format', $config['topic']['show_closed']['topic_deleted_datetime_format']);
+
         $container->setParameter('ccdn_forum_admin.topic.show_deleted.layout_template', $config['topic']['show_deleted']['layout_template']);
         $container->setParameter('ccdn_forum_admin.topic.show_deleted.topics_per_page', $config['topic']['show_deleted']['topics_per_page']);
         $container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_title_truncate', $config['topic']['show_deleted']['topic_title_truncate']);
@@ -121,6 +128,10 @@ class CCDNForumAdminExtension extends Extension
         $container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format', $config['topic']['show_deleted']['topic_closed_datetime_format']);
         $container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format', $config['topic']['show_deleted']['topic_deleted_datetime_format']);
 
+        $container->setParameter('ccdn_forum_admin.topic.delete_topic.layout_template', $config['topic']['delete_topic']['layout_template']);
+
+        $container->setParameter('ccdn_forum_admin.topic.change_board.layout_template', $config['topic']['change_board']['layout_template']);
+        $container->setParameter('ccdn_forum_admin.topic.change_board.form_theme', $config['topic']['change_board']['form_theme']);
     }
 
     /**
@@ -130,13 +141,20 @@ class CCDNForumAdminExtension extends Extension
      */
     private function getPostSection($container, $config)
     {
+        $container->setParameter('ccdn_forum_admin.post.show_locked.layout_template', $config['post']['show_locked']['layout_template']);
+        $container->setParameter('ccdn_forum_admin.post.show_locked.posts_per_page', $config['post']['show_locked']['posts_per_page']);
+        $container->setParameter('ccdn_forum_admin.post.show_locked.topic_title_truncate', $config['post']['show_locked']['topic_title_truncate']);
+        $container->setParameter('ccdn_forum_admin.post.show_locked.post_created_datetime_format', $config['post']['show_locked']['post_created_datetime_format']);
+        $container->setParameter('ccdn_forum_admin.post.show_locked.post_locked_datetime_format', $config['post']['show_locked']['post_locked_datetime_format']);
+        $container->setParameter('ccdn_forum_admin.post.show_locked.post_deleted_datetime_format', $config['post']['show_locked']['post_deleted_datetime_format']);
+
         $container->setParameter('ccdn_forum_admin.post.show_deleted.layout_template', $config['post']['show_deleted']['layout_template']);
         $container->setParameter('ccdn_forum_admin.post.show_deleted.posts_per_page', $config['post']['show_deleted']['posts_per_page']);
         $container->setParameter('ccdn_forum_admin.post.show_deleted.topic_title_truncate', $config['post']['show_deleted']['topic_title_truncate']);
         $container->setParameter('ccdn_forum_admin.post.show_deleted.post_created_datetime_format', $config['post']['show_deleted']['post_created_datetime_format']);
         $container->setParameter('ccdn_forum_admin.post.show_deleted.post_locked_datetime_format', $config['post']['show_deleted']['post_locked_datetime_format']);
         $container->setParameter('ccdn_forum_admin.post.show_deleted.post_deleted_datetime_format', $config['post']['show_deleted']['post_deleted_datetime_format']);
-
     }
+
 
 }

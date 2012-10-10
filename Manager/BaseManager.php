@@ -104,4 +104,18 @@ class BaseManager
         return $this;
     }
 
+    /**
+     *
+     * @access public
+     * @param $entity
+     * @return $this
+     */
+    public function update($entity)
+    {
+        // update the record
+        $this->persist($entity);
+
+        return $this;
+    }
+
 }

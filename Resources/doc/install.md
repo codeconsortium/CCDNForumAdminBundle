@@ -14,7 +14,7 @@ Installing CCDNForum AdminBundle 1.2
 8. [CCDNComponent AttachmentBundle](http://github.com/codeconsortium/AttachmentBundle/tree/v1.2).
 9. [CCDNForum ForumBundle](http://github.com/codeconsortium/CCDNForumForumBundle/tree/v1.2).
 10. [CCDNForum KarmaBundle](http://github.com/codeconsortium/CCDNForumKarmaBundle/tree/v1.2).
-11. [CCDNForum ModeratorBundle](http://github.com/codeconsortium/CCDNForumModeratorBundle/tree/v1.2).
+11. [CCDNForum AdminBundle](http://github.com/codeconsortium/CCDNForumAdminBundle/tree/v1.2).
 
 ## Installation:
 

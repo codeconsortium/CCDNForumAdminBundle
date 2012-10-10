@@ -97,3 +97,87 @@ ccdn_forum_admin_post_deleted_show_paginated:
 ccdn_forum_admin_post_bulk_action:
     pattern: /{_locale}/admin/forum/posts/deleted/bulk/action
     defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }
+
+
+
+
+
+
+
+
+
+
+
+#
+# Post Moderation.
+#
+ccdn_forum_admin_post_show_all_locked:
+    pattern: /{_locale}/admin/forum/post/show/locked
+    defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en, page: 1 }
+
+ccdn_forum_admin_post_show_all_locked_paginated:
+    pattern: /{_locale}/admin/forum/post/show/locked/page/{page}
+    defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en, page: 1 }
+
+ccdn_forum_admin_post_lock:
+    pattern: /{_locale}/admin/forum/post/{postId}/lock
+    defaults: { _controller: CCDNForumAdminBundle:Post:lock, _locale: en }
+
+ccdn_forum_admin_post_unlock:
+    pattern: /{_locale}/admin/forum/post/{postId}/unlock
+    defaults: { _controller: CCDNForumAdminBundle:Post:unlock, _locale: en }
+
+ccdn_forum_admin_post_restore:
+    pattern: /{_locale}/admin/forum/post/{postId}/restore
+    defaults: { _controller: CCDNForumAdminBundle:Post:restore, _locale: en }
+
+ccdn_forum_admin_post_bulk_action:
+    pattern: /{_locale}/admin/forum/post/locked/action/checked
+    defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }
+
+#
+# Topic Moderation.
+#
+ccdn_forum_admin_topic_show_all_closed:
+    pattern: /{_locale}/admin/forum/topic/show/closed
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
+
+ccdn_forum_admin_topic_show_all_closed_paginated:
+    pattern: /{_locale}/admin/forum/topic/show/closed/page/{page}
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
+
+ccdn_forum_admin_topic_bulk_action_closed:
+    pattern: /{_locale}/admin/forum/topic/closed/action/checked
+    defaults: { _controller: CCDNForumAdminBundle:Topic:bulk, _locale: en }
+
+ccdn_forum_admin_topic_close:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/close
+    defaults: { _controller: CCDNForumAdminBundle:Topic:close, _locale: en }
+
+ccdn_forum_admin_topic_reopen:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/reopen
+    defaults: { _controller: CCDNForumAdminBundle:Topic:reopen, _locale: en }
+
+ccdn_forum_admin_topic_sticky:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/sticky
+    defaults: { _controller: CCDNForumAdminBundle:Topic:sticky, _locale: en }
+
+ccdn_forum_admin_topic_unsticky:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/unsticky
+    defaults: { _controller: CCDNForumAdminBundle:Topic:unsticky, _locale: en }
+
+ccdn_forum_admin_topic_delete:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/delete
+    defaults: { _controller: CCDNForumAdminBundle:Topic:delete, _locale: en }
+
+ccdn_forum_admin_topic_delete_confirmed:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/delete/confirm
+    defaults: { _controller: CCDNForumAdminBundle:Topic:deleteConfirmed, _locale: en }
+
+ccdn_forum_admin_topic_restore:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/restore
+    defaults: { _controller: CCDNForumAdminBundle:Topic:restore, _locale: en }
+
+ccdn_forum_admin_topic_change_board:
+    pattern: /{_locale}/admin/forum/topic/{topicId}/change/board
+    defaults: { _controller: CCDNForumAdminBundle:Topic:move, _locale: en }

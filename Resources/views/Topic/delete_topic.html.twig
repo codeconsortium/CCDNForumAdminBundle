@@ -1,0 +1,45 @@
+{% extends param('ccdn_forum_admin.topic.delete_topic.layout_template') %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block title %}{{- truncDot('ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+
+{% block sidebar %}
+	{{ parent() }}
+
+	{%- include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' -%}
+
+{% endblock %}
+
+
+{% block body %}
+
+	{%- spaceless -%}
+
+	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
+
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	<h2>{{- 'ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle') -}}</h2>
+
+	<div class="form-confirmation">
+
+		<div class="form-question">
+			<h3>{{- 'ccdn_forum_forum.topic.delete_topic_question' | trans({}, 'CCDNForumForumBundle') -}}</h3>
+		</div>
+
+		<div class="form-answer">
+			<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_topic_delete_confirmed', {'topicId': topic.id }) -}}">{{- 'ccdn_forum_forum.post.delete.confirm_yes' | trans({}, 'CCDNForumForumBundle') -}}</a>
+			&nbsp;&nbsp;&nbsp;
+			<a class="btn" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.id }) -}}">{{- 'ccdn_forum_forum.post.delete.confirm_no' | trans({}, 'CCDNForumForumBundle') -}}</a>
+		</div>
+
+	</div>
+
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	{%- endspaceless -%}
+
+{% endblock %}

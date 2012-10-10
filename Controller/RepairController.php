@@ -94,7 +94,7 @@ class RepairController extends ContainerAware
         }
 
         //
-        // Don't bother if there are no flags to process.
+        // Don't bother if there are no checkboxes to process.
         //
         if (count($itemIds) < 1) {
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
@@ -105,7 +105,7 @@ class RepairController extends ContainerAware
         $topics = $this->container->get('ccdn_forum_forum.topic.repository')->findTheseTopicsByIdForModeration($itemIds);
 
         if ( ! $topics || empty($topics)) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.topic.no_topics_found', array(), 'CCDNForumModeratorBundle'));
+            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.topic.no_topics_found', array(), 'CCDNForumAdminBundle'));
 
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
         }
