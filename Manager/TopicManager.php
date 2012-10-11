@@ -90,6 +90,12 @@ class TopicManager extends BaseManager implements ManagerInterface
         $topic->setClosedBy(null);
         $topic->setClosedDate(null);
 
+		if ($topic->getIsDeleted()) {	
+	        $topic->setIsDeleted(false);
+	        $topic->setDeletedBy(null);
+	        $topic->setDeletedDate(null);			
+		}
+		
         $this->persist($topic);
 
         return $this;
