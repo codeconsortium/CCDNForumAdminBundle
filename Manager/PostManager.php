@@ -143,7 +143,7 @@ class PostManager extends BaseManager implements ManagerInterface
 
         if (count($boardsToUpdate) > 0) {
             // Update all affected board stats.
-            $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
+            $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats($boardsToUpdate)->flush();
         }
 
         return $this;
@@ -193,7 +193,7 @@ class PostManager extends BaseManager implements ManagerInterface
 
         if (count($boardsToUpdate) > 0) {
             // Update all affected board stats.
-            $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
+            $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats($boardsToUpdate)->flush();
         }
 
         return $this;
@@ -323,13 +323,13 @@ class PostManager extends BaseManager implements ManagerInterface
         $this->flush();
 
         // Update all affected Board stats.
-        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
+        $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats($boardsToUpdate)->flush();
 
         // Update all affected Topic stats.
-        $this->container->get('ccdn_forum_forum.topic.manager')->bulkUpdateStats($topicsToUpdate)->flush();
+        $this->container->get('ccdn_forum_forum.manager.topic')->bulkUpdateStats($topicsToUpdate)->flush();
 
         // Update all affected Users cached post counts.
-        $this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
+        $this->container->get('ccdn_forum_forum.manager.registry')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
 
         return $this;
     }

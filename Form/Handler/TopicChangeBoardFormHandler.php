@@ -132,7 +132,7 @@ class TopicChangeBoardFormHandler
         if (!$this->form) {
             $this->oldBoard = $this->defaults['topic']->getBoard();
 
-            $topicChangeBoardType = $this->container->get('ccdn_forum_admin.topic.form.change_board.type');
+            $topicChangeBoardType = $this->container->get('ccdn_forum_admin.form.type.change_topics_board');
             $topicChangeBoardType->setDefaultValues(array('board' => $this->defaults['topic']->getBoard()->getId()));
             $this->form = $this->factory->create($topicChangeBoardType, $this->defaults['topic']);
         }
@@ -150,7 +150,7 @@ class TopicChangeBoardFormHandler
     {
         $this->manager->update($topic)->flush();
 
-        $boardManager = $this->container->get('ccdn_forum_forum.board.manager');
+        $boardManager = $this->container->get('ccdn_forum_forum.manager.board');
 
         //
         // Update stats of the topics old board.

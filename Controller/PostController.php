@@ -41,7 +41,7 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $postsPager = $this->container->get('ccdn_forum_forum.post.repository')->findLockedPostsForModeratorsPaginated();
+        $postsPager = $this->container->get('ccdn_forum_forum.repository.post')->findLockedPostsForModeratorsPaginated();
 
         $postsPerPage = $this->container->getParameter('ccdn_forum_admin.post.show_locked.posts_per_page');
         $postsPager->setMaxPerPage($postsPerPage);
@@ -77,7 +77,7 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $postsPager = $this->container->get('ccdn_forum_forum.post.repository')->findDeletedPostsForAdminsPaginated();
+        $postsPager = $this->container->get('ccdn_forum_forum.repository.post')->findDeletedPostsForAdminsPaginated();
 
         $postsPerPage = $this->container->getParameter('ccdn_forum_admin.post.show_deleted.posts_per_page');
         $postsPager->setMaxPerPage($postsPerPage);
@@ -135,7 +135,7 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $posts = $this->container->get('ccdn_forum_forum.post.repository')->findThesePostsByIdForModeration($itemIds);
+        $posts = $this->container->get('ccdn_forum_forum.repository.post')->findThesePostsByIdForModeration($itemIds);
 
         if ( ! $posts || empty($posts)) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.post.no_posts_found', array(), 'CCDNForumAdminBundle'));
@@ -144,19 +144,19 @@ class PostController extends ContainerAware
         }
 
         if (isset($_POST['submit_lock'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkLock($posts, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkLock($posts, $user)->flush();
         }
         if (isset($_POST['submit_unlock'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkUnlock($posts)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkUnlock($posts)->flush();
         }
         if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkRestore($posts)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkRestore($posts)->flush();
         }
         if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkSoftDelete($posts, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkSoftDelete($posts, $user)->flush();
         }
         if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkHardDelete($posts)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkHardDelete($posts)->flush();
         }
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'));
@@ -187,13 +187,13 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $post = $this->container->get('ccdn_forum_forum.post.repository')->find($postId);
+        $post = $this->container->get('ccdn_forum_forum.repository.post')->find($postId);
 
         if (! $post) {
             throw new NotFoundHttpException('No such post exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.post.manager')->lock($post, $user)->flush();
+        $this->container->get('ccdn_forum_admin.manager.post')->lock($post, $user)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.post.lock.success', array('%post_id%' => $postId), 'CCDNForumAdminBundle'));
 
@@ -212,13 +212,13 @@ class PostController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-        $post = $this->container->get('ccdn_forum_forum.post.repository')->find($postId);
+        $post = $this->container->get('ccdn_forum_forum.repository.post')->find($postId);
 
         if (! $post) {
             throw new NotFoundHttpException('No such post exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.post.manager')->unlock($post)->flush();
+        $this->container->get('ccdn_forum_admin.manager.post')->unlock($post)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.post.unlock.success', array('%post_id%' => $postId), 'CCDNForumAdminBundle'));
 
@@ -237,13 +237,13 @@ class PostController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to use this resource!');
         }
 
-        $post = $this->container->get('ccdn_forum_forum.post.repository')->findPostForEditing($postId);
+        $post = $this->container->get('ccdn_forum_forum.repository.post')->findPostForEditing($postId);
 
         if (! $post) {
             throw new NotFoundHttpException('No such post exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.post.manager')->restore($post)->flush();
+        $this->container->get('ccdn_forum_admin.manager.post')->restore($post)->flush();
 
         // set flash message
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.post.restore.success', array('%post_id%' => $postId), 'CCDNForumAdminBundle'));
@@ -290,7 +290,7 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $posts = $this->container->get('ccdn_forum_forum.post.repository')->findThesePostsByIdForModeration($itemIds);
+        $posts = $this->container->get('ccdn_forum_forum.repository.post')->findThesePostsByIdForModeration($itemIds);
 
         if ( ! $posts || empty($posts)) {
             $this->container->get('session')->setFlash('warning', $this->container->get('translator')->trans('ccdn_forum_admin.flash.post.none_found', array(), 'CCDNForumAdminBundle'));
@@ -299,16 +299,16 @@ class PostController extends ContainerAware
         }
 
         if (isset($_POST['submit_lock'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkLock($posts, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkLock($posts, $user)->flush();
         }
         if (isset($_POST['submit_unlock'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkUnlock($posts)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkUnlock($posts)->flush();
         }
         if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkRestore($posts)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkRestore($posts)->flush();
         }
         if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.post.manager')->bulkSoftDelete($posts, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.post')->bulkSoftDelete($posts, $user)->flush();
         }
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_show_all_locked'));

@@ -40,7 +40,7 @@ class CategoryController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $categories = $this->container->get('ccdn_forum_forum.category.repository')->findAllJoinedToBoard();
+        $categories = $this->container->get('ccdn_forum_forum.repository.category')->findAllJoinedToBoard();
 
         // Must be consistent with the topics per page on regular user board index.
         $topicsPerPage = $this->container->getParameter('ccdn_forum_forum.board.show.topics_per_page');
@@ -73,7 +73,7 @@ class CategoryController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $formHandler = $this->container->get('ccdn_forum_admin.category.form.insert.handler');
+        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.category_create');
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.category.create.success', array(), 'CCDNForumAdminBundle'));
@@ -110,13 +110,13 @@ class CategoryController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $category = $this->container->get('ccdn_forum_forum.category.repository')->findOneById($categoryId);
+        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
 
         if (! $category) {
             throw new NotFoundHTTPException('category not found!');
         }
 
-        $formHandler = $this->container->get('ccdn_forum_admin.category.form.update.handler')->setDefaultValues(array('category_entity' => $category));
+        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.category_update')->setDefaultValues(array('category_entity' => $category));
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.category.edit.success', array(), 'CCDNForumAdminBundle'));
@@ -149,7 +149,7 @@ class CategoryController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $category = $this->container->get('ccdn_forum_forum.category.repository')->findOneById($categoryId);
+        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
 
         if (! $category) {
             throw new NotFoundHTTPException('category not found!');
@@ -179,13 +179,13 @@ class CategoryController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $category = $this->container->get('ccdn_forum_forum.category.repository')->findOneById($categoryId);
+        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
 
         if (! $category) {
             throw new NotFoundHTTPException('category not found!');
         }
 
-        $this->container->get('ccdn_forum_admin.category.manager')->remove($category)->flush();
+        $this->container->get('ccdn_forum_admin.manager.category')->remove($category)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.category.delete.success', array(), 'CCDNForumAdminBundle'));
 
@@ -204,7 +204,7 @@ class CategoryController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $categories = $this->container->get('ccdn_forum_forum.category.repository')->findCategoriesOrderedByPriority();
+        $categories = $this->container->get('ccdn_forum_forum.repository.category')->findCategoriesOrderedByPriority();
 
         if (! $categories) {
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
@@ -217,7 +217,7 @@ class CategoryController extends ContainerAware
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
         }
 
-        $this->container->get('ccdn_forum_admin.category.manager')->reorder($categories, $categoryId, $direction)->flush();
+        $this->container->get('ccdn_forum_admin.manager.category')->reorder($categories, $categoryId, $direction)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.category.reorder.success', array(), 'CCDNForumAdminBundle'));
 

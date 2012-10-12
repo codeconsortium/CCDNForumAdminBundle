@@ -124,7 +124,7 @@ class CategoryInsertFormHandler
     public function getForm()
     {
         if (! $this->form) {
-            $this->form = $this->factory->create($this->container->get('ccdn_forum_admin.category.form.type'));
+            $this->form = $this->factory->create($this->container->get('ccdn_forum_admin.form.type.category'));
         }
 
         return $this->form;

@@ -43,7 +43,7 @@ class BoardController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $formHandler = $this->container->get('ccdn_forum_admin.board.form.insert.handler')->setDefaultValues(array('category_id' => $categoryId));
+        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.board_create')->setDefaultValues(array('category_id' => $categoryId));
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.board.create.success', array(), 'CCDNForumAdminBundle'));
@@ -80,13 +80,13 @@ class BoardController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $board = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($boardId);
+        $board = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId);
 
         if (! $board) {
             throw new NotFoundHTTPException('No such board exists!');
         }
 
-        $formHandler = $this->container->get('ccdn_forum_admin.board.form.update.handler')->setDefaultValues(array('board_entity' => $board));
+        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.board_update')->setDefaultValues(array('board_entity' => $board));
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.board.edit.success', array(), 'CCDNForumAdminBundle'));
@@ -119,7 +119,7 @@ class BoardController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $board = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($boardId);
+        $board = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId);
 
         if (! $board) {
             throw new NotFoundHTTPException('No such board exists!');
@@ -149,13 +149,13 @@ class BoardController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $board = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($boardId);
+        $board = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId);
 
         if (! $board) {
             throw new NotFoundHTTPException('No such board exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.board.manager')->remove($board)->flush();
+        $this->container->get('ccdn_forum_admin.manager.board')->remove($board)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.board.delete.success', array(), 'CCDNForumAdminBundle'));
 
@@ -174,8 +174,8 @@ class BoardController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to access this page!');
         }
 
-        $categoryId = $this->container->get('ccdn_forum_forum.board.repository')->findOneById($boardId)->getCategory()->getId();
-        $boards = $this->container->get('ccdn_forum_forum.board.repository')->findBoardsOrderedByPriorityInCategory($categoryId);
+        $categoryId = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId)->getCategory()->getId();
+        $boards = $this->container->get('ccdn_forum_forum.repository.board')->findBoardsOrderedByPriorityInCategory($categoryId);
 
         if (! $boards) {
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
@@ -188,7 +188,7 @@ class BoardController extends ContainerAware
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
         }
 
-        $this->container->get('ccdn_forum_admin.board.manager')->reorder($boards, $boardId, $direction)->flush();
+        $this->container->get('ccdn_forum_admin.manager.board')->reorder($boards, $boardId, $direction)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.board.reorder.success', array(), 'CCDNForumAdminBundle'));
 

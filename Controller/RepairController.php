@@ -38,12 +38,12 @@ class RepairController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-        $boardIntegrity 		= $this->container->get('ccdn_forum_forum.board.repository')->getTableIntegrityStatus();
-        $topicIntegrity 		= $this->container->get('ccdn_forum_forum.topic.repository')->getTableIntegrityStatus();
-        $postIntegrity 			= $this->container->get('ccdn_forum_forum.post.repository')->getTableIntegrityStatus();
-        $draftIntegrity			= $this->container->get('ccdn_forum_forum.draft.repository')->getTableIntegrityStatus();
-        $subscribedIntegrity	= $this->container->get('ccdn_forum_forum.subscription.repository')->getTableIntegrityStatus();
-        $registryIntegrity 		= $this->container->get('ccdn_forum_forum.registry.repository')->getTableIntegrityStatus();
+        $boardIntegrity 		= $this->container->get('ccdn_forum_forum.repository.board')->getTableIntegrityStatus();
+        $topicIntegrity 		= $this->container->get('ccdn_forum_forum.repository.topic')->getTableIntegrityStatus();
+        $postIntegrity 			= $this->container->get('ccdn_forum_forum.repository.post')->getTableIntegrityStatus();
+        $draftIntegrity			= $this->container->get('ccdn_forum_forum.repository.draft')->getTableIntegrityStatus();
+        $subscribedIntegrity	= $this->container->get('ccdn_forum_forum.repository.subscription')->getTableIntegrityStatus();
+        $registryIntegrity 		= $this->container->get('ccdn_forum_forum.repository.registry')->getTableIntegrityStatus();
 
         // setup crumb trail.
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
@@ -102,7 +102,7 @@ class RepairController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topics = $this->container->get('ccdn_forum_forum.topic.repository')->findTheseTopicsByIdForModeration($itemIds);
+        $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
 
         if ( ! $topics || empty($topics)) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.topic.no_topics_found', array(), 'CCDNForumAdminBundle'));
@@ -111,19 +111,19 @@ class RepairController extends ContainerAware
         }
 
         if (isset($_POST['submit_close'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkClose($topics, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkClose($topics, $user)->flush();
         }
         if (isset($_POST['submit_reopen'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkReopen($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkReopen($topics)->flush();
         }
         if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkRestore($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkRestore($topics)->flush();
         }
         if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkSoftDelete($topics, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkSoftDelete($topics, $user)->flush();
         }
         if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkHardDelete($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkHardDelete($topics)->flush();
         }
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));

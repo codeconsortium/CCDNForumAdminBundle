@@ -116,7 +116,7 @@ class TopicManager extends BaseManager implements ManagerInterface
         $this->persist($topic)->flush();
 
         // Update affected Topic stats.
-        $this->container->get('ccdn_forum_forum.topic.manager')->updateStats($topic);
+        $this->container->get('ccdn_forum_forum.manager.topic')->updateStats($topic);
 
         return $this;
     }
@@ -144,7 +144,7 @@ class TopicManager extends BaseManager implements ManagerInterface
             $this->persist($topic)->flush();
 
             // Update affected Topic stats.
-            $this->container->get('ccdn_forum_forum.topic.manager')->updateStats($topic);
+            $this->container->get('ccdn_forum_forum.manager.topic')->updateStats($topic);
         }
 
         return $this;
@@ -184,12 +184,12 @@ class TopicManager extends BaseManager implements ManagerInterface
 
         // Update all affected Board stats.
 		if (is_object($boardToUpdate) && $boardToUpdate instanceof CCDNForum\ForumBundle\Entity\Board) {
-	        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats(array($boardToUpdate))->flush();
+	        $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats(array($boardToUpdate))->flush();
 		}
 		
         // Update all affected Users cached post counts.
         if (count($usersPostCountToUpdate) > 0) {
-			$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
+			$this->container->get('ccdn_forum_forum.manager.registry')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
 		}
 
 		return $this;
@@ -281,12 +281,12 @@ class TopicManager extends BaseManager implements ManagerInterface
 
         if (count($boardsToUpdate) > 0) {
             // Update all affected board stats.
-            $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
+            $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats($boardsToUpdate)->flush();
         }
 
         // Update all affected Users cached post counts.
         if (count($usersPostCountToUpdate) > 0) {
-			$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
+			$this->container->get('ccdn_forum_forum.manager.registry')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
 		}
 		
         return $this;
@@ -339,12 +339,12 @@ class TopicManager extends BaseManager implements ManagerInterface
 
         if (count($boardsToUpdate) > 0) {
             // Update all affected board stats.
-            $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
+            $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats($boardsToUpdate)->flush();
         }
 
         // Update all affected Users cached post counts.
         if (count($usersPostCountToUpdate) > 0) {
-			$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
+			$this->container->get('ccdn_forum_forum.manager.registry')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
 		}
 		
         return $this;
@@ -390,12 +390,12 @@ class TopicManager extends BaseManager implements ManagerInterface
 
         // Update all affected Board stats.
 		if (count($boardsToUpdate) > 0) {
-	        $this->container->get('ccdn_forum_forum.board.manager')->bulkUpdateStats($boardsToUpdate)->flush();
+	        $this->container->get('ccdn_forum_forum.manager.board')->bulkUpdateStats($boardsToUpdate)->flush();
 		}
 		
         // Update all affected Users cached post counts.
         if (count($usersPostCountToUpdate) > 0) {
-			$this->container->get('ccdn_forum_forum.registry.manager')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
+			$this->container->get('ccdn_forum_forum.manager.registry')->bulkUpdateCachePostCountForUser($usersPostCountToUpdate);
 		}
 
         return $this;

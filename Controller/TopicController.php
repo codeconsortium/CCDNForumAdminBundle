@@ -41,7 +41,7 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topicsPager = $this->container->get('ccdn_forum_forum.topic.repository')->findClosedTopicsForModeratorsPaginated();
+        $topicsPager = $this->container->get('ccdn_forum_forum.repository.topic')->findClosedTopicsForModeratorsPaginated();
 
         $topicsPerPage = $this->container->getParameter('ccdn_forum_admin.topic.show_closed.topics_per_page');
         $topicsPager->setMaxPerPage($topicsPerPage);
@@ -77,7 +77,7 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topicsPager = $this->container->get('ccdn_forum_forum.topic.repository')->findClosedTopicsForModeratorsPaginated();
+        $topicsPager = $this->container->get('ccdn_forum_forum.repository.topic')->findClosedTopicsForModeratorsPaginated();
 
         $topicsPerPage = $this->container->getParameter('ccdn_forum_admin.topic.show_deleted.topics_per_page');
         $topicsPager->setMaxPerPage($topicsPerPage);
@@ -138,7 +138,7 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topics = $this->container->get('ccdn_forum_forum.topic.repository')->findTheseTopicsByIdForModeration($itemIds);
+        $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
 
         if ( ! $topics || empty($topics)) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.topic.no_topics_found', array(), 'CCDNForumAdminBundle'));
@@ -147,19 +147,19 @@ class TopicController extends ContainerAware
         }
 
         if (isset($_POST['submit_close'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkClose($topics, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkClose($topics, $user)->flush();
         }
         if (isset($_POST['submit_reopen'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkReopen($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkReopen($topics)->flush();
         }
         if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkRestore($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkRestore($topics)->flush();
         }
         if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkSoftDelete($topics, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkSoftDelete($topics, $user)->flush();
         }
         if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkHardDelete($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkHardDelete($topics)->flush();
         }
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
@@ -191,13 +191,13 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.topic.manager')->sticky($topic, $user)->flush();
+        $this->container->get('ccdn_forum_admin.manager.topic')->sticky($topic, $user)->flush();
 
         $this->container->get('session')->setFlash('success', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.sticky.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
 
@@ -216,13 +216,13 @@ class TopicController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.topic.manager')->unsticky($topic)->flush();
+        $this->container->get('ccdn_forum_admin.manager.topic')->unsticky($topic)->flush();
 
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.unsticky.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
 
@@ -245,13 +245,13 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.topic.manager')->close($topic, $user)->flush();
+        $this->container->get('ccdn_forum_admin.manager.topic')->close($topic, $user)->flush();
 
         $this->container->get('session')->setFlash('warning', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.close.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
 
@@ -272,13 +272,13 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.topic.manager')->reopen($topic)->flush();
+        $this->container->get('ccdn_forum_admin.manager.topic')->reopen($topic)->flush();
 
         $this->container->get('session')->setFlash('warning', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.reopen.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
 
@@ -299,7 +299,7 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such post exists!');
@@ -339,13 +339,13 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.topic.manager')->softDelete($topic, $user)->flush();
+        $this->container->get('ccdn_forum_admin.manager.topic')->softDelete($topic, $user)->flush();
 
         // set flash message
         $this->container->get('session')->setFlash('warning', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.delete.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
@@ -366,13 +366,13 @@ class TopicController extends ContainerAware
             throw new AccessDeniedException('You do not have permission to use this resource!');
         }
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $this->container->get('ccdn_forum_admin.topic.manager')->restore($topic)->flush();
+        $this->container->get('ccdn_forum_admin.manager.topic')->restore($topic)->flush();
 
         // set flash message
         $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.restore.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
@@ -393,13 +393,13 @@ class TopicController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-        $topic = $this->container->get('ccdn_forum_forum.topic.repository')->find($topicId);
+        $topic = $this->container->get('ccdn_forum_forum.repository.topic')->find($topicId);
 
         if (! $topic) {
             throw new NotFoundHttpException('No such topic exists!');
         }
 
-        $formHandler = $this->container->get('ccdn_forum_admin.topic.form.change_board.handler')->setDefaultValues(array('topic' => $topic));
+        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.change_topics_board')->setDefaultValues(array('topic' => $topic));
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('warning', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.move.success', array('%topic_title%' => $topic->getTitle()), 'CCDNForumAdminBundle'));
@@ -463,7 +463,7 @@ class TopicController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $topics = $this->container->get('ccdn_forum_forum.topic.repository')->findTheseTopicsByIdForModeration($itemIds);
+        $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
 
         if ( ! $topics || empty($topics)) {
             $this->container->get('session')->setFlash('error', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.none_found', array(), 'CCDNForumAdminBundle'));
@@ -472,16 +472,16 @@ class TopicController extends ContainerAware
         }
 
         if (isset($_POST['submit_close'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkClose($topics, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkClose($topics, $user)->flush();
         }
         if (isset($_POST['submit_reopen'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkReopen($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkReopen($topics)->flush();
         }
         if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkRestore($topics)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkRestore($topics)->flush();
         }
         if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.topic.manager')->bulkSoftDelete($topics, $user)->flush();
+            $this->container->get('ccdn_forum_admin.manager.topic')->bulkSoftDelete($topics, $user)->flush();
         }
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_show_all_closed'));
