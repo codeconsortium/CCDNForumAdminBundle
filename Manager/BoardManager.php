@@ -30,22 +30,13 @@ class BoardManager extends BaseManager implements ManagerInterface
      * @param $board
      * @return $this
      */
-    public function insert($board)				/// <----- fix me
+    public function insert($board)
     {
-        $boardCountQuery = $this->em->createQuery('
-            SELECT COUNT(b.id)
-            FROM CCDNForumForumBundle:Board b
-            WHERE b.category = :id
-            ')
-            ->setParameter('id', $board->getCategory()->getId());
-
-        try {
-            $boardCount = $boardCountQuery->getSingleResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-			$boardCount = 0;
-        }
+		
+		$boardCount = $this->container->get('ccdn_forum_forum.repository.board')->countBoardsForCategory($board->getCategory()->getId());
 
         $board->setListOrderPriority(++$boardCount[1]);
+
         // insert a new row
         $this->persist($board);
 

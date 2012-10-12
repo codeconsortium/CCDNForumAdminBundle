@@ -32,15 +32,7 @@ class CategoryManager extends BaseManager implements ManagerInterface
      */
     public function insert($category)
     {
-        $categoryCountQuery = $this->em->createQuery('
-            SELECT COUNT(c.id)
-            FROM CCDNForumForumBundle:Category c');
-
-        try {
-            $categoryCount = $categoryCountQuery->getSingleResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-			$categoryCount = 0;
-        }
+		$categoryCount = $this->container->get('ccdn_forum_forum.repository.category')->countCategories();
 
         $category->setListOrderPriority(++$categoryCount[1]);
 
