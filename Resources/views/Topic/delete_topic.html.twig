@@ -1,10 +1,10 @@
-{% extends param('ccdn_forum_admin.topic.delete_topic.layout_template') %}
+{% extends ccdn_forum_admin.topic.delete_topic.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}

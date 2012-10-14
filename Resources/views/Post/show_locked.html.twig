@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_admin.post.show_locked.layout_template') %}
+{% extends ccdn_forum_admin.post.show_locked.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -9,7 +9,7 @@
 	<script src="{{- asset('bundles/ccdncomponentcommon/js/ccdn/jquery.checkboxes.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_forum_admin.title.post.show_locked' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.post.show_locked' | trans({}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -87,7 +87,7 @@
 						{%- if post.getTopic -%}
 							<span class="label label-info">{{- post.getTopic.getCachedReplyCount -}}&nbsp;{{- 'ccdn_forum_admin.board.table.head.reply_count' | trans({}, 'CCDNForumAdminBundle') -}}</span>&nbsp;
 							<span class="label label-info">{{- post.getTopic.getCachedViewCount -}}&nbsp;{{- 'ccdn_forum_admin.board.table.head.view_count' | trans({}, 'CCDNForumAdminBundle') -}}</span>&nbsp;
-							<a href="{{- path('ccdn_forum_forum_topic_show', {'topicId': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle |capitalize, param('ccdn_forum_admin.post.show_locked.topic_title_truncate')) -}}</a>
+							<a href="{{- path('ccdn_forum_forum_topic_show', {'topicId': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle |capitalize, ccdn_forum_admin.post.show_locked.topic_title_truncate) -}}</a>
 						{%- endif -%}
 					</td>
 
@@ -98,7 +98,7 @@
 
 						{%- if post.getCreatedDate -%}
 							{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
-							{{- post.getCreatedDate |date(param('ccdn_forum_admin.post.show_locked.post_created_datetime_format')) -}}
+							{{- post.getCreatedDate |date(ccdn_forum_admin.post.show_locked.post_created_datetime_format) -}}
 						{%- endif -%}
 					</td>
 
@@ -109,7 +109,7 @@
 
 						{%- if post.getLockedDate -%}
 							{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
-							{{- post.getLockedDate |date(param('ccdn_forum_admin.post.show_locked.post_locked_datetime_format')) -}}
+							{{- post.getLockedDate |date(ccdn_forum_admin.post.show_locked.post_locked_datetime_format) -}}
 						{%- endif -%}
 					</td>
 
@@ -120,7 +120,7 @@
 
 						{%- if post.getDeletedDate -%}
 							{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
-							{{- post.getDeletedDate |date(param('ccdn_forum_admin.post.show_locked.post_deleted_datetime_format')) -}}
+							{{- post.getDeletedDate |date(ccdn_forum_admin.post.show_locked.post_deleted_datetime_format) -}}
 						{%- endif -%}
 					</td>
 

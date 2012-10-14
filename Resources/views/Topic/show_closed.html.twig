@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_admin.topic.show_closed.layout_template') %}
+{% extends ccdn_forum_admin.topic.show_closed.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -9,7 +9,7 @@
 	<script src="{{- asset('bundles/ccdncomponentcommon/js/ccdn/jquery.checkboxes.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_forum_admin.title.topic.show_closed' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.topic.show_closed' | trans({}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -81,7 +81,7 @@
 					<td class="left">
 						<span class="label label-info">{{- topic.getCachedReplyCount -}}&nbsp;{{- 'ccdn_forum_admin.board.table.head.reply_count' | trans({}, 'CCDNForumAdminBundle') -}}</span>&nbsp;
 						<span class="label label-info">{{- topic.getCachedViewCount -}}&nbsp;{{- 'ccdn_forum_admin.board.table.head.view_count' | trans({}, 'CCDNForumAdminBundle') -}}</span>&nbsp;
-						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle |capitalize, param('ccdn_forum_admin.topic.show_closed.topic_title_truncate')) -}}</a>
+						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle |capitalize, ccdn_forum_admin.topic.show_closed.topic_title_truncate) -}}</a>
 					</td>
 
 					<td class="right">
@@ -94,7 +94,7 @@
 
 							{%- if topic.getFirstPost.getCreatedDate -%}
 								{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
-								{{- topic.getFirstPost.getCreatedDate |date(param('ccdn_forum_admin.topic.show_closed.post_created_datetime_format')) -}}
+								{{- topic.getFirstPost.getCreatedDate |date(ccdn_forum_admin.topic.show_closed.post_created_datetime_format) -}}
 							{%- endif -%}
 						{%- endif -%}
 					</td>
@@ -106,7 +106,7 @@
 
 						{%- if topic.getClosedDate -%}
 							{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
-							{{- topic.getClosedDate |date(param('ccdn_forum_admin.topic.show_closed.topic_closed_datetime_format')) -}}
+							{{- topic.getClosedDate |date(ccdn_forum_admin.topic.show_closed.topic_closed_datetime_format) -}}
 						{%- endif -%}
 					</td>
 
@@ -117,7 +117,7 @@
 
 						{%- if topic.getDeletedDate -%}
 							{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
-							{{- topic.getDeletedDate |date(param('ccdn_forum_admin.topic.show_closed.topic_deleted_datetime_format')) -}}
+							{{- topic.getDeletedDate |date(ccdn_forum_admin.topic.show_closed.topic_deleted_datetime_format) -}}
 						{%- endif -%}
 					</td>
 

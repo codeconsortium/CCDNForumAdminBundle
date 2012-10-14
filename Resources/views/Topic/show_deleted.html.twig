@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_admin.topic.show_deleted.layout_template') %}
+{% extends ccdn_forum_admin.topic.show_deleted.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -9,7 +9,7 @@
 	<script src="{{- asset('bundles/ccdncomponentcommon/js/ccdn/jquery.checkboxes.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_forum_admin.title.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -79,7 +79,7 @@
 						{%- endif -%}
 					</td>
 					<td class="left">
-						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, param('ccdn_forum_admin.topic.show_deleted.topic_title_truncate')) -}}</a><br>
+						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, ccdn_forum_admin.topic.show_deleted.topic_title_truncate) -}}</a><br>
 						{{- 'post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
 						{%- if topic.getFirstPost -%}
 							{%- if topic.getFirstPost.getCreatedBy -%}
@@ -100,14 +100,14 @@
 						{%- if topic.getClosedBy -%}<a href="{{- path(user_profile_route, {'userId': topic.getClosedBy.getId }) -}}">{{- topic.getClosedBy.getUsername |title -}}</a>{%- endif -%}
 					</td>
 					<td class="center">
-						{%- if topic.getClosedDate -%}{{- topic.getClosedDate |date(param('ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format')) -}}{%- endif -%}
+						{%- if topic.getClosedDate -%}{{- topic.getClosedDate |date(ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format) -}}{%- endif -%}
 					</td>
 
 					<td class="center">
 						{%- if topic.getDeletedBy -%}<a href="{{- path(user_profile_route, {'userId': topic.getDeletedBy.getId }) -}}">{{- topic.getDeletedBy.getUsername |title -}}</a>{%- endif -%}
 					</td>
 					<td class="center">
-						{%- if topic.getDeletedDate -%}{{- topic.getDeletedDate |date(param('ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format')) -}}{%- endif -%}
+						{%- if topic.getDeletedDate -%}{{- topic.getDeletedDate |date(ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format) -}}{%- endif -%}
 					</td>
 				</tr>
 			{%- else -%}

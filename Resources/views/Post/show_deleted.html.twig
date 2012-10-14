@@ -1,4 +1,4 @@
-{% extends param('ccdn_forum_admin.post.show_deleted.layout_template') %}
+{% extends ccdn_forum_admin.post.show_deleted.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -9,7 +9,7 @@
 	<script src="{{- asset('bundles/ccdncomponentcommon/js/ccdn/jquery.checkboxes.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_forum_admin.title.post.show_deleted' | trans({}, 'CCDNForumAdminBundle'), param('ccdn_forum_admin.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_forum_admin.title.post.show_deleted' | trans({}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -81,7 +81,7 @@
 					</td>
 					<td class="left">
 						{%- if post.getTopic -%}
-							<a href="{{- path('ccdn_forum_forum_topic_show', {'topicId': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle, param('ccdn_forum_admin.post.show_deleted.topic_title_truncate')) -}}</a>
+							<a href="{{- path('ccdn_forum_forum_topic_show', {'topicId': post.getTopic.getId }) -}}" title="{{- post.getTopic.getTitle -}}">{{- truncDot(post.getTopic.getTitle, ccdn_forum_admin.post.show_deleted.topic_title_truncate) -}}</a>
 						{%- endif -%}
 					</td>
 					<td class="center">
@@ -95,7 +95,7 @@
 					</td>
 					<td class="center">
 						{%- if post.getCreatedDate -%}
-							{{- post.getCreatedDate |date(param('ccdn_forum_admin.post.show_deleted.post_created_datetime_format')) -}}
+							{{- post.getCreatedDate |date(ccdn_forum_admin.post.show_deleted.post_created_datetime_format) -}}
 						{%- endif -%}
 					</td>
 
@@ -106,7 +106,7 @@
 					</td>
 					<td class="center">
 						{%- if post.getLockedDate -%}
-							{{- post.getLockedDate |date(param('ccdn_forum_admin.post.show_deleted.post_locked_datetime_format')) -}}
+							{{- post.getLockedDate |date(ccdn_forum_admin.post.show_deleted.post_locked_datetime_format) -}}
 						{%- endif -%}
 					</td>
 
@@ -117,7 +117,7 @@
 					</td>
 					<td class="center">
 						{%- if post.getDeletedDate -%}
-							{{- post.getDeletedDate |date(param('ccdn_forum_admin.post.show_deleted.post_deleted_datetime_format')) -}}
+							{{- post.getDeletedDate |date(ccdn_forum_admin.post.show_deleted.post_deleted_datetime_format) -}}
 						{%- endif -%}
 					</td>
 				</tr>
