@@ -27,7 +27,7 @@ class CategoryType extends AbstractType
     /**
      *
      * @access public
-     * @param FormBuilder $builder, Array() $options
+     * @param FormBuilder $builder, array $options
      */
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -36,10 +36,8 @@ class CategoryType extends AbstractType
 
     /**
      *
-     * for creating and replying to topics
-     *
      * @access public
-     * @param Array() $options
+     * @param array $options
      */
     public function getDefaultOptions(array $options)
     {

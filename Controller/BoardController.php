@@ -29,7 +29,7 @@ class BoardController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $categoryId
+     * @param int $categoryId
      * @return RedirectResponse|RenderResponse
      */
     public function createAction($categoryId)
@@ -66,7 +66,7 @@ class BoardController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $boardId
+     * @param int $boardId
      * @return RedirectResponse|RenderResponse
      */
     public function editAction($boardId)
@@ -110,7 +110,7 @@ class BoardController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $boardId
+     * @param int $boardId
      * @return RedirectResponse|RenderResponse
      */
     public function deleteAction($boardId)
@@ -140,7 +140,7 @@ class BoardController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $boardId
+     * @param int $boardId
      * @return RedirectResponse
      */
     public function deleteConfirmedAction($boardId)
@@ -165,7 +165,7 @@ class BoardController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $boardId, Int $direction
+     * @param int $boardId, int $direction
      * @return RedirectResponse
      */
     public function reorderAction($boardId, $direction)
@@ -198,7 +198,7 @@ class BoardController extends ContainerAware
     /**
      *
      * @access protected
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {

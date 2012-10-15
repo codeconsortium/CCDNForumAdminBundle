@@ -27,8 +27,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic
-     * @return $this
+     * @param Topic $topic
+     * @return self
      */
     public function sticky($topic, $user)
     {
@@ -44,8 +44,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic
-     * @return $this
+     * @param Topic $topic
+     * @return self
      */
     public function unsticky($topic)
     {
@@ -61,8 +61,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic, $user
-     * @return $this
+     * @param Topic $topic, $user
+     * @return self
      */
     public function close($topic, $user)
     {
@@ -81,8 +81,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic
-     * @return $this
+     * @param Topic $topic
+     * @return self
      */
     public function reopen($topic)
     {
@@ -104,8 +104,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic
-     * @return $this
+     * @param Topic $topic
+     * @return self
      */
     public function restore($topic)
     {
@@ -124,8 +124,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic, $user
-     * @return $this
+     * @param Topic $topic, $user
+     * @return self
      */
     public function softDelete($topic, $user)
     {
@@ -153,8 +153,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topic
-     * @return $this
+     * @param Topic $topic
+     * @return self
      */
 	public function hardDelete($topic)
 	{
@@ -198,8 +198,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topics
-     * @return $this
+     * @param array $topics
+     * @return self
      */
     public function bulkClose($topics, $user)
     {
@@ -220,8 +220,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topics
-     * @return $this
+     * @param array $topics
+     * @return self
      */
     public function bulkReopen($topics)
     {
@@ -239,8 +239,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topics
-     * @return $this
+     * @param array $topics
+     * @return self
      */
     public function bulkRestore($topics)
     {
@@ -295,8 +295,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topics
-     * @return $this
+     * @param array $topics
+     * @return self
      */
     public function bulkSoftDelete($topics, $user)
     {
@@ -353,8 +353,8 @@ class TopicManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $topics
-     * @return $this
+     * @param array $topics
+     * @return self
      */
     public function bulkHardDelete($topics)
     {

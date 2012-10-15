@@ -27,8 +27,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $post, $user
-     * @return $this
+     * @param Post $post, $user
+     * @return self
      */
     public function lock($post, $user)
     {
@@ -47,8 +47,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $post
-     * @return $this
+     * @param Post $post
+     * @return self
      */
     public function unlock($post)
     {
@@ -64,8 +64,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $posts
-     * @return $this
+     * @param array $posts
+     * @return self
      */
     public function bulkLock($posts, $user)
     {
@@ -86,8 +86,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $posts
-     * @return $this
+     * @param array $posts
+     * @return self
      */
     public function bulkUnlock($posts)
     {
@@ -105,8 +105,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $posts
-     * @return $this
+     * @param array $posts
+     * @return self
      */
     public function bulkRestore($posts)
     {
@@ -152,8 +152,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $posts
-     * @return $this
+     * @param array $posts
+     * @return self
      */
     public function bulkSoftDelete($posts, $user)
     {
@@ -202,8 +202,8 @@ class PostManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $posts
-     * @return $this
+     * @param array $posts
+     * @return self
      */
     public function bulkHardDelete($posts)
     {

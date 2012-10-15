@@ -30,7 +30,7 @@ class TopicController extends ContainerAware
      * Displays a list of closed topics (locked from posting new posts)
      *
      * @access public
-     * @param  Int $page
+     * @param int $page
      * @return RenderResponse
      */
     public function showClosedAction($page)
@@ -66,7 +66,7 @@ class TopicController extends ContainerAware
      * Displays a list of soft deleted topics
      *
      * @access public
-	 * @param Int $page
+	 * @param int $page
      * @return RenderResponse
      */
     public function showDeletedAction($page)
@@ -180,7 +180,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse
      */
     public function stickyAction($topicId)
@@ -207,7 +207,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse
      */
     public function unstickyAction($topicId)
@@ -234,7 +234,7 @@ class TopicController extends ContainerAware
      * Once a topic is locked, no posts can be added, deleted or edited!
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse
      */
     public function closeAction($topicId)
@@ -261,7 +261,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse
      */
     public function reopenAction($topicId)
@@ -288,7 +288,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RenderResponse
      */
     public function deleteAction($topicId)
@@ -328,7 +328,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse
      */
     public function deleteConfirmedAction($topicId)
@@ -357,7 +357,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse
      */
     public function restoreAction($topicId)
@@ -384,7 +384,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $topicId
+     * @param int $topicId
      * @return RedirectResponse|RenderResponse
      */
     public function moveAction($topicId)
@@ -494,7 +494,7 @@ class TopicController extends ContainerAware
     /**
      *
      * @access protected
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {

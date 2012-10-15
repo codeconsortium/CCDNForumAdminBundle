@@ -33,7 +33,7 @@ class TopicChangeBoardType extends AbstractType
     /**
      *
      * @access public
-     * @param Array() $options
+     * @param array $options
      */
     public function setDefaultValues(array $defaults = null)
     {
@@ -45,7 +45,7 @@ class TopicChangeBoardType extends AbstractType
     /**
      *
      * @access public
-     * @param FormBuilder $builder, Array() $options
+     * @param FormBuilder $builder, array $options
      */
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -59,10 +59,8 @@ class TopicChangeBoardType extends AbstractType
 
     /**
      *
-     * for creating and replying to topics
-     *
      * @access public
-     * @param Array() $options
+     * @param array $options
      */
     public function getDefaultOptions(array $options)
     {

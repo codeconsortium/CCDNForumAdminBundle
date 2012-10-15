@@ -27,8 +27,8 @@ class BoardManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $board
-     * @return $this
+     * @param Board $board
+     * @return self
      */
     public function insert($board)
     {
@@ -46,8 +46,8 @@ class BoardManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $board
-     * @return $this
+     * @param Board $board
+     * @return self
      */
     public function update($board)
     {
@@ -60,8 +60,8 @@ class BoardManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $boards, $boardId, $direction
-     * @return $this
+     * @param array $boards, int $boardId, string $direction
+     * @return self
      */
     public function reorder($boards, $boardId, $direction)
     {

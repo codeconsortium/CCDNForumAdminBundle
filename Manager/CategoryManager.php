@@ -27,8 +27,8 @@ class CategoryManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $category
-     * @return $this
+     * @param Category $category
+     * @return self
      */
     public function insert($category)
     {
@@ -45,8 +45,8 @@ class CategoryManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param $category
-     * @return $this
+     * @param Category $category
+     * @return self
      */
     public function update($category)
     {
@@ -59,8 +59,8 @@ class CategoryManager extends BaseManager implements ManagerInterface
     /**
      *
      * @access public
-     * @param Int $categories, Int $categoryId, String $direction
-     * @return $this
+     * @param array $categories, int $categoryId, string $direction
+     * @return self
      */
     public function reorder($categories, $categoryId, $direction)
     {

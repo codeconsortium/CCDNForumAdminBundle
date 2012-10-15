@@ -82,8 +82,8 @@ class BoardUpdateFormHandler
     /**
      *
      * @access public
-     * @param Array() $options
-     * @return $this
+     * @param array $options
+     * @return self
      */
     public function setDefaultValues(array $defaults = null)
     {

@@ -30,7 +30,7 @@ class PostController extends ContainerAware
      * Display a list of locked posts (locked from editing)
      *
      * @access public
-     * @param  Int $page
+     * @param int $page
      * @return RenderResponse
      */
     public function showLockedAction($page)
@@ -66,7 +66,7 @@ class PostController extends ContainerAware
      * Display a list of deleted posts.
      *
      * @access public
-     * @param  Int $page
+     * @param int $page
      * @return RenderResponse
      */
     public function showDeletedAction($page)
@@ -176,7 +176,7 @@ class PostController extends ContainerAware
      * Lock to prevent editing of post.
      *
      * @access public
-     * @param  Int $postId
+     * @param int $postId
      * @return RedirectResponse
      */
     public function lockAction($postId)
@@ -203,7 +203,7 @@ class PostController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $postId
+     * @param int $postId
      * @return RedirectResponse
      */
     public function unlockAction($postId)
@@ -228,7 +228,7 @@ class PostController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $postId
+     * @param int $postId
      * @return RedirectResponse
      */
     public function restoreAction($postId)
@@ -320,7 +320,7 @@ class PostController extends ContainerAware
     /**
      *
      * @access protected
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {

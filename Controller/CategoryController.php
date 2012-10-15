@@ -96,7 +96,7 @@ class CategoryController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $categoryId
+     * @param int $categoryId
      * @return RedirectResponse|RenderResponse
      */
     public function editAction($categoryId)
@@ -140,7 +140,7 @@ class CategoryController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $categoryId
+     * @param int $categoryId
      * @return RedirectResponse|RenderResponse
      */
     public function deleteAction($categoryId)
@@ -170,7 +170,7 @@ class CategoryController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $categoryId
+     * @param int $categoryId
      * @return RedirectResponse
      */
     public function deleteConfirmedAction($categoryId)
@@ -195,7 +195,7 @@ class CategoryController extends ContainerAware
     /**
      *
      * @access public
-     * @param Int $categoryId, String $direction
+     * @param int $categoryId, string $direction
      * @return RedirectResponse
      */
     public function reorderAction($categoryId, $direction)
@@ -227,7 +227,7 @@ class CategoryController extends ContainerAware
     /**
      *
      * @access public
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {
