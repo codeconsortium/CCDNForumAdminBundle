@@ -41,7 +41,8 @@
 			</div>
 
 			<div class="form-actions">
-				<input type="submit" class="btn btn-danger" value="{{- 'ccdn_forum_admin.form.button.topic.move_to_board' | trans({}, 'CCDNForumAdminBundle') -}}">
+				<input type="submit" class="btn btn-danger" value="{{- 'ccdn_forum_admin.form.button.topic.move_to_board' | trans({}, 'CCDNForumAdminBundle') -}}">&nbsp;
+				<a class="btn" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.id}) -}}">{{- 'ccdn_forum_admin.form.button.cancel' |trans({}, 'CCDNForumAdminBundle') -}}</a>
 			</div>
 
 		</fieldset>
