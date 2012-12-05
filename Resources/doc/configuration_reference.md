@@ -39,6 +39,13 @@ ccdn_forum_admin:
         delete:
             layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig            
     topic:
+        show_closed: 
+            layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+            topics_per_page: 40
+            topic_title_truncate: 20
+            post_created_datetime_format: 'd-m-Y - H:i'
+            topic_closed_datetime_format: 'd-m-Y - H:i'
+            topic_deleted_datetime_format: 'd-m-Y - H:i'
         show_deleted:
             layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
             topics_per_page: 40
@@ -51,13 +58,6 @@ ccdn_forum_admin:
             form_theme: CCDNForumAdminBundle:Form:fields.html.twig
         delete_topic: 
             layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
-        show_closed: 
-            layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
-            topics_per_page: 40
-            topic_title_truncate: 20
-            post_created_datetime_format: 'd-m-Y - H:i'
-            topic_closed_datetime_format: 'd-m-Y - H:i'
-            topic_deleted_datetime_format: 'd-m-Y - H:i'
     post:
         show_deleted:
             layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
