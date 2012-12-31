@@ -14,7 +14,7 @@
 namespace CCDNForum\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  *
@@ -45,9 +45,9 @@ class TopicChangeBoardType extends AbstractType
     /**
      *
      * @access public
-     * @param FormBuilder $builder, array $options
+     * @param FormBuilderInterface $builder, array $options
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('board', 'entity', array(
             'class' => 'CCDNForumForumBundle:Board',
