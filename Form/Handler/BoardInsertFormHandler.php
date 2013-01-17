@@ -28,22 +28,13 @@ use CCDNForum\AdminBundle\Manager\ManagerInterface;
 class BoardInsertFormHandler
 {
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $factory;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $container;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $request;
 
     /**
@@ -102,7 +93,7 @@ class BoardInsertFormHandler
         $this->getForm();
 
         if ($this->request->getMethod() == 'POST') {
-            $this->form->bindRequest($this->request);
+            $this->form->bind($this->request);
 
             $formData = $this->form->getData();
 
@@ -145,5 +136,4 @@ class BoardInsertFormHandler
     {
         return $this->manager->insert($entity)->flush();
     }
-
 }

@@ -28,46 +28,25 @@ use CCDNForum\AdminBundle\Manager\ManagerInterface;
 class TopicChangeBoardFormHandler
 {
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $factory;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $container;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $request;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $manager;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $defaults = array();
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $form;
 
-    /**
-     *
-     * @access protected
-     */
+    /** @access protected */
     protected $oldBoard;
 
     /**
@@ -108,7 +87,7 @@ class TopicChangeBoardFormHandler
         $this->getForm();
 
         if ($this->request->getMethod() == 'POST') {
-            $this->form->bindRequest($this->request);
+            $this->form->bind($this->request);
 
             $formData = $this->form->getData();
 
@@ -166,5 +145,4 @@ class TopicChangeBoardFormHandler
             $boardManager->updateStats($topic->getBoard())->flush();
         }
     }
-
 }
