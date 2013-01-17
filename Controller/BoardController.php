@@ -43,7 +43,9 @@ class BoardController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.board_create')->setDefaultValues(array('category_id' => $categoryId));
+        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
+
+        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.board_create')->setDefaultValues(array('category' => $category));
 
         if ($formHandler->process()) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_forum_admin.flash.board.create.success', array(), 'CCDNForumAdminBundle'));

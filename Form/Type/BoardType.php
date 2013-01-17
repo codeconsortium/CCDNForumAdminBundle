@@ -56,10 +56,10 @@ class BoardType extends AbstractType
         $builder->add('name');
         $builder->add('description');
         $builder->add('category', 'entity', array(
-            'class' => 'CCDNForumForumBundle:Category',
+            'class' => 'CCDNForum\ForumBundle\Entity\Category',
             'query_builder' => function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
             'property' => 'name',
-            'preferred_choices' => array($this->defaults['category']),
+            'preferred_choices' => $this->defaults['category'] ? array($this->defaults['category']) : null,
         ));
     }
 

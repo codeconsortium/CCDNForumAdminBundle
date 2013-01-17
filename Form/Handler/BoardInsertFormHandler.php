@@ -119,7 +119,9 @@ class BoardInsertFormHandler
     {
         if (! $this->form) {
             $board = $this->container->get('ccdn_forum_admin.form.type.board');
-            $board->setDefaultValues(array('category' => $this->defaults['category_id']));
+
+            $board->setDefaultValues(array('category' => $this->defaults['category']));
+
             $this->form = $this->factory->create($board);
         }
 
