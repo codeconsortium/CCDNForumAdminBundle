@@ -67,13 +67,13 @@
 					</td>
 
 					<td class="center">
-						{%- if topic.getClosedBy -%}
+						{%- if topic.isClosed -%}
 						<i class="icon-lock">
 						{%- endif -%}
 					</td>
 
 					<td class="center">
-						{%- if topic.getDeletedBy -%}
+						{%- if topic.isDeleted -%}
 						<i class="icon-trash">
 						{%- endif -%}
 					</td>
@@ -86,11 +86,8 @@
 
 					<td class="right">
 						{%- if topic.getFirstPost -%}
-							{%- if topic.getFirstPost.getCreatedBy -%}
-								<a href="{{- path(user_profile_route, {'userId': topic.getFirstPost.getCreatedBy.getId } ) -}}">{{- topic.getFirstPost.getCreatedBy |capitalize -}}</a>
-							{%- else -%}
-								Guest
-							{%- endif -%}
+                            {% set author = create_profile(topic.getFirstPost.getCreatedBy) %}
+                            {{ author.getProfilePath|raw }}
 
 							{%- if topic.getFirstPost.getCreatedDate -%}
 								{{- 'ccdn_forum_admin.actioned_at' |trans({}, 'CCDNForumAdminBundle') -}}
@@ -100,8 +97,10 @@
 					</td>
 
 					<td class="right">
-						{%- if topic.getClosedBy -%}
-							<a href="{{- path(user_profile_route, {'userId': topic.getClosedBy.getId }) -}}">{{- topic.getClosedBy.getUsername |capitalize -}}</a>
+						{%- if topic.isClosed -%}
+                            {% set topic_closer = create_profile(topic.getClosedBy) %}
+
+                            {{ topic_closer.getProfilePath|raw }}
 						{%- endif -%}
 
 						{%- if topic.getClosedDate -%}
@@ -111,8 +110,10 @@
 					</td>
 
 					<td class="right">
-						{%- if topic.getDeletedBy -%}
-							<a href="{{- path(user_profile_route, {'userId': topic.getDeletedBy.getId }) -}}">{{- topic.getDeletedBy.getUsername |capitalize -}}</a>
+						{%- if topic.isDeleted -%}
+                            {% set topic_deleter = create_profile(topic.getDeletedBy) %}
+
+                            {{ topic_deleter.getProfilePath|raw }}
 						{%- endif -%}
 
 						{%- if topic.getDeletedDate -%}

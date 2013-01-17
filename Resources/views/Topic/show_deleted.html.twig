@@ -69,24 +69,22 @@
 						<input type="checkbox" id="topic_{{- topic.id -}}" name="check_{{- topic.id -}}" data-check-all-responds="true" data-identifier="posts">
 					</td>
 					<td class="center">
-						{%- if topic.getClosedBy -%}
+						{%- if topic.isClosed -%}
 						<i class="icon-lock"></i>
 						{%- endif -%}
 					</td>
 					<td class="center">
-						{%- if topic.getDeletedBy -%}
+						{%- if topic.isDeleted -%}
 						<i class="icon-trash"></i>
 						{%- endif -%}
 					</td>
 					<td class="left">
 						<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, ccdn_forum_admin.topic.show_deleted.topic_title_truncate) -}}</a><br>
-						{{- 'post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
 						{%- if topic.getFirstPost -%}
-							{%- if topic.getFirstPost.getCreatedBy -%}
-								<a href="{{- path(user_profile_route, {'userId': topic.getFirstPost.getCreatedBy.getId }) -}}">{{- topic.getFirstPost.getCreatedBy |title -}}</a>
-							{%- else -%}
-								Guest
-							{%- endif -%}
+                            {{- 'ccdn_forum_forum.post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
+
+                            {% set author = create_profile(topic.getFirstPost.getCreatedBy) %}
+                            {{ author.getProfilePath|raw }}
 						{%- endif -%}
 					</td>
 					<td class="center">
@@ -97,14 +95,22 @@
 					</td>
 
 					<td class="center">
-						{%- if topic.getClosedBy -%}<a href="{{- path(user_profile_route, {'userId': topic.getClosedBy.getId }) -}}">{{- topic.getClosedBy.getUsername |title -}}</a>{%- endif -%}
+						{%- if topic.isClosed -%}
+                            {% set topic_closer = create_profile(topic.getClosedBy) %}
+
+                            {{ topic_closer.getProfilePath|raw }}
+                        {%- endif -%}
 					</td>
 					<td class="center">
 						{%- if topic.getClosedDate -%}{{- topic.getClosedDate |date(ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format) -}}{%- endif -%}
 					</td>
 
 					<td class="center">
-						{%- if topic.getDeletedBy -%}<a href="{{- path(user_profile_route, {'userId': topic.getDeletedBy.getId }) -}}">{{- topic.getDeletedBy.getUsername |title -}}</a>{%- endif -%}
+						{%- if topic.isDeleted -%}
+                            {% set topic_deleter = create_profile(topic.getDeletedBy) %}
+
+                            {{ topic_deleter.getProfilePath|raw }}
+                        {%- endif -%}
 					</td>
 					<td class="center">
 						{%- if topic.getDeletedDate -%}{{- topic.getDeletedDate |date(ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format) -}}{%- endif -%}
