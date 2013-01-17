@@ -23,15 +23,6 @@
 
 	<li class="divider"></li>
 
-	{%- if route == 'ccdn_forum_admin_repair_tools' -%}
-		<li class="active"><a href="{{- path('ccdn_forum_admin_repair_tools') -}}"><i class="icon-white icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.sidebar.link.repair' | trans({}, 'CCDNForumAdminBundle') -}}</a></li>
-	{%- else -%}
-		<li><a href="{{- path('ccdn_forum_admin_repair_tools') -}}"><i class="icon-wrench"></i>&nbsp;{{- 'ccdn_forum_admin.sidebar.link.repair' | trans({}, 'CCDNForumAdminBundle') -}}</a></li>
-	{%- endif -%}
-
-
-	<li class="divider"></li>
-
 	{%- if route == 'ccdn_forum_admin_post_show_all_locked' -%}
 		<li class="active"><a href="{{- path('ccdn_forum_admin_post_show_all_locked', {}) -}}"><i class="icon-white icon-lock"></i>&nbsp;{{- 'ccdn_forum_admin.sidebar.link.post.show_locked' | trans({}, 'CCDNForumAdminBundle') -}}</a></li>
 	{%- else -%}
@@ -56,12 +47,4 @@
 		<li><a href="{{- path('ccdn_forum_admin_post_deleted_show') -}}"><i class="icon-trash"></i>&nbsp;{{- 'ccdn_forum_admin.sidebar.link.post.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}</a></li>
 	{%- endif -%}
 
-
-
-
-
-
-
-
-	
 {%- endspaceless -%}
