@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
 	{{ parent() }}
+    <link href="{{- asset('bundles/ccdnforumforum/css/generic.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}{{- truncDot('ccdn_forum_admin.title.board.edit'| trans({'%board_name%': board.name}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
@@ -60,7 +61,7 @@
 			</div>
 
 			<div class="form-actions">
-				<input type="submit" class="btn btn-primary" value="{{- 'ccdn_forum_admin.form.button.board.edit'| trans({}, 'CCDNForumAdminBundle') -}}">&nbsp;
+				<input type="submit" class="btn btn-primary" value="{{- 'ccdn_forum_admin.form.button.board.edit'| trans({}, 'CCDNForumAdminBundle') -}}">
 				<a class="btn" href="{{- path('ccdn_forum_admin_category_index') -}}">{{- 'ccdn_forum_admin.form.button.cancel' |trans({}, 'CCDNForumAdminBundle') -}}</a>
 			</div>
 

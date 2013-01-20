@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
 	{{ parent() }}
+    <link href="{{- asset('bundles/ccdnforumforum/css/generic.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}{{- truncDot('ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
@@ -22,12 +23,12 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- 'ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle') -}}</h2>
+	<h3>{{- 'ccdn_forum_forum.title.topic.delete' |trans({'%topic_title%': topic.getTitle }, 'CCDNForumForumBundle') -}}</h3>
 
 	<div class="form-confirmation">
 
 		<div class="form-question">
-			<h3>{{- 'ccdn_forum_forum.topic.delete_topic_question' | trans({}, 'CCDNForumForumBundle') -}}</h3>
+			<h4>{{- 'ccdn_forum_forum.topic.delete_topic_question' | trans({}, 'CCDNForumForumBundle') -}}</h4>
 		</div>
 
 		<div class="form-answer">

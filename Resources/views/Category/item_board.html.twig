@@ -4,11 +4,13 @@
 		<i class="icon-folder-close" style="margin-top:10px;"></i>
 	</td>
 	<td class="left">
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_edit', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.board.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_delete', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.board.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_priority_move_up', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>&nbsp;
-		<a class="btn btn-danger" href="{{- path('ccdn_forum_admin_board_priority_move_down', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
-		<br>
+        <div class="btn-toolbar">
+            <a class="btn btn-danger btn-mini" href="{{- path('ccdn_forum_admin_board_edit', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.board.edit' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+            <a class="btn btn-danger btn-mini" href="{{- path('ccdn_forum_admin_board_delete', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.board.delete' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+            <a class="btn btn-danger btn-mini" href="{{- path('ccdn_forum_admin_board_priority_move_up', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.item.move_up' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+            <a class="btn btn-danger btn-mini" href="{{- path('ccdn_forum_admin_board_priority_move_down', {'boardId': board.getId }) -}}">{{- 'ccdn_forum_admin.link.item.move_down' | trans({}, 'CCDNForumAdminBundle') -}}</a>
+        </div>
+
 		<a href="{{- path('ccdn_forum_forum_board_show', {'boardId': board.getId }) -}}">{{- board.getName -}}</a><br>
 		<span class="common_body">
 			{{- BBCode(board.getDescription | raw, ccdn_forum_admin.category.index.enable_bb_parser) | raw -}}

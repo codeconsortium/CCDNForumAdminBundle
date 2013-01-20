@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link href="{{- asset('bundles/ccdnforumforum/css/generic.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
@@ -33,9 +34,9 @@
 
     <div class="btn-toolbar" style="display:block !important;clear:both !important;">
         <div class="pull-left">
-            <input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.post.lock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_lock" disabled data-responds-disabled="posts">&nbsp;
-            <input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.post.unlock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_unlock" disabled data-responds-disabled="posts">&nbsp;
-            <input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts">&nbsp;
+            <input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.post.lock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_lock" disabled data-responds-disabled="posts">
+            <input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.post.unlock' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_unlock" disabled data-responds-disabled="posts">
+            <input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts">
             <input type="submit" class="btn btn-danger disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="posts">
         </div>
         {%- if pager.haveToPaginate -%}
