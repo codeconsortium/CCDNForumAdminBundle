@@ -61,6 +61,27 @@ class BoardType extends AbstractType
             'property' => 'name',
             'preferred_choices' => $this->defaults['category'] ? array($this->defaults['category']) : null,
         ));
+        $builder->add('readAuthorisedRoles', 'choice', array(
+            'expanded' => true,
+            'multiple' => true,
+            'choices' => $options['available_roles'],
+            'label' => 'View Board Roles:',
+            'required' => false,
+        ));
+        $builder->add('topicCreateAuthorisedRoles', 'choice', array(
+            'expanded' => true,
+            'multiple' => true,
+            'choices' => $options['available_roles'],
+            'label' => 'Topic Create Roles:',
+            'required' => false,
+        ));
+        $builder->add('topicReplyAuthorisedRoles', 'choice', array(
+            'expanded' => true,
+            'multiple' => true,
+            'choices' => $options['available_roles'],
+            'label' => 'Topic Reply Roles:',
+            'required' => false,
+        ));
     }
 
     /**
@@ -90,6 +111,7 @@ class BoardType extends AbstractType
             // a unique key to help generate the secret token
             'intention'       => 'board_item',
             'validation_groups' => 'admin_board',
+            'available_roles' => array(),
         );
     }
 

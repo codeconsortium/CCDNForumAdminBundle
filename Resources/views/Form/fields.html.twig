@@ -1,7 +1,7 @@
 {% block field_label %}
 	{%- spaceless -%}
 		{%- set attr = attr|merge({ 'class': attr.class|default('') ~ ' control-label'}) -%}
-	    <label for="{{- id -}}" {{ block('widget_attributes') -}}>{{- label -}}
+	    <label for="{{- id -}}" {{ block('widget_attributes') -}}>{{- label|raw -}}
 		{%- if required -%}
 			<span style="color:#f00;" title="{{- 'ccdn_forum_admin.form.field.required' |trans({}, 'CCDNForumAdminBundle') -}}">*</span>
 		{%- endif -%}
@@ -59,3 +59,40 @@
 	    {%- endif -%}
 	{%- endspaceless -%}
 {% endblock form_errors %}
+
+
+
+{% block choice_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            {%- set attr = attr|merge({'class': attr.class|default('') ~ ' span8'}) -%}
+            <div {{ block('widget_container_attributes') }}>
+                <table class="table table-condensed">
+                    <tbody>
+                    {% for child in form %}
+                        <tr>
+                            <td>{{ form_widget(child) }}</td>
+                            <td>{{ form_label(child) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+                {% if empty_value is not none %}
+                    <option value="">{{ empty_value|trans }}</option>
+                {% endif %}
+                {% if preferred_choices|length > 0 %}
+                    {% set options = preferred_choices %}
+                    {{ block('widget_choice_options') }}
+                    {% if choices|length > 0 %}
+                        <option disabled="disabled">{{ separator }}</option>
+                    {% endif %}
+                {% endif %}
+                {% set options = choices %}
+                {{ block('widget_choice_options') }}
+            </select>
+        {% endif %}
+    {% endspaceless %}
+{% endblock choice_widget %}

@@ -128,7 +128,17 @@ class BoardUpdateFormHandler
 
             $board->setDefaultValues(array('category' => $this->defaults['board_entity']->getCategory()));
 
-            $this->form = $this->factory->create($board, $this->defaults['board_entity']);
+            $roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+
+            $roles = array();
+            foreach ($roleHierarchy as $roleName => $roleSubs) {
+                $subs = '<ul><li>' . implode('</li><li>', $roleSubs) . '</li></ul>';
+                $roles[$roleName] = '<strong>' . $roleName . '</strong>' . ($subs != '<ul><li>' . $roleName . '</li></ul>' ? "\n" . $subs:'');
+            }
+
+            $options = array('available_roles' => $roles);
+
+            $this->form = $this->factory->create($board, $this->defaults['board_entity'], $options);
         }
 
         return $this->form;
