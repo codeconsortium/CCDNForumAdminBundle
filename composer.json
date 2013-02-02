@@ -1,7 +1,7 @@
 {
     "name": "codeconsortium/ccdn-forum-admin-bundle",
     "type": "symfony-bundle",
-    "description": "CCDN Forum admin bundle",
+    "description": "CCDN Forum Admin Bundle",
     "keywords": ["forum", "board", "ccdn", "admin", "bulletin"],
     "homepage": "http://github.com/codeconsortium/CCDNForumAdminBundle",
     "license": "MIT",
