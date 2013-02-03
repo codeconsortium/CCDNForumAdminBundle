@@ -76,7 +76,7 @@ Documentation can be found in the `Resources/doc/index.md` file in this bundle:
 
 ## Installation.
 
-All the installation instructions are located in [documentation](http://github.com/codeconsortium/CCDNForumAdnubBundle/blob/master/Resources/doc/install.md).
+All the installation instructions are located in [documentation](http://github.com/codeconsortium/CCDNForumAdminBundle/blob/master/Resources/doc/install.md).
 
 ## License.
 
