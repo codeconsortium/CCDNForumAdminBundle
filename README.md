@@ -4,9 +4,9 @@ CCDNForum AdminBundle README.
 
 ## Notes.
 
-This bundle is for the symfony framework and requires Symfony 2.0.x and PHP 5.3.6
+This bundle is for the symfony framework and requires Symfony 2.1.x and PHP 5.4
   
-This project uses Doctrine 2.0.x and so does not require any specific database.
+This project uses Doctrine 2.1.x and so does not require any specific database.
   
 
 This file is part of the CCDNForum Bundle(s)
@@ -24,7 +24,7 @@ file that was distributed with this source code.
 
 ## Description.
 
-This is a complimentary AdminBundle for forum management of the [CCDNForum ForumBundle](https://github.com/codeconsortium/CCDNForumForumBundle) for Symfony (2.0.11).
+This is a complimentary AdminBundle for forum management of the [CCDNForum ForumBundle](https://github.com/codeconsortium/CCDNForumForumBundle) for Symfony (2.1.x).
 
 You will need to look at [CCDNForum ForumBundle](https://github.com/codeconsortium/CCDNForumForumBundle) and install it along with its dependencies before using this bundle.
 
