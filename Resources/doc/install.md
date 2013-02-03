@@ -73,11 +73,6 @@ CCDNForumAdminBundle:
 
 You can change the route of the standalone route to any route you like, it is included for convenience.
 
-**Warning:**
-
->Set the appropriate layout templates you want under the sections 'layout_templates' and the
-route to a users profile if you are not using the [CCDNUser\ProfileBundle](http://github.com/codeconsortium/CCDNUserProfileBundle). Otherwise use defaults.
-
 ### Step 4: Update your database schema.
 
 Make sure to add the ForumBundle to doctrines mapping configuration:
@@ -102,6 +97,7 @@ doctrine:
                         alias:                ~
                         prefix:               CCDNForum\ForumBundle\Entity
                         is_bundle:            true
+                    CCDNForumAdminBundle: ~
 ```
 
 > FOSUserBundle is noted as an additional example, you can add multiple bundles here. You should however choose a UserBundle of your own and change the user entity that UserInterface will resolve to.
