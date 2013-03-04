@@ -53,34 +53,45 @@ class BoardType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
-        $builder->add('description');
+        $builder->add('name', null, array(
+        	'label' => 'ccdn_forum_admin.form.label.board.name',
+			'translation_domain' =>  'CCDNForumAdminBundle',
+        ));
+        $builder->add('description', 'bb_editor', array(
+        	'label' => 'ccdn_forum_admin.form.label.board.description',
+			'translation_domain' =>  'CCDNForumAdminBundle',
+        ));
         $builder->add('category', 'entity', array(
+            'property' => 'name',
             'class' => 'CCDNForum\ForumBundle\Entity\Category',
             'query_builder' => function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
-            'property' => 'name',
             'preferred_choices' => $this->defaults['category'] ? array($this->defaults['category']) : null,
+			'label' => 'ccdn_forum_admin.form.label.board.category',
+			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
         $builder->add('readAuthorisedRoles', 'choice', array(
+            'required' => false,
             'expanded' => true,
             'multiple' => true,
             'choices' => $options['available_roles'],
             'label' => 'View Board Roles:',
-            'required' => false,
+			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
         $builder->add('topicCreateAuthorisedRoles', 'choice', array(
+            'required' => false,
             'expanded' => true,
             'multiple' => true,
             'choices' => $options['available_roles'],
             'label' => 'Topic Create Roles:',
-            'required' => false,
+			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
         $builder->add('topicReplyAuthorisedRoles', 'choice', array(
+            'required' => false,
             'expanded' => true,
             'multiple' => true,
             'choices' => $options['available_roles'],
             'label' => 'Topic Reply Roles:',
-            'required' => false,
+			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
     }
 

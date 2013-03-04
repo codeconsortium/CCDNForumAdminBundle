@@ -1,23 +1,8 @@
-{% extends ccdn_forum_admin.topic.show_deleted.layout_template %}
+{% extends 'CCDNForumAdminBundle::base.html.twig' %}
 
-{% block stylesheets %}
-	{{ parent() }}
-    <link href="{{- asset('bundles/ccdnforumforum/css/generic.css') -}}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-
-{% endblock %}
+{% set LayoutTemplate = ccdn_forum_admin.topic.show_deleted.layout_template %}
 
 {% block title %}{{- truncDot('ccdn_forum_admin.title.tools.repair' | trans({}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
-
-{% block sidebar %}
-	{{ parent() }}
-
-	{%- include 'CCDNForumAdminBundle:Sidebar:sidebar.html.twig' -%}
-
-{% endblock %}
 
 
 {% block body_content %}
@@ -26,11 +11,9 @@
 
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
-	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+	<h3>{{- 'ccdn_forum_admin.title.tools.repair' | trans({}, 'CCDNForumAdminBundle') -}}</h3>
 
-	<h2>{{- 'ccdn_forum_admin.title.tools.repair' | trans({}, 'CCDNForumAdminBundle') -}}</h2>
-
-	<table class="table">
+	<table class="table table-bordered table-striped">
 		<tbody>
 
 			<tr>
@@ -108,8 +91,6 @@
 
 		</tbody>
 	</table>
-
-	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}
 
