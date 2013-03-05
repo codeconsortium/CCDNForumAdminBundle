@@ -9,116 +9,118 @@
 
 	{%- spaceless -%}
 
-	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
+	<header>
+		<h3>{{- 'ccdn_forum_admin.title.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}</h3>
+	</header>
 
-	<h3>{{- 'ccdn_forum_admin.title.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}</h3>
+	<section>
+		<form method="POST" action="{{- path('ccdn_forum_admin_topic_bulk_action') -}}">
 
-	<form method="POST" action="{{- path('ccdn_forum_admin_topic_bulk_action') -}}">
-
-		<div class="btn-toolbar">
-			<div class="span6">
-				<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.close' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_close" disabled data-responds-disabled="posts" />
-				<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.reopen' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_reopen" disabled data-responds-disabled="posts" />
-				<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts" />
-				<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="posts" />
-				<input type="submit" class="btn btn-danger disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_hard' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_hard_delete" disabled data-responds-disabled="posts" />
-			</div>
-			{%- if pager.haveToPaginate -%}
-				<nav class="span6 btn-right paginate">
-			    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_deleted_show_paginated', 'routeParams':{}}) -}}
-				</nav>
-			{%- endif -%}
-		</div>
-
-		<table class="table table-bordered table-striped table-hover">
-			<thead>
-				<tr>
-					<th class="center" style="width:18px;"><input type="checkbox" id="check_all" name="check_all" class="hidden" data-compat='interactive-js-compat' data-action-toggle="posts" data-identifier="posts" data-qualifier="all"></th>
-					<th class="center" style="width:18px;"><i class="icon-lock"></i></th>
-					<th class="center" style="width:18px;"><i class="icon-trash"></i></th>
-					<th class="left">{{- 'ccdn_forum_admin.board.table.head.topic_title' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-					<th class="center">{{- 'ccdn_forum_admin.board.table.head.reply_count' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-					<th class="center">{{- 'ccdn_forum_admin.board.table.head.view_count' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-					<th class="center">{{- 'ccdn_forum_admin.board.table.head.closed_by' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-					<th class="center">{{- 'ccdn_forum_admin.board.table.head.closed_on' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-					<th class="center">{{- 'ccdn_forum_admin.board.table.head.deleted_by' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-					<th class="center">{{- 'ccdn_forum_admin.board.table.head.deleted_on' | trans({}, 'CCDNForumAdminBundle') -}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				{%- for row, topic in topics -%}
-					<tr>
-						<td class="center">
-							<input type="checkbox" id="topic_{{- topic.id -}}" name="check_{{- topic.id -}}" data-check-all-responds="true" data-identifier="posts">
-						</td>
-						<td class="center">
-							{%- if topic.isClosed -%}
-								<i class="icon-lock"></i>
-							{%- endif -%}
-						</td>
-						<td class="center">
-							{%- if topic.isDeleted -%}
-								<i class="icon-trash"></i>
-							{%- endif -%}
-						</td>
-						<td class="left">
-							<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, ccdn_forum_admin.topic.show_deleted.topic_title_truncate) -}}</a><br>
-							{%- if topic.getFirstPost -%}
-	                            {{- 'ccdn_forum_forum.post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
-
-	                            {% set author = create_profile(topic.getFirstPost.getCreatedBy) %}
-	                            {{ author.getProfilePath|raw }}
-							{%- endif -%}
-						</td>
-						<td class="center">
-							{{- topic.getCachedReplyCount -}}
-						</td>
-						<td class="center">
-							{{- topic.getCachedViewCount -}}
-						</td>
-
-						<td class="center">
-							{%- if topic.isClosed -%}
-	                            {% set topic_closer = create_profile(topic.getClosedBy) %}
-
-	                            {{ topic_closer.getProfilePath|raw }}
-	                        {%- endif -%}
-						</td>
-						<td class="center">
-							{%- if topic.getClosedDate -%}{{- topic.getClosedDate |date(ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format) -}}{%- endif -%}
-						</td>
-
-						<td class="center">
-							{%- if topic.isDeleted -%}
-	                            {% set topic_deleter = create_profile(topic.getDeletedBy) %}
-
-	                            {{ topic_deleter.getProfilePath|raw }}
-	                        {%- endif -%}
-						</td>
-						<td class="center">
-							{%- if topic.getDeletedDate -%}{{- topic.getDeletedDate |date(ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format) -}}{%- endif -%}
-						</td>
-					</tr>
-				{%- else -%}
-					<tr>
-						<td class="center" colspan="11">
-							{{- 'ccdn_forum_admin.topics.deleted.table.empty' | trans({}, 'CCDNForumAdminBundle') -}}
-						</td>
-					</tr>
-				{%- endfor -%}
-			</tbody>
-		</table>
-
-		{%- if pager.haveToPaginate -%}
 			<div class="btn-toolbar">
-				<nav class="span12 btn-right paginate">
-			    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_deleted_show_paginated', 'routeParams':{}}) -}}
-				</nav>
+				<div class="span6">
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.close' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_close" disabled data-responds-disabled="posts" />
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.reopen' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_reopen" disabled data-responds-disabled="posts" />
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="posts" />
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="posts" />
+					<input type="submit" class="btn btn-danger disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_hard' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_hard_delete" disabled data-responds-disabled="posts" />
+				</div>
+				{%- if pager.haveToPaginate -%}
+					<nav class="span6 btn-right paginate">
+				    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_deleted_show_paginated', 'routeParams':{}}) -}}
+					</nav>
+				{%- endif -%}
 			</div>
-		{%- endif -%}
 
-	</form>
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="center" style="width:18px;"><input type="checkbox" id="check_all" name="check_all" class="hidden" data-compat='interactive-js-compat' data-action-toggle="posts" data-identifier="posts" data-qualifier="all"></th>
+						<th class="center" style="width:18px;"><i class="icon-lock"></i></th>
+						<th class="center" style="width:18px;"><i class="icon-trash"></i></th>
+						<th class="left">{{- 'ccdn_forum_admin.board.table.head.topic_title' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+						<th class="center">{{- 'ccdn_forum_admin.board.table.head.reply_count' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+						<th class="center">{{- 'ccdn_forum_admin.board.table.head.view_count' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+						<th class="center">{{- 'ccdn_forum_admin.board.table.head.closed_by' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+						<th class="center">{{- 'ccdn_forum_admin.board.table.head.closed_on' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+						<th class="center">{{- 'ccdn_forum_admin.board.table.head.deleted_by' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+						<th class="center">{{- 'ccdn_forum_admin.board.table.head.deleted_on' | trans({}, 'CCDNForumAdminBundle') -}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{%- for row, topic in topics -%}
+						<tr>
+							<td class="center">
+								<input type="checkbox" id="topic_{{- topic.id -}}" name="check_{{- topic.id -}}" data-check-all-responds="true" data-identifier="posts">
+							</td>
+							<td class="center">
+								{%- if topic.isClosed -%}
+									<i class="icon-lock"></i>
+								{%- endif -%}
+							</td>
+							<td class="center">
+								{%- if topic.isDeleted -%}
+									<i class="icon-trash"></i>
+								{%- endif -%}
+							</td>
+							<td class="left">
+								<a class="topic_link" href="{{- path('ccdn_forum_forum_topic_show', {'topicId': topic.getId }) -}}" title="{{- topic.getTitle -}}">{{- truncDot(topic.getTitle, ccdn_forum_admin.topic.show_deleted.topic_title_truncate) -}}</a><br>
+								{%- if topic.getFirstPost -%}
+		                            {{- 'ccdn_forum_forum.post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
 
+		                            {% set author = create_profile(topic.getFirstPost.getCreatedBy) %}
+		                            {{ author.getProfilePath|raw }}
+								{%- endif -%}
+							</td>
+							<td class="center">
+								{{- topic.getCachedReplyCount -}}
+							</td>
+							<td class="center">
+								{{- topic.getCachedViewCount -}}
+							</td>
+
+							<td class="center">
+								{%- if topic.isClosed -%}
+		                            {% set topic_closer = create_profile(topic.getClosedBy) %}
+
+		                            {{ topic_closer.getProfilePath|raw }}
+		                        {%- endif -%}
+							</td>
+							<td class="center">
+								{%- if topic.getClosedDate -%}{{- topic.getClosedDate |date(ccdn_forum_admin.topic.show_deleted.topic_closed_datetime_format) -}}{%- endif -%}
+							</td>
+
+							<td class="center">
+								{%- if topic.isDeleted -%}
+		                            {% set topic_deleter = create_profile(topic.getDeletedBy) %}
+
+		                            {{ topic_deleter.getProfilePath|raw }}
+		                        {%- endif -%}
+							</td>
+							<td class="center">
+								{%- if topic.getDeletedDate -%}{{- topic.getDeletedDate |date(ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format) -}}{%- endif -%}
+							</td>
+						</tr>
+					{%- else -%}
+						<tr>
+							<td class="center" colspan="11">
+								{{- 'ccdn_forum_admin.topics.deleted.table.empty' | trans({}, 'CCDNForumAdminBundle') -}}
+							</td>
+						</tr>
+					{%- endfor -%}
+				</tbody>
+			</table>
+
+			{%- if pager.haveToPaginate -%}
+				<div class="btn-toolbar">
+					<nav class="span12 btn-right paginate">
+				    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_deleted_show_paginated', 'routeParams':{}}) -}}
+					</nav>
+				</div>
+			{%- endif -%}
+
+		</form>
+	</section>
+	
 	{%- endspaceless -%}
 
 {% endblock body_content %}
