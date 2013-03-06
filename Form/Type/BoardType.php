@@ -53,20 +53,20 @@ class BoardType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('category', 'entity', array(
+            'property' => 'name',
+            'class' => 'CCDNForum\ForumBundle\Entity\Category',
+            'query_builder' => function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
+            //'preferred_choices' => $this->getPreferredCategory(),
+			'label' => 'ccdn_forum_admin.form.label.board.category',
+			'translation_domain' =>  'CCDNForumAdminBundle',
+        ));
         $builder->add('name', null, array(
         	'label' => 'ccdn_forum_admin.form.label.board.name',
 			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
         $builder->add('description', 'bb_editor', array(
         	'label' => 'ccdn_forum_admin.form.label.board.description',
-			'translation_domain' =>  'CCDNForumAdminBundle',
-        ));
-        $builder->add('category', 'entity', array(
-            'property' => 'name',
-            'class' => 'CCDNForum\ForumBundle\Entity\Category',
-            'query_builder' => function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
-            'preferred_choices' => $this->defaults['category'] ? array($this->defaults['category']) : null,
-			'label' => 'ccdn_forum_admin.form.label.board.category',
 			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
         $builder->add('readAuthorisedRoles', 'choice', array(
@@ -94,6 +94,19 @@ class BoardType extends AbstractType
 			'translation_domain' =>  'CCDNForumAdminBundle',
         ));
     }
+
+	/**
+	 *
+	 * @access private
+	 */
+	private function getPreferredCategory()
+	{
+		if ($this->defaults['category']) {
+			return array($this->defaults['category']);
+		} else {
+			return null;
+		}
+	}
 
     /**
      *
