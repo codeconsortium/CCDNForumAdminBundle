@@ -53,7 +53,6 @@ class PostController extends ContainerAware
             ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.post.show_locked', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_post_show_all_locked'), "home");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Post:show_locked.html.' . $this->getEngine(), array(
-            'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'user' => $user,
             'crumbs' => $crumbs,
             'posts' => $postsPager,
@@ -89,7 +88,6 @@ class PostController extends ContainerAware
             ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.post.show_deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.' . $this->getEngine(), array(
-            'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'user' => $user,
             'crumbs' => $crumbs,
             'posts' => $postsPager,

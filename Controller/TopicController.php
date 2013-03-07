@@ -54,7 +54,6 @@ class TopicController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.' . $this->getEngine(), array(
             'crumbs' => $crumbs,
-            'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'user' => $user,
             'topics' => $topicsPager,
             'pager' => $topicsPager,
@@ -89,7 +88,6 @@ class TopicController extends ContainerAware
             ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.topic.show_deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.' . $this->getEngine(), array(
-            'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'user' => $user,
             'crumbs' => $crumbs,
             'topics' => $topicsPager,
@@ -319,7 +317,6 @@ class TopicController extends ContainerAware
             ->add($crumbDelete, $this->container->get('router')->generate('ccdn_forum_forum_topic_reply', array('topicId' => $topic->getId())), "trash");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Topic:delete_topic.html.' . $this->getEngine(), array(
-            'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'topic' => $topic,
             'crumbs' => $crumbs,
         ));

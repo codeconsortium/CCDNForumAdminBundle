@@ -50,11 +50,10 @@ class CategoryController extends ContainerAware
             ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.category.index', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_category_index'), "home");
 
         return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Category:index.html.' . $this->getEngine(), array(
-            'user_profile_route' => $this->container->getParameter('ccdn_forum_admin.user.profile_route'),
             'crumbs' => $crumbs,
             'categories' => $categories,
             'topics_per_page' => $topicsPerPage,
-            ));
+        ));
     }
 
     /**
