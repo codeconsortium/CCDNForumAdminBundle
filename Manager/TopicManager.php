@@ -23,84 +23,6 @@ use CCDNForum\AdminBundle\Manager\BaseManager;
  */
 class TopicManager extends BaseManager implements ManagerInterface
 {
-
-    /**
-     *
-     * @access public
-     * @param Topic $topic
-     * @return self
-     */
-    public function sticky($topic, $user)
-    {
-        $topic->setIsSticky(true);
-        $topic->setStickiedBy($user);
-        $topic->setStickiedDate(new \DateTime());
-
-        $this->persist($topic);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param Topic $topic
-     * @return self
-     */
-    public function unsticky($topic)
-    {
-        $topic->setIsSticky(false);
-        $topic->setStickiedBy(null);
-        $topic->setStickiedDate(null);
-
-        $this->persist($topic);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param Topic $topic, $user
-     * @return self
-     */
-    public function close($topic, $user)
-    {
-        // Don't overwite previous users accountability.
-        if ( ! $topic->getClosedBy() && ! $topic->getClosedDate()) {
-            $topic->setIsClosed(true);
-            $topic->setClosedBy($user);
-            $topic->setClosedDate(new \DateTime());
-
-            $this->persist($topic);
-        }
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param Topic $topic
-     * @return self
-     */
-    public function reopen($topic)
-    {
-        $topic->setIsClosed(false);
-        $topic->setClosedBy(null);
-        $topic->setClosedDate(null);
-
-		if ($topic->getIsDeleted()) {	
-	        $topic->setIsDeleted(false);
-	        $topic->setDeletedBy(null);
-	        $topic->setDeletedDate(null);			
-		}
-		
-        $this->persist($topic);
-
-        return $this;
-    }
-
     /**
      *
      * @access public
@@ -400,5 +322,4 @@ class TopicManager extends BaseManager implements ManagerInterface
 
         return $this;
     }
-
 }

@@ -13,9 +13,6 @@ parameters:
     ccdn_forum_admin.form.handler.board_create.class:           CCDNForum\AdminBundle\Form\Handler\BoardInsertFormHandler
     ccdn_forum_admin.form.handler.board_update.class:           CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler
 
-    ccdn_forum_admin.form.type.change_topics_board.class:       CCDNForum\AdminBundle\Form\Type\TopicChangeBoardType
-    ccdn_forum_admin.form.handler.change_topics_board.class:    CCDNForum\AdminBundle\Form\Handler\TopicChangeBoardFormHandler
-
     ccdn_forum_admin.component.dashboard.integrator.class:      CCDNForum\AdminBundle\Component\Dashboard\DashboardIntegrator
 
 services:
@@ -61,16 +58,6 @@ services:
     ccdn_forum_admin.form.handler.board_update:
         class:  %ccdn_forum_admin.form.handler.board_update.class%
         arguments:  [@form.factory, @service_container, @ccdn_forum_admin.manager.board]
-
-    #
-    # Topic Forms.
-    #
-    ccdn_forum_admin.form.type.change_topics_board:
-        class:  %ccdn_forum_admin.form.type.change_topics_board.class%
-        arguments:  [@doctrine]
-    ccdn_forum_admin.form.handler.change_topics_board:
-        class:  %ccdn_forum_admin.form.handler.change_topics_board.class%
-        arguments:  [@form.factory, @service_container, @ccdn_forum_admin.manager.topic]
         
     #
     # Dashboard Integrator.

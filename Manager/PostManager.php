@@ -23,44 +23,6 @@ use CCDNForum\AdminBundle\Manager\BaseManager;
  */
 class PostManager extends BaseManager implements ManagerInterface
 {
-
-    /**
-     *
-     * @access public
-     * @param Post $post, $user
-     * @return self
-     */
-    public function lock($post, $user)
-    {
-        // Don't overwite previous users accountability.
-        if ( ! $post->getLockedBy() && ! $post->getLockedDate()) {
-            $post->setIsLocked(true);
-            $post->setLockedBy($user);
-            $post->setLockedDate(new \DateTime());
-
-            $this->persist($post);
-        }
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param Post $post
-     * @return self
-     */
-    public function unlock($post)
-    {
-        $post->setIsLocked(false);
-        $post->setLockedBy(null);
-        $post->setLockedDate(null);
-
-        $this->persist($post);
-
-        return $this;
-    }
-
     /**
      *
      * @access public
@@ -333,5 +295,4 @@ class PostManager extends BaseManager implements ManagerInterface
 
         return $this;
     }
-
 }

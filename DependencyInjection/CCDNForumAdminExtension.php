@@ -128,9 +128,6 @@ class CCDNForumAdminExtension extends Extension
         $container->setParameter('ccdn_forum_admin.topic.show_deleted.topic_deleted_datetime_format', $config['topic']['show_deleted']['topic_deleted_datetime_format']);
 
         $container->setParameter('ccdn_forum_admin.topic.delete_topic.layout_template', $config['topic']['delete_topic']['layout_template']);
-
-        $container->setParameter('ccdn_forum_admin.topic.change_board.layout_template', $config['topic']['change_board']['layout_template']);
-        $container->setParameter('ccdn_forum_admin.topic.change_board.form_theme', $config['topic']['change_board']['form_theme']);
     }
 
     /**

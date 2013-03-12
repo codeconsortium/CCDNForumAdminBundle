@@ -10,7 +10,6 @@ ccdn_forum_admin.title.board.edit: 'Edit board: %board_name%.'
 ccdn_forum_admin.title.board.delete: 'Delete board: %board_name%?'
 ccdn_forum_admin.title.topic.show_closed: 'Closed Topics.'
 ccdn_forum_admin.title.topic.show_deleted: 'Deleted Topics.'
-ccdn_forum_admin.title.topic.change_board: 'Change board for topic: %topic_title%.'
 ccdn_forum_admin.title.post.show_locked: 'Locked Posts.'
 ccdn_forum_admin.title.post.show_deleted: 'Deleted Posts.'
 ccdn_forum_admin.title.tools.repair: 'Repair'
@@ -119,7 +118,6 @@ ccdn_forum_admin.form.button.board.create: 'Create Board'
 ccdn_forum_admin.form.button.board.edit: 'Save Changes'
 ccdn_forum_admin.form.button.cancel: 'Cancel'
 
-ccdn_forum_admin.form.label.board: 'Board: '
 ccdn_forum_admin.form.button.topic.move_to_board: 'Update Topic'
 
 #

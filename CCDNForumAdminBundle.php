@@ -68,10 +68,6 @@ class CCDNForumAdminBundle extends Bundle
 				),
 			),
 			'topic' => array(
-				'change_board' => array(
-					'layout_template' => $this->container->getParameter('ccdn_forum_admin.topic.change_board.layout_template'),
-					'form_theme' => $this->container->getParameter('ccdn_forum_admin.topic.change_board.form_theme'),
-				),
 				'delete_topic' => array(
 					'layout_template' => $this->container->getParameter('ccdn_forum_admin.topic.delete_topic.layout_template'),
 				),
