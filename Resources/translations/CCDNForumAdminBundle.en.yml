@@ -12,7 +12,6 @@ ccdn_forum_admin.title.topic.show_closed: 'Closed Topics.'
 ccdn_forum_admin.title.topic.show_deleted: 'Deleted Topics.'
 ccdn_forum_admin.title.post.show_locked: 'Locked Posts.'
 ccdn_forum_admin.title.post.show_deleted: 'Deleted Posts.'
-ccdn_forum_admin.title.tools.repair: 'Repair'
 
 #
 # Crumbs.
@@ -31,7 +30,6 @@ ccdn_forum_admin.crumbs.topic.show_deleted: 'Deleted Topics'
 ccdn_forum_admin.crumbs.topic.change_board: 'Change Board'
 ccdn_forum_admin.crumbs.post.show_locked: 'Show Locked Posts'
 ccdn_forum_admin.crumbs.post.show_deleted: 'Deleted Posts'
-ccdn_forum_admin.crumbs.tools.repair: 'Repair'
 
 #
 # Flash Messages.
@@ -69,7 +67,6 @@ ccdn_forum_admin.sidebar.link.topic.show_closed: 'Closed Topics'
 ccdn_forum_admin.sidebar.link.topic.show_deleted: 'Deleted Topics'
 ccdn_forum_admin.sidebar.link.post.show_locked: 'Locked Posts'
 ccdn_forum_admin.sidebar.link.post.show_deleted: 'Deleted Posts'
-ccdn_forum_admin.sidebar.link.repair: 'Repair'
 
 #
 # Link Labels.
@@ -94,13 +91,6 @@ ccdn_forum_admin.link.post.unlock: 'Unlock'
 ccdn_forum_admin.link.post.restore: 'Restore'
 ccdn_forum_admin.link.post.delete_soft: 'Soft Delete'
 ccdn_forum_admin.link.post.delete_hard: 'Hard Delete'
-ccdn_forum_admin.link.repair.category_table: 'Repair Category Table'
-ccdn_forum_admin.link.repair.board_table: 'Repair Board Table'
-ccdn_forum_admin.link.repair.topic_table: 'Repair Topic Table'
-ccdn_forum_admin.link.repair.post_table: 'Repair Post Table'
-ccdn_forum_admin.link.repair.subscription_table: 'Repair Subscription Table'
-ccdn_forum_admin.link.repair.draft_table: 'Repair Draft Table'
-ccdn_forum_admin.link.repair.registry_table: 'Repair Registry Table'
 
 #
 # Forms.

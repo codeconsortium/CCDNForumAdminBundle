@@ -17,14 +17,15 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use CCDNForum\AdminBundle\Controller\BaseController;
+
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class PostController extends ContainerAware
+class PostController extends BaseController
 {
-
     /**
      *
      * Display a list of locked posts (locked from editing)
@@ -106,9 +107,7 @@ class PostController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-        //
         // Get all the checked item id's.
-        //
         $itemIds = array();
         $ids = $_POST;
         foreach ($ids as $itemKey => $itemId) {
@@ -124,9 +123,7 @@ class PostController extends ContainerAware
             }
         }
 
-        //
         // Don't bother if there are no checkboxes to process.
-        //
         if (count($itemIds) < 1) {
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'));
         }
@@ -159,91 +156,4 @@ class PostController extends ContainerAware
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_deleted_show'));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     *
-     * @access public
-     * @return RedirectResponse
-     */
-/*    public function bulkAction()
-    {
-        if ( ! $this->container->get('security.context')->isGranted('ROLE_MODERATOR')) {
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
-
-        //
-        // Get all the checked item id's.
-        //
-        $itemIds = array();
-        $ids = $_POST;
-        foreach ($ids as $itemKey => $itemId) {
-            if (substr($itemKey, 0, 6) == 'check_') {
-                //
-                // Cast the key values to int upon extraction.
-                //
-                $id = (int) substr($itemKey, 6, (strlen($itemKey) - 6));
-
-                if (is_int($id) == true) {
-                    $itemIds[] = $id;
-                }
-            }
-        }
-
-        //
-        // Don't bother if there are no checkboxes to process.
-        //
-        if (count($itemIds) < 1) {
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_show_all_locked'));
-        }
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
-
-        $posts = $this->container->get('ccdn_forum_forum.repository.post')->findThesePostsByIdForModeration($itemIds);
-
-        if ( ! $posts || empty($posts)) {
-            $this->container->get('session')->setFlash('warning', $this->container->get('translator')->trans('ccdn_forum_admin.flash.post.none_found', array(), 'CCDNForumAdminBundle'));
-
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_show_all_locked'));
-        }
-
-        if (isset($_POST['submit_lock'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkLock($posts, $user)->flush();
-        }
-        if (isset($_POST['submit_unlock'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkUnlock($posts)->flush();
-        }
-        if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkRestore($posts)->flush();
-        }
-        if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkSoftDelete($posts, $user)->flush();
-        }
-
-        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_post_show_all_locked'));
-    }
-*/
-
-
-
-    /**
-     *
-     * @access protected
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('ccdn_forum_admin.template.engine');
-    }
-
 }

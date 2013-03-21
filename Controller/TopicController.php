@@ -17,14 +17,15 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use CCDNForum\AdminBundle\Controller\BaseController;
+
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class TopicController extends ContainerAware
+class TopicController extends BaseController
 {
-
     /**
      *
      * Displays a list of closed topics (locked from posting new posts)
@@ -109,16 +110,12 @@ class TopicController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-        //
         // Get all the checked item id's.
-        //
         $itemIds = array();
         $ids = $_POST;
         foreach ($ids as $itemKey => $itemId) {
             if (substr($itemKey, 0, 6) == 'check_') {
-                //
                 // Cast the key values to int upon extraction.
-                //
                 $id = (int) substr($itemKey, 6, (strlen($itemKey) - 6));
 
                 if (is_int($id) == true) {
@@ -127,9 +124,7 @@ class TopicController extends ContainerAware
             }
         }
 
-        //
         // Don't bother if there are no checkboxes to process.
-        //
         if (count($itemIds) < 1) {
             return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
         }
@@ -162,95 +157,4 @@ class TopicController extends ContainerAware
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     *
-     * @access public
-     * @return RedirectResponse
-     */
-/*    public function bulkAction()
-    {
-        if ( ! $this->container->get('security.context')->isGranted('ROLE_MODERATOR')) {
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
-
-        //
-        // Get all the checked item id's.
-        //
-        $itemIds = array();
-        $ids = $_POST;
-        foreach ($ids as $itemKey => $itemId) {
-            if (substr($itemKey, 0, 6) == 'check_') {
-                //
-                // Cast the key values to int upon extraction.
-                //
-                $id = (int) substr($itemKey, 6, (strlen($itemKey) - 6));
-
-                if (is_int($id) == true) {
-                    $itemIds[] = $id;
-                }
-            }
-        }
-
-        //
-        // Don't bother if there are no checkboxes to process.
-        //
-        if (count($itemIds) < 1) {
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_show_all_closed'));
-        }
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
-
-        $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
-
-        if ( ! $topics || empty($topics)) {
-            $this->container->get('session')->setFlash('error', $this->container->get('translator')->trans('ccdn_forum_admin.flash.topic.none_found', array(), 'CCDNForumAdminBundle'));
-
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_show_all_closed'));
-        }
-
-        if (isset($_POST['submit_close'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkClose($topics, $user)->flush();
-        }
-        if (isset($_POST['submit_reopen'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkReopen($topics)->flush();
-        }
-        if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkRestore($topics)->flush();
-        }
-        if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkSoftDelete($topics, $user)->flush();
-        }
-
-        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_show_all_closed'));
-    }
-*/
-
-
-
-
-    /**
-     *
-     * @access protected
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('ccdn_forum_admin.template.engine');
-    }
-
 }

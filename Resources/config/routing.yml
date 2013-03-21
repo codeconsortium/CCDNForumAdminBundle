@@ -60,13 +60,6 @@ ccdn_forum_admin_board_priority_move_down:
     pattern: /{_locale}/admin/forum/board/{boardId}/reorder/down
     defaults: { _controller: CCDNForumAdminBundle:Board:reorder, _locale: en, direction: 'down' }
 
-#
-# Repair Tools.
-#
-ccdn_forum_admin_repair_tools:
-    pattern: /{_locale}/admin/forum/repair
-    defaults: { _controller: CCDNForumAdminBundle:Repair:showRepair, _locale: en }
-
 
 #
 # Topic Management.

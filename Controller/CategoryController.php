@@ -18,14 +18,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use CCDNForum\AdminBundle\Controller\BaseController;
+
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class CategoryController extends ContainerAware
+class CategoryController extends BaseController
 {
-
     /**
      *
      * @access public
@@ -222,15 +223,4 @@ class CategoryController extends ContainerAware
 
         return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_category_index'));
     }
-
-    /**
-     *
-     * @access public
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('ccdn_forum_admin.template.engine');
-    }
-
 }
