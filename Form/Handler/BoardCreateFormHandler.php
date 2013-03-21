@@ -20,13 +20,14 @@ use Symfony\Component\HttpFoundation\Request;
 use CCDNForum\AdminBundle\Manager\BaseManagerInterface;
 
 use CCDNForum\ForumBundle\Entity\Category;
+use CCDNForum\ForumBundle\Entity\Board;
 
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class CategoryUpdateFormHandler
+class BoardCreateFormHandler
 {
     /**
 	 *
@@ -38,9 +39,9 @@ class CategoryUpdateFormHandler
 	/**
 	 *
 	 * @access protected
-	 * @var \CCDNForum\AdminBundle\Form\Type\CategoryFormType $categoryFormType
+	 * @var \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
 	 */
-	protected $categoryFormType;
+	protected $boardFormType;
 	
     /**
 	 *
@@ -52,7 +53,7 @@ class CategoryUpdateFormHandler
     /**
 	 * 
 	 * @access protected
-	 * @var \CCDNForum\AdminBundle\Form\Type\CategoryFormType $form 
+	 * @var \CCDNForum\AdminBundle\Form\Type\BoardFormType $form 
 	 */
     protected $form;
 
@@ -62,18 +63,25 @@ class CategoryUpdateFormHandler
 	 * @var \CCDNForum\ForumBundle\Entity\Category $category 
 	 */
 	protected $category;
-
+	
+	/**
+	 *
+	 * @access protected
+	 * @var Array $roleHierarchy
+	 */
+	protected $roleHierarchy;
+	
     /**
      *
      * @access public
      * @param \Symfony\Component\Form\FormFactory $factory
-	 * @param \CCDNForum\AdminBundle\Form\Type\CategoryFormType $categoryFormType
+	 * @param \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
 	 * @param \CCDNForum\AdminBundle\Manager\BaseManagerInterface $manager
      */
-    public function __construct(FormFactory $factory, $categoryFormType, BaseManagerInterface $manager)
-    {
+    public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $manager)
+	{
         $this->factory = $factory;
-		$this->categoryFormType = $categoryFormType;
+		$this->boardFormType = $boardFormType;
         $this->manager = $manager;
     }
 
@@ -81,11 +89,24 @@ class CategoryUpdateFormHandler
      *
      * @access public
 	 * @param \CCDNForum\ForumBundle\Entity\Category $category
-	 * @return \CCDNForum\AdminBundle\Form\Handler\CategoryUpdateFormHandler
+	 * @return \CCDNForum\AdminBundle\Form\Handler\BoardCreateFormHandler
      */
 	public function setCategory(Category $category)
 	{
 		$this->category = $category;
+		
+		return $this;
+	}
+	
+    /**
+     *
+     * @access public
+	 * @param Array $roleHierarchy
+	 * @return \CCDNForum\AdminBundle\Form\Handler\BoardCreateFormHandler
+     */
+	public function setRoleHierarchy(Array $roleHierarchy)
+	{
+		$this->roleHierarchy = $roleHierarchy;
 		
 		return $this;
 	}
@@ -138,8 +159,13 @@ class CategoryUpdateFormHandler
      */
     public function getForm()
     {
-        if (null == $this->form) {
-            $this->form = $this->factory->create($this->categoryFormType, $this->category);
+        if (null == $this->form) {			
+			$board = new Board();
+			$board->setCategory($this->category);
+
+			$options = array('available_roles' => $this->roleHierarchy);
+			
+            $this->form = $this->factory->create($this->boardFormType, $board, $options);
         }
 
         return $this->form;
@@ -148,11 +174,14 @@ class CategoryUpdateFormHandler
     /**
      *
      * @access protected
-     * @param \CCDNForum\ForumBundle\Entity\Category $category
-     * @return CategoryManager
+     * @param \CCDNForum\ForumBundle\Entity\Board $board
+     * @return BoardManager
      */
-    protected function onSuccess(Category $category)
+    protected function onSuccess(Board $board)
     {
-        return $this->manager->update($category)->flush();
+        $board->setCachedTopicCount(0);
+        $board->setCachedPostcount(0);
+		
+        return $this->manager->insert($board)->flush();
     }
 }

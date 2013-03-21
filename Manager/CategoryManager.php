@@ -13,7 +13,7 @@
 
 namespace CCDNForum\AdminBundle\Manager;
 
-use CCDNForum\AdminBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\BaseManagerInterface;
 use CCDNForum\AdminBundle\Manager\BaseManager;
 
 /**
@@ -21,7 +21,7 @@ use CCDNForum\AdminBundle\Manager\BaseManager;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class CategoryManager extends BaseManager implements ManagerInterface
+class CategoryManager extends BaseManager implements BaseManagerInterface
 {
 
     /**

@@ -21,9 +21,8 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class CategoryType extends AbstractType
+class CategoryFormType extends AbstractType
 {
-
     /**
      *
      * @access public
@@ -31,10 +30,12 @@ class CategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', null, array(
-            'label' => 'ccdn_forum_admin.form.label.category.name',
-			'translation_domain' =>  'CCDNForumAdminBundle',
-        ));
+        $builder
+			->add('name', null, array(
+	            'label' => 'ccdn_forum_admin.form.label.category.name',
+				'translation_domain' =>  'CCDNForumAdminBundle',
+	        ))
+		;
     }
 
     /**
@@ -64,5 +65,4 @@ class CategoryType extends AbstractType
     {
         return 'Category';
     }
-
 }

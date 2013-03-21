@@ -16,9 +16,10 @@ namespace CCDNForum\AdminBundle\Form\Handler;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use CCDNForum\AdminBundle\Manager\ManagerInterface;
+use CCDNForum\AdminBundle\Manager\BaseManagerInterface;
+
+use CCDNForum\ForumBundle\Entity\Board;
 
 /**
  *
@@ -27,87 +28,104 @@ use CCDNForum\AdminBundle\Manager\ManagerInterface;
  */
 class BoardUpdateFormHandler
 {
-
     /**
-     *
-     * @access protected
-     */
+	 *
+	 * @access protected
+	 * @var \Symfony\Component\Form\FormFactory $factory
+	 */
     protected $factory;
-
+	
+	/**
+	 *
+	 * @access protected
+	 * @var \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
+	 */
+	protected $boardFormType;
+	
     /**
-     *
-     * @access protected
-     */
-    protected $container;
-
-    /**
-     *
-     * @access protected
-     */
-    protected $request;
-
-    /**
-     *
-     * @access protected
-     */
+	 *
+	 * @access protected
+	 * @var \CCDNForum\AdminBundle\Manager\BaseManagerInterface $manager
+	 */
     protected $manager;
 
     /**
-     *
-     * @access protected
-     */
-    protected $defaults = array();
-
-    /**
-     *
-     * @access protected
-     */
+	 * 
+	 * @access protected
+	 * @var \CCDNForum\AdminBundle\Form\Type\BoardFormType $form 
+	 */
     protected $form;
 
     /**
+	 * 
+	 * @access protected
+	 * @var \CCDNForum\ForumBundle\Entity\Board $board 
+	 */
+	protected $board;
+	
+	/**
+	 *
+	 * @access protected
+	 * @var Array $roleHierarchy
+	 */
+	protected $roleHierarchy;
+	
+    /**
      *
      * @access public
-     * @param FormFactory $factory, ContainerInterface $container, ManagerInterface $manager
+     * @param \Symfony\Component\Form\FormFactory $factory
+	 * @param \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
+	 * @param \CCDNForum\AdminBundle\Manager\BaseManagerInterface $manager
      */
-    public function __construct(FormFactory $factory, ContainerInterface $container, ManagerInterface $manager)
+    public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $manager)
     {
-        $this->defaults = array();
         $this->factory = $factory;
-        $this->container = $container;
+		$this->boardFormType = $boardFormType;
         $this->manager = $manager;
-
-        $this->request = $container->get('request');
     }
 
     /**
      *
      * @access public
-     * @param array $options
-     * @return self
+	 * @param \CCDNForum\ForumBundle\Entity\Board $board
+	 * @return \CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler
      */
-    public function setDefaultValues(array $defaults = null)
-    {
-        $this->defaults = array_merge($this->defaults, $defaults);
-
-        return $this;
-    }
-
+	public function setBoard(Board $board)
+	{
+		$this->board = $board;
+		
+		return $this;
+	}
+	
+    /**
+     *
+     * @access public
+	 * @param Array $roleHierarchy
+	 * @return \CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler
+     */
+	public function setRoleHierarchy(Array $roleHierarchy)
+	{
+		$this->roleHierarchy = $roleHierarchy;
+		
+		return $this;
+	}
+	
     /**
      *
      * @access public
      * @return bool
      */
-    public function process()
+    public function process(Request $request)
     {
         $this->getForm();
 
-        if ($this->request->getMethod() == 'POST') {
-            $this->form->bind($this->request);
+        if ($request->getMethod() == 'POST') {
+            $this->form->bind($request);
 
             $formData = $this->form->getData();
 
             if ($this->form->isValid()) {
-                $this->onSuccess($this->form->getData());
+                $this->onSuccess($formData);
 
                 return true;
             }
@@ -115,7 +133,24 @@ class BoardUpdateFormHandler
 
         return false;
     }
-
+	
+	/**
+	 *
+	 * @access public
+	 * @param \Symfony\Component\HttpFoundation\Request $request
+	 * @return string
+	 */
+	public function getAction(Request $request)
+	{
+		if ($request->request->has('submit')) {
+			$action = key($request->request->get('submit'));
+		} else {
+			$action = 'post';
+		}
+		
+		return $action;
+	}
+	
     /**
      *
      * @access public
@@ -123,22 +158,10 @@ class BoardUpdateFormHandler
      */
     public function getForm()
     {
-        if (! $this->form) {
-            $board = $this->container->get('ccdn_forum_admin.form.type.board');
+        if (null == $this->form) {
+            $options = array('available_roles' => $this->roleHierarchy);
 
-            $board->setDefaultValues(array('category' => $this->defaults['board_entity']->getCategory()));
-
-            $roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
-
-            $roles = array();
-            foreach ($roleHierarchy as $roleName => $roleSubs) {
-                $subs = '<ul><li>' . implode('</li><li>', $roleSubs) . '</li></ul>';
-                $roles[$roleName] = '<strong>' . $roleName . '</strong>' . ($subs != '<ul><li>' . $roleName . '</li></ul>' ? "\n" . $subs:'');
-            }
-
-            $options = array('available_roles' => $roles);
-
-            $this->form = $this->factory->create($board, $this->defaults['board_entity'], $options);
+            $this->form = $this->factory->create($this->boardFormType, $this->board, $options);
         }
 
         return $this->form;
@@ -147,11 +170,11 @@ class BoardUpdateFormHandler
     /**
      *
      * @access protected
-     * @param $entity
+     * @param \CCDNForum\ForumBundle\Entity\Board $board
      * @return BoardManager
      */
-    protected function onSuccess($entity)
+    protected function onSuccess(Board $board)
     {
-        return $this->manager->update($entity)->flush();
+        return $this->manager->update($board)->flush();
     }
 }

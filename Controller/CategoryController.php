@@ -18,14 +18,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use CCDNForum\AdminBundle\Controller\BaseController;
+use CCDNForum\AdminBundle\Controller\CategoryBaseController;
 
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class CategoryController extends BaseController
+class CategoryController extends CategoryBaseController
 {
     /**
      *
@@ -60,9 +60,9 @@ class CategoryController extends BaseController
     {
 		$this->isAuthorised('ROLE_ADMIN');
 
-        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.category_create');
+        $formHandler = $this->getFormHandlerToCreateCategory();
 
-        if ($formHandler->process()) {
+        if ($formHandler->process($this->getRequest())) {
             $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.create.success'));
 
             return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
@@ -92,9 +92,9 @@ class CategoryController extends BaseController
         $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
 		$this->isFound($category);
 		
-        $formHandler = $this->container->get('ccdn_forum_admin.form.handler.category_update')->setDefaultValues(array('category_entity' => $category));
+        $formHandler = $this->getFormHandlerToEditCategory($category);
 
-        if ($formHandler->process()) {
+        if ($formHandler->process($this->getRequest())) {
             $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.edit.success'));
 
             return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));

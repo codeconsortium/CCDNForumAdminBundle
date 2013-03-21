@@ -26,7 +26,7 @@ use CCDNForum\ForumBundle\Entity\Category;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class CategoryUpdateFormHandler
+class CategoryCreateFormHandler
 {
     /**
 	 *
@@ -57,13 +57,6 @@ class CategoryUpdateFormHandler
     protected $form;
 
     /**
-	 * 
-	 * @access protected
-	 * @var \CCDNForum\ForumBundle\Entity\Category $category 
-	 */
-	protected $category;
-
-    /**
      *
      * @access public
      * @param \Symfony\Component\Form\FormFactory $factory
@@ -77,19 +70,6 @@ class CategoryUpdateFormHandler
         $this->manager = $manager;
     }
 
-    /**
-     *
-     * @access public
-	 * @param \CCDNForum\ForumBundle\Entity\Category $category
-	 * @return \CCDNForum\AdminBundle\Form\Handler\CategoryUpdateFormHandler
-     */
-	public function setCategory(Category $category)
-	{
-		$this->category = $category;
-		
-		return $this;
-	}
-	
     /**
      *
      * @access public
@@ -139,7 +119,7 @@ class CategoryUpdateFormHandler
     public function getForm()
     {
         if (null == $this->form) {
-            $this->form = $this->factory->create($this->categoryFormType, $this->category);
+            $this->form = $this->factory->create($this->categoryFormType);
         }
 
         return $this->form;
@@ -153,6 +133,6 @@ class CategoryUpdateFormHandler
      */
     protected function onSuccess(Category $category)
     {
-        return $this->manager->update($category)->flush();
+        return $this->manager->insert($category)->flush();
     }
 }

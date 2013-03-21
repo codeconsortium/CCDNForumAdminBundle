@@ -13,12 +13,14 @@
 
 namespace CCDNForum\AdminBundle\Manager;
 
+use CCDNForum\AdminBundle\Manager\BaseManagerInterface;
+
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class BaseManager
+class BaseManager implements BaseManagerInterface
 {
 	
 	/**

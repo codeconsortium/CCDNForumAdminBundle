@@ -28,10 +28,9 @@ class PostBaseController extends BaseController
 {
     /**
      *
-     * @access public
-     * @return RedirectResponse
+     * @access protected
      */
-    public function bulkAction()
+    protected function bulkAction()
     {
 		$itemIds = $this->getCheckedItemIds('check_');
 		

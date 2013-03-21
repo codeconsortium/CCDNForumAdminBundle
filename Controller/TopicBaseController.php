@@ -26,6 +26,10 @@ use CCDNForum\AdminBundle\Controller\BaseController;
  */
 class TopicBaseController extends BaseController
 {
+	/**
+	 *
+	 * @access protected
+	 */
 	protected function bulkAction()
 	{
         $itemIds = $this->getCheckedItemIds('check_');
