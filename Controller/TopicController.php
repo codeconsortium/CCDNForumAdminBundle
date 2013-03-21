@@ -98,19 +98,7 @@ class TopicController extends BaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        // Get all the checked item id's.
-        $itemIds = array();
-        $ids = $_POST;
-        foreach ($ids as $itemKey => $itemId) {
-            if (substr($itemKey, 0, 6) == 'check_') {
-                // Cast the key values to int upon extraction.
-                $id = (int) substr($itemKey, 6, (strlen($itemKey) - 6));
-
-                if (is_int($id) == true) {
-                    $itemIds[] = $id;
-                }
-            }
-        }
+        $itemIds = $this->getCheckedItemIds('check_');
 
         // Don't bother if there are no checkboxes to process.
         if (count($itemIds) < 1) {
