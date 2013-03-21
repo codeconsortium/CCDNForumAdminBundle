@@ -17,14 +17,14 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use CCDNForum\AdminBundle\Controller\BaseController;
+use CCDNForum\AdminBundle\Controller\PostBaseController;
 
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class PostController extends BaseController
+class PostController extends PostBaseController
 {
     /**
      *
@@ -46,8 +46,7 @@ class PostController extends BaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'moderator')), "sitemap")
-            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_locked'), $this->path('ccdn_forum_admin_post_show_all_locked'), "home");
+            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_locked'), $this->path('ccdn_forum_admin_post_locked_show_all'), "home");
 
         return $this->renderResponse('CCDNForumAdminBundle:Post:show_locked.html.', array(
             'crumbs' => $crumbs,
@@ -76,8 +75,7 @@ class PostController extends BaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_deleted'), $this->path('ccdn_forum_admin_post_deleted_show'), "trash");
+            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_deleted'), $this->path('ccdn_forum_admin_post_deleted_show_all'), "trash");
 
         return $this->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.', array(
             'crumbs' => $crumbs,
@@ -85,49 +83,32 @@ class PostController extends BaseController
             'pager' => $postsPager,
         ));
     }
-
+	
     /**
      *
      * @access public
      * @return RedirectResponse
      */
-    public function bulkAction()
+    public function lockedBulkAction()
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$itemIds = $this->getCheckedItemIds('check_');
-		
-        // Don't bother if there are no checkboxes to process.
-        if (count($itemIds) < 1) {
-            return new RedirectResponse($this->path('ccdn_forum_admin_post_deleted_show'));
-        }
+		$this->bulkAction();
 
-        $user = $this->getUser();
+        return new RedirectResponse($this->path('ccdn_forum_admin_post_locked_show_all'));
+    }
+	
+    /**
+     *
+     * @access public
+     * @return RedirectResponse
+     */
+    public function deletedBulkAction()
+    {
+        $this->isAuthorised('ROLE_ADMIN');
 
-        $posts = $this->container->get('ccdn_forum_forum.repository.post')->findThesePostsByIdForModeration($itemIds);
+		$this->bulkAction();
 
-        if ( ! $posts || empty($posts)) {
-            $this->setFlash('notice', $this->trans('flash.post.no_posts_found'));
-
-            return new RedirectResponse($this->path('ccdn_forum_admin_post_deleted_show'));
-        }
-
-        if (isset($_POST['submit_lock'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkLock($posts, $user)->flush();
-        }
-        if (isset($_POST['submit_unlock'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkUnlock($posts)->flush();
-        }
-        if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkRestore($posts)->flush();
-        }
-        if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkSoftDelete($posts, $user)->flush();
-        }
-        if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkHardDelete($posts)->flush();
-        }
-
-        return new RedirectResponse($this->path('ccdn_forum_admin_post_deleted_show'));
+        return new RedirectResponse($this->path('ccdn_forum_admin_post_deleted_show_all'));
     }
 }

@@ -14,7 +14,7 @@
 	</header>
 
 	<section>
-		<form method="POST" action="{{- path('ccdn_forum_admin_topic_bulk_action_closed') -}}">
+		<form method="POST" action="{{- path('ccdn_forum_admin_topic_closed_bulk_action') -}}">
 
 			<div class="btn-toolbar">
 				<div class="span6">
@@ -25,7 +25,7 @@
 				</div>
 				{%- if pager.haveToPaginate -%}
 					<nav class="span6 btn-right paginate">
-				    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_show_all_closed_paginated', 'routeParams':{}}) -}}
+				    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_closed_show_all_paginated', 'routeParams':{}}) -}}
 					</nav>
 				{%- endif -%}
 			</div>
@@ -121,7 +121,7 @@
 			{%- if pager.haveToPaginate -%}
 				<div class="btn-toolbar">
 					<nav class="span12 btn-right paginate">
-				    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_show_all_closed_paginated', 'routeParams':{}}) -}}
+				    	{{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_topic_closed_show_all_paginated', 'routeParams':{}}) -}}
 					</nav>
 				</div>
 			{%- endif -%}

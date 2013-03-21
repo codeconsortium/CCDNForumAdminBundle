@@ -42,7 +42,6 @@ class CategoryController extends BaseController
         $topicsPerPage = $this->container->getParameter('ccdn_forum_forum.board.show.topics_per_page');
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
             ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home");
 
         return $this->renderResponse('CCDNForumAdminBundle:Category:index.html.', array(
@@ -70,7 +69,6 @@ class CategoryController extends BaseController
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
                 ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
                 ->add($this->trans('ccdn_forum_admin.crumbs.category.create'), $this->path('ccdn_forum_admin_category_create'), "edit");
 
@@ -103,7 +101,6 @@ class CategoryController extends BaseController
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
                 ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
                 ->add($this->trans('ccdn_forum_admin.crumbs.category.edit', array('%category_name%' => $category->getName())), $this->path('ccdn_forum_admin_category_edit', array('categoryId' => $categoryId)), "edit");
 
@@ -130,7 +127,6 @@ class CategoryController extends BaseController
 		
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
             ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
             ->add($this->trans('ccdn_forum_admin.crumbs.category.delete', array('%category_name%' => $category->getName())), $this->path('ccdn_forum_admin_category_delete', array('categoryId' => $category->getId())), "trash");
 

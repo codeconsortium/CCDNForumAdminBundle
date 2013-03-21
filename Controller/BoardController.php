@@ -48,7 +48,6 @@ class BoardController extends BaseController
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
                 ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
                 ->add($this->trans('ccdn_forum_admin.crumbs.board.create'), $this->path('ccdn_forum_admin_board_create'), "edit");
 
@@ -81,7 +80,6 @@ class BoardController extends BaseController
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
                 ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
                 ->add($this->trans('ccdn_forum_admin.crumbs.board.edit', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_edit', array('boardId' => $boardId)), "edit");
 
@@ -108,7 +106,6 @@ class BoardController extends BaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
             ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
             ->add($this->trans('ccdn_forum_admin.crumbs.board.delete', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_delete', array('boardId' => $board->getId())), "trash");
 

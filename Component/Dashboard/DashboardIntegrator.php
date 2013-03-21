@@ -43,10 +43,10 @@ class DashboardIntegrator extends BaseIntegrator implements IntegratorInterface
             'admin' => array(
                 'Forum Administration' => array(
                     'ccdn_forum_admin_category_index' => array('auth' => 'ROLE_ADMIN', 'name' => 'Edit Categories', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_category.png'),
-                    'ccdn_forum_admin_topic_deleted_show' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
-                    'ccdn_forum_admin_post_deleted_show' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
-                    'ccdn_forum_admin_topic_show_all_closed' => array('auth' => 'ROLE_MODERATOR', 'name' => 'Closed Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_lock.png'),
-                    'ccdn_forum_admin_post_show_all_locked' => array('auth' => 'ROLE_MODERATOR', 'name' => 'Locked Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_lock.png'),
+                    'ccdn_forum_admin_topic_deleted_show_all' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
+                    'ccdn_forum_admin_post_deleted_show_all' => array('auth' => 'ROLE_ADMIN', 'name' => 'Deleted Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_discussion.png'),
+                    'ccdn_forum_admin_topic_closed_show_all' => array('auth' => 'ROLE_MODERATOR', 'name' => 'Closed Topics', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_lock.png'),
+                    'ccdn_forum_admin_post_locked_show_all' => array('auth' => 'ROLE_MODERATOR', 'name' => 'Locked Posts', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_lock.png'),
                 ),
             ),
 

@@ -64,70 +64,55 @@ ccdn_forum_admin_board_priority_move_down:
 #
 # Topic Management.
 #
-ccdn_forum_admin_topic_deleted_show:
+ccdn_forum_admin_topic_deleted_show_all:
     pattern: /{_locale}/admin/forum/topics/deleted/show
     defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en, page: 1 }
 
-ccdn_forum_admin_topic_deleted_show_paginated:
+ccdn_forum_admin_topic_deleted_show_all_paginated:
     pattern: /{_locale}/admin/forum/topics/deleted/show/page/{page}
     defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en, page: 1 }
 
-ccdn_forum_admin_topic_bulk_action:
+ccdn_forum_admin_topic_deleted_bulk_action:
     pattern: /{_locale}/admin/forum/topics/deleted/bulk/action
-    defaults: { _controller: CCDNForumAdminBundle:Topic:bulk, _locale: en }
+    defaults: { _controller: CCDNForumAdminBundle:Topic:deletedBulk, _locale: en }
+
+ccdn_forum_admin_topic_closed_show_all:
+    pattern: /{_locale}/admin/forum/topic/show/closed
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
+
+ccdn_forum_admin_topic_closed_show_all_paginated:
+    pattern: /{_locale}/admin/forum/topic/show/closed/page/{page}
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
+
+ccdn_forum_admin_topic_closed_bulk_action:
+    pattern: /{_locale}/admin/forum/topic/closed/action/checked
+    defaults: { _controller: CCDNForumAdminBundle:Topic:closedBulk, _locale: en }
 
 #
 # Post Management.
 #
-ccdn_forum_admin_post_deleted_show:
+ccdn_forum_admin_post_deleted_show_all:
     pattern: /{_locale}/admin/forum/posts/deleted/show
     defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en, page: 1 }
 
-ccdn_forum_admin_post_deleted_show_paginated:
+ccdn_forum_admin_post_deleted_show_all_paginated:
     pattern: /{_locale}/admin/forum/posts/deleted/show/page/{page}
     defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en, page: 1 }
 
-ccdn_forum_admin_post_bulk_action:
+ccdn_forum_admin_post_deleted_bulk_action:
     pattern: /{_locale}/admin/forum/posts/deleted/bulk/action
-    defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }
+    defaults: { _controller: CCDNForumAdminBundle:Post:deletedBulk, _locale: en }
 
-
-
-
-
-
-
-
-
-
-
-#
-# Post Moderation.
-#
-ccdn_forum_admin_post_show_all_locked:
+ccdn_forum_admin_post_locked_show_all:
     pattern: /{_locale}/admin/forum/post/show/locked
     defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en, page: 1 }
 
-ccdn_forum_admin_post_show_all_locked_paginated:
+ccdn_forum_admin_post_locked_show_all_paginated:
     pattern: /{_locale}/admin/forum/post/show/locked/page/{page}
     defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en, page: 1 }
 
-ccdn_forum_admin_post_bulk_action:
+ccdn_forum_admin_post_locked_bulk_action:
     pattern: /{_locale}/admin/forum/post/locked/action/checked
-    defaults: { _controller: CCDNForumAdminBundle:Post:bulk, _locale: en }
+    defaults: { _controller: CCDNForumAdminBundle:Post:lockedBulk, _locale: en }
 
-#
-# Topic Moderation.
-#
-ccdn_forum_admin_topic_show_all_closed:
-    pattern: /{_locale}/admin/forum/topic/show/closed
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
-
-ccdn_forum_admin_topic_show_all_closed_paginated:
-    pattern: /{_locale}/admin/forum/topic/show/closed/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
-
-ccdn_forum_admin_topic_bulk_action_closed:
-    pattern: /{_locale}/admin/forum/topic/closed/action/checked
-    defaults: { _controller: CCDNForumAdminBundle:Topic:bulk, _locale: en }
 

@@ -17,14 +17,14 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use CCDNForum\AdminBundle\Controller\BaseController;
+use CCDNForum\AdminBundle\Controller\TopicBaseController;
 
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class TopicController extends BaseController
+class TopicController extends TopicBaseController
 {
     /**
      *
@@ -46,8 +46,7 @@ class TopicController extends BaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'moderator')), "sitemap")
-            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_show_all_closed'), "home");
+            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_closed_show_all'), "home");
 
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.', array(
             'crumbs' => $crumbs,
@@ -76,8 +75,7 @@ class TopicController extends BaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show'), "trash");
+            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show_all'), "trash");
 
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.', array(
             'crumbs' => $crumbs,
@@ -94,43 +92,29 @@ class TopicController extends BaseController
      * @access public
      * @return RedirectResponse
      */
-    public function bulkAction()
+    public function closedBulkAction()
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $itemIds = $this->getCheckedItemIds('check_');
+		$this->bulkAction();
 
-        // Don't bother if there are no checkboxes to process.
-        if (count($itemIds) < 1) {
-            return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show'));
-        }
+        return new RedirectResponse($this->path('ccdn_forum_admin_topic_closed_show_all'));
+    }
+	
+    /**
+     *
+     * Restores/Deletes items, marked for removal from db via checkboxes for each
+     * item present in a form. This can only be done via a member with role_admin!
+     *
+     * @access public
+     * @return RedirectResponse
+     */
+    public function deletedBulkAction()
+    {
+        $this->isAuthorised('ROLE_ADMIN');
 
-        $user = $this->getUser();
+		$this->bulkAction();
 
-        $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
-
-        if ( ! $topics || empty($topics)) {
-            $this->setFlash('notice', $this->trans('flash.topic.no_topics_found'));
-
-            return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show'));
-        }
-
-        if (isset($_POST['submit_close'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkClose($topics, $user)->flush();
-        }
-        if (isset($_POST['submit_reopen'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkReopen($topics)->flush();
-        }
-        if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkRestore($topics)->flush();
-        }
-        if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkSoftDelete($topics, $user)->flush();
-        }
-        if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkHardDelete($topics)->flush();
-        }
-
-        return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show'));
+        return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show_all'));
     }
 }
