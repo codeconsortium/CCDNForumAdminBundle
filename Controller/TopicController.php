@@ -36,11 +36,7 @@ class TopicController extends BaseController
      */
     public function showClosedAction($page)
     {
-        if ( ! $this->container->get('security.context')->isGranted('ROLE_MODERATOR')) {
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $this->isAuthorised('ROLE_MODERATOR');
 
         $topicsPager = $this->container->get('ccdn_forum_forum.repository.topic')->findClosedTopicsForModeratorsPaginated();
 
@@ -49,13 +45,12 @@ class TopicController extends BaseController
         $topicsPager->setCurrentPage($page, false, true);
 
         // setup crumb trail.
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'moderator')), "sitemap")
-            ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.topic.show_closed', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_topic_show_all_closed'), "home");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'moderator')), "sitemap")
+            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_show_all_closed'), "home");
 
-        return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.', array(
             'crumbs' => $crumbs,
-            'user' => $user,
             'topics' => $topicsPager,
             'pager' => $topicsPager,
         ));
@@ -71,11 +66,7 @@ class TopicController extends BaseController
      */
     public function showDeletedAction($page)
     {
-        if ( ! $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $this->isAuthorised('ROLE_ADMIN');
 
         $topicsPager = $this->container->get('ccdn_forum_forum.repository.topic')->findClosedTopicsForModeratorsPaginated();
 
@@ -84,12 +75,11 @@ class TopicController extends BaseController
         $topicsPager->setCurrentPage($page, false, true);
 
         // setup crumb trail.
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.dashboard.admin', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
-            ->add($this->container->get('translator')->trans('ccdn_forum_admin.crumbs.topic.show_deleted', array(), 'CCDNForumAdminBundle'), $this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'), "trash");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_forum_admin.crumbs.dashboard.admin'), $this->path('ccdn_component_dashboard_show', array('category' => 'admin')), "sitemap")
+            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show'), "trash");
 
-        return $this->container->get('templating')->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.' . $this->getEngine(), array(
-            'user' => $user,
+        return $this->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.', array(
             'crumbs' => $crumbs,
             'topics' => $topicsPager,
             'pager' => $topicsPager,
@@ -106,9 +96,7 @@ class TopicController extends BaseController
      */
     public function bulkAction()
     {
-        if ( ! $this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
+        $this->isAuthorised('ROLE_ADMIN');
 
         // Get all the checked item id's.
         $itemIds = array();
@@ -126,17 +114,17 @@ class TopicController extends BaseController
 
         // Don't bother if there are no checkboxes to process.
         if (count($itemIds) < 1) {
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
+            return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show'));
         }
 
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
 
         if ( ! $topics || empty($topics)) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.topic.no_topics_found', array(), 'CCDNForumAdminBundle'));
+            $this->setFlash('notice', $this->trans('flash.topic.no_topics_found'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
+            return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show'));
         }
 
         if (isset($_POST['submit_close'])) {
@@ -155,6 +143,6 @@ class TopicController extends BaseController
             $this->container->get('ccdn_forum_admin.manager.topic')->bulkHardDelete($topics)->flush();
         }
 
-        return new RedirectResponse($this->container->get('router')->generate('ccdn_forum_admin_topic_deleted_show'));
+        return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show'));
     }
 }
