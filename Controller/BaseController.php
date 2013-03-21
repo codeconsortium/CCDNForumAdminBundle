@@ -309,7 +309,7 @@ class BaseController extends ContainerAware
 	protected function getCategoryManager()
 	{
 		if (null == $this->categoryManager) {
-			$this->categoryManager = $this->container->get('ccdn_forum_admin.manager.category');
+			$this->categoryManager = $this->container->get('ccdn_forum_forum.manager.category');
 		}
 		
 		return $this->categoryManager;
@@ -323,7 +323,7 @@ class BaseController extends ContainerAware
 	protected function getBoardManager()
 	{
 		if (null == $this->boardManager) {
-			$this->boardManager = $this->container->get('ccdn_forum_admin.manager.board');
+			$this->boardManager = $this->container->get('ccdn_forum_forum.manager.board');
 		}
 		
 		return $this->boardManager;
@@ -337,7 +337,7 @@ class BaseController extends ContainerAware
 	protected function getTopicManager()
 	{
 		if (null == $this->topicManager) {
-			$this->topicManager = $this->container->get('ccdn_forum_admin.manager.topic');
+			$this->topicManager = $this->container->get('ccdn_forum_forum.manager.topic');
 		}
 		
 		return $this->topicManager;		
@@ -351,7 +351,7 @@ class BaseController extends ContainerAware
 	protected function getPostManager()
 	{
 		if (null == $this->postManager) {
-			$this->postManager = $this->container->get('ccdn_forum_admin.manager.post');
+			$this->postManager = $this->container->get('ccdn_forum_forum.manager.post');
 		}
 		
 		return $this->postManager;

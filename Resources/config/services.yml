@@ -1,10 +1,5 @@
 parameters:
 
-    ccdn_forum_admin.manager.category.class:                    CCDNForum\AdminBundle\Manager\CategoryManager
-    ccdn_forum_admin.manager.board.class:                       CCDNForum\AdminBundle\Manager\BoardManager
-    ccdn_forum_admin.manager.topic.class:                       CCDNForum\AdminBundle\Manager\TopicManager
-    ccdn_forum_admin.manager.post.class:                        CCDNForum\AdminBundle\Manager\PostManager
-
     ccdn_forum_admin.form.type.category_create.class:           CCDNForum\AdminBundle\Form\Type\CategoryFormType
     ccdn_forum_admin.form.handler.category_create.class:        CCDNForum\AdminBundle\Form\Handler\CategoryCreateFormHandler
     ccdn_forum_admin.form.type.category_update.class:           CCDNForum\AdminBundle\Form\Type\CategoryFormType
@@ -20,22 +15,6 @@ parameters:
 services:
 
     #
-    # Managers.
-    #
-    ccdn_forum_admin.manager.category:
-        class:  %ccdn_forum_admin.manager.category.class%
-        arguments:  [@doctrine, @service_container]
-    ccdn_forum_admin.manager.board:
-        class:  %ccdn_forum_admin.manager.board.class%
-        arguments:  [@doctrine, @service_container]
-    ccdn_forum_admin.manager.topic:
-        class: %ccdn_forum_admin.manager.topic.class%
-        arguments:  [@doctrine, @service_container]
-    ccdn_forum_admin.manager.post:
-        class: %ccdn_forum_admin.manager.post.class%
-        arguments:  [@doctrine, @service_container]
-        
-    #
     # Category Forms.
     #
     ccdn_forum_admin.form.type.category_create:
@@ -47,7 +26,7 @@ services:
         arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.category_create
-            - @ccdn_forum_admin.manager.category
+            - @ccdn_forum_forum.manager.category
     ccdn_forum_admin.form.type.category_update:
         class:  %ccdn_forum_admin.form.type.category_update.class%
         arguments:
@@ -57,7 +36,7 @@ services:
         arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.category_update
-            - @ccdn_forum_admin.manager.category
+            - @ccdn_forum_forum.manager.category
 
     #
     # Board Forms.
@@ -71,7 +50,7 @@ services:
         arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.board_create
-            - @ccdn_forum_admin.manager.board
+            - @ccdn_forum_forum.manager.board
     ccdn_forum_admin.form.type.board_update:
         class:  %ccdn_forum_admin.form.type.board_update.class%
         arguments:
@@ -81,7 +60,7 @@ services:
         arguments: 
             - @form.factory
             - @ccdn_forum_admin.form.type.board_update
-            - @ccdn_forum_admin.manager.board
+            - @ccdn_forum_forum.manager.board
         
     #
     # Dashboard Integrator.

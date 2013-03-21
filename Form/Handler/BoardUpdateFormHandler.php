@@ -17,7 +17,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 
-use CCDNForum\AdminBundle\Manager\BaseManagerInterface;
+use CCDNForum\ForumBundle\Manager\BaseManagerInterface;
 
 use CCDNForum\ForumBundle\Entity\Board;
 
@@ -45,7 +45,7 @@ class BoardUpdateFormHandler
     /**
 	 *
 	 * @access protected
-	 * @var \CCDNForum\AdminBundle\Manager\BaseManagerInterface $manager
+	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $manager
 	 */
     protected $manager;
 
@@ -75,7 +75,7 @@ class BoardUpdateFormHandler
      * @access public
      * @param \Symfony\Component\Form\FormFactory $factory
 	 * @param \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
-	 * @param \CCDNForum\AdminBundle\Manager\BaseManagerInterface $manager
+	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $manager
      */
     public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $manager)
     {
@@ -113,6 +113,7 @@ class BoardUpdateFormHandler
     /**
      *
      * @access public
+	 * @param \Symfony\Component\HttpFoundation\Request $request
      * @return bool
      */
     public function process(Request $request)
@@ -171,10 +172,10 @@ class BoardUpdateFormHandler
      *
      * @access protected
      * @param \CCDNForum\ForumBundle\Entity\Board $board
-     * @return BoardManager
+     * @return \CCDNForum\ForumBundle\Manager\BoardManager
      */
     protected function onSuccess(Board $board)
     {
-        return $this->manager->update($board)->flush();
+        return $this->manager->updateBoard($board)->flush();
     }
 }
