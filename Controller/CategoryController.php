@@ -36,11 +36,11 @@ class CategoryController extends CategoryBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $categories = $this->container->get('ccdn_forum_forum.repository.category')->findAllJoinedToBoard();
+        $categories = $this->getCategoryManager()->findAllBoardsGroupedByCategory();
 
         // Must be consistent with the topics per page on regular user board index.
-        $topicsPerPage = $this->container->getParameter('ccdn_forum_forum.board.show.topics_per_page');
-
+		$topicsPerPage = $this->getTopicManager()->getTopicsPerPageOnBoards();
+		
         $crumbs = $this->getCrumbs()
             ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home");
 
@@ -89,7 +89,7 @@ class CategoryController extends CategoryBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
+		$category = $this->getCategoryManager()->findOneById($categoryId);
 		$this->isFound($category);
 		
         $formHandler = $this->getFormHandlerToEditCategory($category);
@@ -122,7 +122,7 @@ class CategoryController extends CategoryBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
+        $category = $this->getCategoryManager()->findOneById($categoryId);
 		$this->isFound($category);
 		
         // setup crumb trail.
@@ -146,10 +146,10 @@ class CategoryController extends CategoryBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
+        $category = $this->getCategoryManager()->findOneById($categoryId);
 		$this->isFound($category);
 		
-        $this->container->get('ccdn_forum_admin.manager.category')->remove($category)->flush();
+        $this->getCategoryManager()->remove($category)->flush();
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.delete.success'));
 
@@ -166,8 +166,8 @@ class CategoryController extends CategoryBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $categories = $this->container->get('ccdn_forum_forum.repository.category')->findCategoriesOrderedByPriority();
-
+		$category = $this->getCategoryManager()->findAllWithBoards();
+		
         if (! $categories) {
             return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
         }
@@ -179,7 +179,7 @@ class CategoryController extends CategoryBaseController
             return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
         }
 
-        $this->container->get('ccdn_forum_admin.manager.category')->reorder($categories, $categoryId, $direction)->flush();
+        $this->getCategoryManager()->reorder($categories, $categoryId, $direction)->flush();
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.reorder.success'));
 

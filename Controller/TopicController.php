@@ -38,11 +38,7 @@ class TopicController extends TopicBaseController
     {
         $this->isAuthorised('ROLE_MODERATOR');
 
-        $topicsPager = $this->container->get('ccdn_forum_forum.repository.topic')->findClosedTopicsForModeratorsPaginated();
-
-        $topicsPerPage = $this->container->getParameter('ccdn_forum_admin.topic.show_closed.topics_per_page');
-        $topicsPager->setMaxPerPage($topicsPerPage);
-        $topicsPager->setCurrentPage($page, false, true);
+        $topicsPager = $this->getTopicManager()->findClosedTopicsForModeratorsPaginated($page);
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
@@ -67,11 +63,7 @@ class TopicController extends TopicBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $topicsPager = $this->container->get('ccdn_forum_forum.repository.topic')->findClosedTopicsForModeratorsPaginated();
-
-        $topicsPerPage = $this->container->getParameter('ccdn_forum_admin.topic.show_deleted.topics_per_page');
-        $topicsPager->setMaxPerPage($topicsPerPage);
-        $topicsPager->setCurrentPage($page, false, true);
+        $topicsPager = $this->getTopicManager()->findDeletedTopicsForAdminsPaginated($page);
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()

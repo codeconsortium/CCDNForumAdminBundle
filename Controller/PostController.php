@@ -38,11 +38,7 @@ class PostController extends PostBaseController
     {
         $this->isAuthorised('ROLE_MODERATOR');
 
-        $postsPager = $this->container->get('ccdn_forum_forum.repository.post')->findLockedPostsForModeratorsPaginated();
-
-        $postsPerPage = $this->container->getParameter('ccdn_forum_admin.post.show_locked.posts_per_page');
-        $postsPager->setMaxPerPage($postsPerPage);
-        $postsPager->setCurrentPage($page, false, true);
+        $postsPager = $this->getPostManager()->findLockedPostsForModeratorsPaginated($page);
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
@@ -67,11 +63,7 @@ class PostController extends PostBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $postsPager = $this->container->get('ccdn_forum_forum.repository.post')->findDeletedPostsForAdminsPaginated();
-
-        $postsPerPage = $this->container->getParameter('ccdn_forum_admin.post.show_deleted.posts_per_page');
-        $postsPager->setMaxPerPage($postsPerPage);
-        $postsPager->setCurrentPage($page, false, true);
+        $postsPager = $this->getPostManager()->findDeletedPostsForAdminsPaginated($page);
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()

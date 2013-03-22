@@ -37,7 +37,8 @@ class BoardController extends BoardBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $category = $this->container->get('ccdn_forum_forum.repository.category')->findOneById($categoryId);
+		$category = $this->getCategoryManager()->findOneById($categoryId);
+		$this->isFound($category);
 
         $formHandler = $this->getFormHandlerToCreateBoard($category);
 
@@ -68,7 +69,7 @@ class BoardController extends BoardBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $board = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId);
+		$board = $this->getBoardManager()->findOneByIdWithCategory($boardId);
         $this->isFound($board);
 
         $formHandler = $this->getFormHandlerToEditBoard($board);
@@ -101,7 +102,7 @@ class BoardController extends BoardBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $board = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId);
+		$board = $this->getBoardManager()->findOneById($boardId);
         $this->isFound($board);
 
         // setup crumb trail.
@@ -125,10 +126,10 @@ class BoardController extends BoardBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $board = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId);
+		$board = $this->getBoardManager()->findOneById($boardId);
         $this->isFound($board);
 
-        $this->container->get('ccdn_forum_admin.manager.board')->remove($board)->flush();
+        $this->getBoardManager()->remove($board)->flush();
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.delete.success'));
 
@@ -145,21 +146,21 @@ class BoardController extends BoardBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-        $categoryId = $this->container->get('ccdn_forum_forum.repository.board')->findOneById($boardId)->getCategory()->getId();
-        $boards = $this->container->get('ccdn_forum_forum.repository.board')->findBoardsOrderedByPriorityInCategory($categoryId);
+		$board = $this->getBoardManager()->findOneByIdWithCategory($boardId);
+		$this->isFound($board);
+		
+		$boards = $this->getCategoryManager()->findOneByIdWithBoards($board->getCategory()->getId());
 
         if (! $boards) {
             return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
         }
 
-        $boardCount = count($boards);
-
-        // if there is only 1 category, it cannot be re-ordered.
-        if ($boardCount < 2) {
+        // if there is only 1 board, it cannot be re-ordered.
+        if (count($boards) < 2) {
             return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
         }
 
-        $this->container->get('ccdn_forum_admin.manager.board')->reorder($boards, $boardId, $direction)->flush();
+        $this->getBoardManager()->reorder($boards, $boardId, $direction)->flush();
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.reorder.success'));
 
