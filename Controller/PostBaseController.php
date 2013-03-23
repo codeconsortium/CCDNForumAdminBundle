@@ -39,10 +39,7 @@ class PostBaseController extends BaseController
             return;
         }
 
-		/** 
-		 * @todo use Manager to retrieve these items.
-		 */ 
-        $posts = $this->container->get('ccdn_forum_forum.repository.post')->findThesePostsByIdForModeration($itemIds);
+        $posts = $this->getPostManager()->findThesePostsById($itemIds);
 
         if ( ! $posts || empty($posts)) {
             $this->setFlash('notice', $this->trans('flash.post.no_posts_found'));

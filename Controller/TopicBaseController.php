@@ -39,10 +39,7 @@ class TopicBaseController extends BaseController
             return;
         }
 
-		/** 
-		 * @todo use Manager to retrieve these items.
-		 */ 
-        $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
+        $topics = $this->getTopicManager()->findTheseTopicsById($itemIds);
 
         if ( ! $topics || empty($topics)) {
             $this->setFlash('notice', $this->trans('flash.topic.no_topics_found'));
