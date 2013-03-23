@@ -303,6 +303,24 @@ class BaseController extends ContainerAware
 
 	/**
 	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getSubmitAction()
+	{
+		$request = $this->getRequest();
+		
+		if ($request->request->has('submit')) {
+			$action = key($request->request->get('submit'));
+		} else {
+			$action = 'post';
+		}
+		
+		return $action;
+	}
+	
+	/**
+	 *
 	 * @access protected
 	 * @return \CCDNForum\AdminBundle\Manager\CategoryManager
 	 */

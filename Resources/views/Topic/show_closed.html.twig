@@ -18,10 +18,10 @@
 
 			<div class="btn-toolbar">
 				<div class="span6">
-					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.close' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_close" disabled data-responds-disabled="topics" >
-					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.reopen' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_reopen" disabled data-responds-disabled="topics" >
-					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_restore" disabled data-responds-disabled="topics" >
-					<input type="submit" class="btn btn-danger disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit_soft_delete" disabled data-responds-disabled="topics" >
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.close' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit[close]" disabled data-responds-disabled="topics" >
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.reopen' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit[reopen]" disabled data-responds-disabled="topics" >
+					<input type="submit" class="btn btn-primary disabled" value="{{- 'ccdn_forum_admin.link.topic.restore' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit[restore]" disabled data-responds-disabled="topics" >
+					<input type="submit" class="btn btn-danger disabled" value="{{- 'ccdn_forum_admin.link.topic.delete_soft' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit[soft_delete]" disabled data-responds-disabled="topics" >
 				</div>
 				{%- if pager.haveToPaginate -%}
 					<nav class="span6 btn-right paginate">

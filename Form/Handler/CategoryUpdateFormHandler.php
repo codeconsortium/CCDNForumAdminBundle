@@ -103,12 +103,14 @@ class CategoryUpdateFormHandler
         if ($request->getMethod() == 'POST') {
             $this->form->bind($request);
 
-            $formData = $this->form->getData();
-
             if ($this->form->isValid()) {
-                $this->onSuccess($formData);
+	            $formData = $this->form->getData();
+				
+				if ($this->getSubmitAction($request) == 'post') {	
+	                $this->onSuccess($formData);
 
-                return true;
+	                return true;
+				}
             }
         }
 
@@ -121,7 +123,7 @@ class CategoryUpdateFormHandler
 	 * @param \Symfony\Component\HttpFoundation\Request $request
 	 * @return string
 	 */
-	public function getAction(Request $request)
+	public function getSubmitAction(Request $request)
 	{
 		if ($request->request->has('submit')) {
 			$action = key($request->request->get('submit'));

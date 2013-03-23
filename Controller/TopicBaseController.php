@@ -39,8 +39,9 @@ class TopicBaseController extends BaseController
             return;
         }
 
-        $user = $this->getUser();
-
+		/** 
+		 * @todo use Manager to retrieve these items.
+		 */ 
         $topics = $this->container->get('ccdn_forum_forum.repository.topic')->findTheseTopicsByIdForModeration($itemIds);
 
         if ( ! $topics || empty($topics)) {
@@ -49,20 +50,24 @@ class TopicBaseController extends BaseController
             return;
         }
 
-        if (isset($_POST['submit_close'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkClose($topics, $user)->flush();
+		$submitAction = $this->getSubmitAction();
+		
+        $user = $this->getUser();
+
+        if ($submitAction == 'close') {
+            $this->getTopicManager()->bulkClose($topics, $user)->flush();
         }
-        if (isset($_POST['submit_reopen'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkReopen($topics)->flush();
+        if ($submitAction == 'reopen') {
+            $this->getTopicManager()->bulkReopen($topics)->flush();
         }
-        if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkRestore($topics)->flush();
+        if ($submitAction == 'restore') {
+            $this->getTopicManager()->bulkRestore($topics)->flush();
         }
-        if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkSoftDelete($topics, $user)->flush();
+        if ($submitAction == 'soft_delete') {
+            $this->getTopicManager()->bulkSoftDelete($topics, $user)->flush();
         }
-        if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.topic')->bulkHardDelete($topics)->flush();
+        if ($submitAction == 'hard_delete') {
+            $this->getTopicManager()->bulkHardDelete($topics)->flush();
         }
 	}
 }

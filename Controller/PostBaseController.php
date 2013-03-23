@@ -39,8 +39,9 @@ class PostBaseController extends BaseController
             return;
         }
 
-        $user = $this->getUser();
-
+		/** 
+		 * @todo use Manager to retrieve these items.
+		 */ 
         $posts = $this->container->get('ccdn_forum_forum.repository.post')->findThesePostsByIdForModeration($itemIds);
 
         if ( ! $posts || empty($posts)) {
@@ -49,20 +50,24 @@ class PostBaseController extends BaseController
             return;
         }
 
-        if (isset($_POST['submit_lock'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkLock($posts, $user)->flush();
+		$submitAction = $this->getSubmitAction();
+		
+        $user = $this->getUser();
+
+        if ($submitAction == 'lock') {
+            $this->getPostManager()->bulkLock($posts, $user)->flush();
         }
-        if (isset($_POST['submit_unlock'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkUnlock($posts)->flush();
+        if ($submitAction == 'unlock') {
+            $this->getPostManager()->bulkUnlock($posts)->flush();
         }
-        if (isset($_POST['submit_restore'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkRestore($posts)->flush();
+        if ($submitAction == 'restore') {
+            $this->getPostManager()->bulkRestore($posts)->flush();
         }
-        if (isset($_POST['submit_soft_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkSoftDelete($posts, $user)->flush();
+        if ($submitAction == 'soft_delete') {
+            $this->getPostManager()->bulkSoftDelete($posts, $user)->flush();
         }
-        if (isset($_POST['submit_hard_delete'])) {
-            $this->container->get('ccdn_forum_admin.manager.post')->bulkHardDelete($posts)->flush();
+        if ($submitAction == 'hard_delete') {
+            $this->getPostManager()->bulkHardDelete($posts)->flush();
         }
     }
 }
