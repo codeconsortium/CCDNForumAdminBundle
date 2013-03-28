@@ -42,7 +42,7 @@ class TopicController extends TopicBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_closed_show_all'), "home");
+            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_closed_show_all'));
 
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.', array(
             'crumbs' => $crumbs,
@@ -67,7 +67,7 @@ class TopicController extends TopicBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show_all'), "trash");
+            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show_all'));
 
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.', array(
             'crumbs' => $crumbs,
@@ -90,7 +90,7 @@ class TopicController extends TopicBaseController
 
 		$this->bulkAction();
 
-        return new RedirectResponse($this->path('ccdn_forum_admin_topic_closed_show_all'));
+        return $this->redirectResponse($this->path('ccdn_forum_admin_topic_closed_show_all'));
     }
 	
     /**
@@ -107,6 +107,6 @@ class TopicController extends TopicBaseController
 
 		$this->bulkAction();
 
-        return new RedirectResponse($this->path('ccdn_forum_admin_topic_deleted_show_all'));
+        return $this->redirectResponse($this->path('ccdn_forum_admin_topic_deleted_show_all'));
     }
 }

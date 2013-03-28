@@ -14,8 +14,10 @@
 namespace CCDNForum\AdminBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  *
@@ -239,7 +241,7 @@ class BaseController extends ContainerAware
 	/** 
 	 * 
 	 * @access protected
-	 * @return UserInterface
+	 * @return \Symfony\Component\Security\Core\User\UserInterface
 	 */	
 	protected function getUser()
 	{

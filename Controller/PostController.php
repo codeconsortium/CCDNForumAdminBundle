@@ -42,7 +42,7 @@ class PostController extends PostBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_locked'), $this->path('ccdn_forum_admin_post_locked_show_all'), "home");
+            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_locked'), $this->path('ccdn_forum_admin_post_locked_show_all'));
 
         return $this->renderResponse('CCDNForumAdminBundle:Post:show_locked.html.', array(
             'crumbs' => $crumbs,
@@ -67,7 +67,7 @@ class PostController extends PostBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_deleted'), $this->path('ccdn_forum_admin_post_deleted_show_all'), "trash");
+            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_deleted'), $this->path('ccdn_forum_admin_post_deleted_show_all'));
 
         return $this->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.', array(
             'crumbs' => $crumbs,
@@ -87,7 +87,7 @@ class PostController extends PostBaseController
 
 		$this->bulkAction();
 
-        return new RedirectResponse($this->path('ccdn_forum_admin_post_locked_show_all'));
+        return $this->redirectResponse($this->path('ccdn_forum_admin_post_locked_show_all'));
     }
 	
     /**
@@ -101,6 +101,6 @@ class PostController extends PostBaseController
 
 		$this->bulkAction();
 
-        return new RedirectResponse($this->path('ccdn_forum_admin_post_deleted_show_all'));
+        return $this->redirectResponse($this->path('ccdn_forum_admin_post_deleted_show_all'));
     }
 }

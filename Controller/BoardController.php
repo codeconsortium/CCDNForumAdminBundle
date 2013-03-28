@@ -45,12 +45,12 @@ class BoardController extends BoardBaseController
         if ($formHandler->process($this->getRequest())) {
             $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.create.success'));
 
-            return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
+            return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
-                ->add($this->trans('ccdn_forum_admin.crumbs.board.create'), $this->path('ccdn_forum_admin_board_create'), "edit");
+                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+                ->add($this->trans('ccdn_forum_admin.crumbs.board.create'), $this->path('ccdn_forum_admin_board_create'));
 
             return $this->renderResponse('CCDNForumAdminBundle:Board:create.html.', array(
                 'crumbs' => $crumbs,
@@ -77,12 +77,12 @@ class BoardController extends BoardBaseController
         if ($formHandler->process($this->getRequest())) {
             $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.edit.success'));
 
-            return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
+            return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
-                ->add($this->trans('ccdn_forum_admin.crumbs.board.edit', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_edit', array('boardId' => $boardId)), "edit");
+                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+                ->add($this->trans('ccdn_forum_admin.crumbs.board.edit', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_edit', array('boardId' => $boardId)));
 
             return $this->renderResponse('CCDNForumAdminBundle:Board:edit.html.', array(
                 'board' => $board,
@@ -107,8 +107,8 @@ class BoardController extends BoardBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'), "home")
-            ->add($this->trans('ccdn_forum_admin.crumbs.board.delete', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_delete', array('boardId' => $board->getId())), "trash");
+            ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+            ->add($this->trans('ccdn_forum_admin.crumbs.board.delete', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_delete', array('boardId' => $board->getId())));
 
         return $this->renderResponse('CCDNForumAdminBundle:Board:delete_board.html.', array(
             'board' => $board,
@@ -133,7 +133,7 @@ class BoardController extends BoardBaseController
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.delete.success'));
 
-        return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
+        return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
     }
 
     /**
@@ -152,18 +152,18 @@ class BoardController extends BoardBaseController
 		$boards = $this->getCategoryManager()->findOneByIdWithBoards($board->getCategory()->getId());
 
         if (! $boards) {
-            return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
+            return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         }
 
         // if there is only 1 board, it cannot be re-ordered.
         if (count($boards) < 2) {
-            return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
+            return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         }
 
         $this->getBoardManager()->reorder($boards, $boardId, $direction)->flush();
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.reorder.success'));
 
-        return new RedirectResponse($this->path('ccdn_forum_admin_category_index'));
+        return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
     }
 }
