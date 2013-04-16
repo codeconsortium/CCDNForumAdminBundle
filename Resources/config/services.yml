@@ -1,16 +1,6 @@
 parameters:
 
-    ccdn_forum_admin.form.type.category_create.class:           CCDNForum\AdminBundle\Form\Type\CategoryFormType
-    ccdn_forum_admin.form.handler.category_create.class:        CCDNForum\AdminBundle\Form\Handler\CategoryCreateFormHandler
-    ccdn_forum_admin.form.type.category_update.class:           CCDNForum\AdminBundle\Form\Type\CategoryFormType
-    ccdn_forum_admin.form.handler.category_update.class:        CCDNForum\AdminBundle\Form\Handler\CategoryUpdateFormHandler
-
-    ccdn_forum_admin.form.type.board_create.class:              CCDNForum\AdminBundle\Form\Type\BoardFormType
-    ccdn_forum_admin.form.handler.board_create.class:           CCDNForum\AdminBundle\Form\Handler\BoardCreateFormHandler
-    ccdn_forum_admin.form.type.board_update.class:              CCDNForum\AdminBundle\Form\Type\BoardFormType
-    ccdn_forum_admin.form.handler.board_update.class:           CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler
-
-    ccdn_forum_admin.component.dashboard.integrator.class:      CCDNForum\AdminBundle\Component\Dashboard\DashboardIntegrator
+    # Service Parameters defined in app/config
 
 services:
 
@@ -18,21 +8,24 @@ services:
     # Category Forms.
     #
     ccdn_forum_admin.form.type.category_create:
-        class:  %ccdn_forum_admin.form.type.category_create.class%
+        class: %ccdn_forum_admin.form.type.category_create.class%
         arguments:
             - @doctrine
+
     ccdn_forum_admin.form.handler.category_create:
-        class:  %ccdn_forum_admin.form.handler.category_create.class%
+        class: %ccdn_forum_admin.form.handler.category_create.class%
         arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.category_create
             - @ccdn_forum_forum.manager.category
+
     ccdn_forum_admin.form.type.category_update:
-        class:  %ccdn_forum_admin.form.type.category_update.class%
+        class: %ccdn_forum_admin.form.type.category_update.class%
         arguments:
             - @doctrine
+
     ccdn_forum_admin.form.handler.category_update:
-        class:  %ccdn_forum_admin.form.handler.category_update.class%
+        class: %ccdn_forum_admin.form.handler.category_update.class%
         arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.category_update
@@ -42,21 +35,24 @@ services:
     # Board Forms.
     #
     ccdn_forum_admin.form.type.board_create:
-        class:  %ccdn_forum_admin.form.type.board_update.class%
+        class: %ccdn_forum_admin.form.type.board_update.class%
         arguments:
             - @doctrine
+
     ccdn_forum_admin.form.handler.board_create:
-        class:  %ccdn_forum_admin.form.handler.board_create.class%
+        class: %ccdn_forum_admin.form.handler.board_create.class%
         arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.board_create
             - @ccdn_forum_forum.manager.board
+
     ccdn_forum_admin.form.type.board_update:
-        class:  %ccdn_forum_admin.form.type.board_update.class%
+        class: %ccdn_forum_admin.form.type.board_update.class%
         arguments:
             - @doctrine
+
     ccdn_forum_admin.form.handler.board_update:
-        class:  %ccdn_forum_admin.form.handler.board_update.class%
+        class: %ccdn_forum_admin.form.handler.board_update.class%
         arguments: 
             - @form.factory
             - @ccdn_forum_admin.form.type.board_update

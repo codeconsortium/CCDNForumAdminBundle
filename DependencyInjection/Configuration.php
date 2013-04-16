@@ -27,18 +27,16 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
  */
 class Configuration implements ConfigurationInterface
 {
-
     /**
-     * {@inheritDoc}
+     *
+	 * @access public
+	 * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('ccdn_forum_admin');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
         $rootNode
             ->children()
                 ->arrayNode('template')
@@ -49,19 +47,462 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
 
-        $this->addSEOSection($rootNode);
-        $this->addCategorySection($rootNode);
-        $this->addBoardSection($rootNode);
-        $this->addTopicSection($rootNode);
-        $this->addPostSection($rootNode);
+		// Class file namespaces.
+		$this
+			->addEntitySection($rootNode)
+			->addRepositorySection($rootNode)
+			->addGatewaySection($rootNode)
+			->addManagerSection($rootNode)
+			->addFormSection($rootNode)
+			->addComponentSection($rootNode)
+		;
+		
+		// Configuration stuff.
+        $this
+			->addSEOSection($rootNode)
+        	->addCategorySection($rootNode)
+        	->addBoardSection($rootNode)
+        	->addTopicSection($rootNode)
+        	->addPostSection($rootNode)
+		;
 
         return $treeBuilder;
     }
 
     /**
      *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
+     */
+    private function addEntitySection(ArrayNodeDefinition $node)
+	{
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('entity')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+				        ->arrayNode('category')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Category')->end()
+							->end()
+						->end()
+				        ->arrayNode('board')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Board')->end()
+							->end()
+						->end()
+				        ->arrayNode('topic')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Topic')->end()
+							->end()
+						->end()
+				        ->arrayNode('post')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Post')->end()
+							->end()
+						->end()
+				        ->arrayNode('draft')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Draft')->end()
+							->end()
+						->end()
+				        ->arrayNode('subscription')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Subscription')->end()
+							->end()
+						->end()
+				        ->arrayNode('registry')
+				            ->addDefaultsIfNotSet()
+				            ->canBeUnset()
+				            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Entity\Registry')->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+		
+		return $this;
+	}
+
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
+     */
+    private function addRepositorySection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('repository')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('category')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\CategoryRepository')->end()							
+							->end()
+						->end()
+                        ->arrayNode('board')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\BoardRepository')->end()							
+							->end()
+						->end()
+                        ->arrayNode('topic')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\TopicRepository')->end()							
+							->end()
+						->end()
+                        ->arrayNode('post')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\PostRepository')->end()							
+							->end()
+						->end()
+                        ->arrayNode('draft')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\DraftRepository')->end()							
+							->end()
+						->end()
+                        ->arrayNode('subscription')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\SubscriptionRepository')->end()							
+							->end()
+						->end()
+                        ->arrayNode('registry')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\ForumBundle\Repository\RegistryRepository')->end()							
+							->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+		
+		return $this;
+	}
+		
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
+     */
+    private function addGatewaySection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('gateway')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('bag')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\Bag\GatewayBag')->end()							
+							->end()
+						->end()
+                        ->arrayNode('category')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\CategoryGateway')->end()							
+							->end()
+						->end()
+                        ->arrayNode('board')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\BoardGateway')->end()							
+							->end()
+						->end()
+                        ->arrayNode('topic')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\TopicGateway')->end()							
+							->end()
+						->end()
+                        ->arrayNode('post')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\PostGateway')->end()							
+							->end()
+						->end()
+                        ->arrayNode('draft')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\DraftGateway')->end()							
+							->end()
+						->end()
+                        ->arrayNode('subscription')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\SubscriptionGateway')->end()							
+							->end()
+						->end()
+                        ->arrayNode('registry')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Gateway\RegistryGateway')->end()							
+							->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+
+		return $this;
+	}
+	
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
+     */
+    private function addManagerSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('manager')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('bag')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\Bag\ManagerBag')->end()							
+							->end()
+						->end()
+                        ->arrayNode('category')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\CategoryManager')->end()							
+							->end()
+						->end()
+                        ->arrayNode('board')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\BoardManager')->end()							
+							->end()
+						->end()
+                        ->arrayNode('topic')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\TopicManager')->end()							
+							->end()
+						->end()
+                        ->arrayNode('post')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\PostManager')->end()							
+							->end()
+						->end()
+                        ->arrayNode('draft')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\DraftManager')->end()							
+							->end()
+						->end()
+                        ->arrayNode('subscription')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\SubscriptionManager')->end()							
+							->end()
+						->end()
+                        ->arrayNode('registry')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Manager\RegistryManager')->end()							
+							->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+		
+		return $this;
+	}
+	
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
+     */
+    private function addFormSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('form')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('type')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+		                        ->arrayNode('category_create')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Type\CategoryFormType')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('category_update')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Type\CategoryFormType')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('board_create')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Type\BoardFormType')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('board_update')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Type\BoardFormType')->end()							
+									->end()
+								->end()
+							->end()
+						->end()
+                        ->arrayNode('handler')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+		                        ->arrayNode('category_create')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Handler\CategoryCreateFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('category_update')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Handler\CategoryUpdateFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('board_create')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Handler\BoardCreateFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('board_update')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Form\Handler\BoardUpdateFormHandler')->end()							
+									->end()
+								->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+		
+		return $this;
+	}
+	
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
+     */
+    private function addComponentSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('component')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+		                ->arrayNode('dashboard')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+		                    ->children()
+				                ->arrayNode('integrator')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+				                    ->children()
+										->scalarNode('class')->defaultValue('CCDNForum\AdminBundle\Component\Dashboard\DashboardIntegrator')->end()							
+									->end()		
+								->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+		
+		return $this;
+	}
+	
+    /**
+     *
      * @access protected
      * @param ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
      */
     protected function addSEOSection(ArrayNodeDefinition $node)
     {
@@ -74,13 +515,17 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('title_length')->defaultValue('67')->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+		;
+		
+		return $this;
     }
 
     /**
      *
      * @access private
      * @param ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
      */
     private function addCategorySection(ArrayNodeDefinition $node)
     {
@@ -120,13 +565,17 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+		;
+		
+		return $this;
     }
 
     /**
      *
      * @access private
      * @param ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
      */
     private function addBoardSection(ArrayNodeDefinition $node)
     {
@@ -160,13 +609,17 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+		;
+		
+		return $this;
     }
 
     /**
      *
      * @access private
      * @param ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
      */
     private function addTopicSection(ArrayNodeDefinition $node)
     {
@@ -206,13 +659,17 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+		;
+		
+		return $this;
     }
 
     /**
      *
      * @access private
      * @param ArrayNodeDefinition $node
+	 * @return \CCDNForum\AdminBundle\DependencyInjection\Configuration
      */
     private function addPostSection(ArrayNodeDefinition $node)
     {
@@ -246,7 +703,9 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+		;
+		
+		return $this;
     }
-
 }

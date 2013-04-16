@@ -383,6 +383,6 @@ class BaseController extends ContainerAware
 	 */
 	protected function getCrumbs()
 	{
-		return $this->container->get('ccdn_component_crumb.trail');
+		return $this->container->get('ccdn_component_crumb_trail.component.trail');
 	}
 }
