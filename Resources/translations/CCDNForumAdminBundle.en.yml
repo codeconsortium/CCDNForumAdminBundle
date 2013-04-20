@@ -1,6 +1,15 @@
+ccdn_forum_admin:
+    dashboard:
+        pages:
+            admin: Admin
+            forum: Forum
+        categories:
+            forum_admin: Forum Administration
+        
 #
 # Page Titles.
 #
+ccdn_forum_admin.title.manage_boards: 'Edit Boards'
 ccdn_forum_admin.title.category: 'Forum Admin.'
 ccdn_forum_admin.title.category.create: 'Create new category.'
 ccdn_forum_admin.title.category.edit: 'Edit category: %category_name%.'
