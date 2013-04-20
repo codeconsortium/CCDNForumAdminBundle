@@ -1,20 +1,20 @@
-CCDNForum\ForumBundle\Entity\Category:
+%ccdn_forum_admin.entity.category.class%:
     properties:
         name:
-            - Type: { type: string, groups: [admin_category] }
-            - NotBlank: { groups: [admin_category] }
-            - MinLength: { limit: 2, groups: [admin_category] }
-            - MaxLength: { limit: 255, groups: [admin_category] }
+            - Type: { type: string, groups: [admin_category_create, admin_category_update] }
+            - NotBlank: { groups: [admin_category_create, admin_category_update] }
+            - MinLength: { limit: 2, groups: [admin_category_create, admin_category_update] }
+            - MaxLength: { limit: 255, groups: [admin_category_create, admin_category_update] }
 
-CCDNForum\ForumBundle\Entity\Board:
+%ccdn_forum_admin.entity.board.class%:
     properties:
         name:
-            - Type: { type: string, groups: [admin_board] }
-            - NotBlank: { groups: [admin_board] }
-            - MinLength: { limit: 2, groups: [admin_board] }
-            - MaxLength: { limit: 255, groups: [admin_board] }
+            - Type: { type: string, groups: [admin_board_create, admin_board_update] }
+            - NotBlank: { groups: [admin_board_create, admin_board_update] }
+            - MinLength: { limit: 2, groups: [admin_board_create, admin_board_update] }
+            - MaxLength: { limit: 255, groups: [admin_board_create, admin_board_update] }
         description:
-            - Type: { type: string, groups: [admin_board] }
-            - NotBlank: { groups: [admin_board] }
-            - MinLength: { limit: 5, groups: [admin_board] }
-            - MaxLength: { limit: 1000, groups: [admin_board] }
+            - Type: { type: string, groups: [admin_board_create, admin_board_update] }
+            - NotBlank: { groups: [admin_board_create, admin_board_update] }
+            - MinLength: { limit: 5, groups: [admin_board_create, admin_board_update] }
+            - MaxLength: { limit: 1000, groups: [admin_board_create, admin_board_update] }

@@ -136,6 +136,6 @@ class CategoryCreateFormHandler
      */
     protected function onSuccess(Category $category)
     {
-        return $this->manager->postNewCategory($category)->flush();
+        return $this->manager->saveNewCategory($category)->flush();
     }
 }

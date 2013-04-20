@@ -185,6 +185,6 @@ class BoardCreateFormHandler
         $board->setCachedTopicCount(0);
         $board->setCachedPostcount(0);
 		
-        return $this->manager->postNewBoard($board)->flush();
+        return $this->manager->saveNewBoard($board)->flush();
     }
 }

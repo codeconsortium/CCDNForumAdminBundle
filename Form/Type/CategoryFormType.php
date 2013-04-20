@@ -23,6 +23,23 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class CategoryFormType extends AbstractType
 {
+	/**
+	 *
+	 * @access protected
+	 * @var string $categoryClass
+	 */
+	protected $categoryClass;
+	
+	/**
+	 *
+	 * @access public
+	 * @var string $categoryClass
+	 */
+	public function __construct($categoryClass)
+	{
+		$this->categoryClass = $categoryClass;
+	}
+	
     /**
      *
      * @access public
@@ -31,10 +48,12 @@ class CategoryFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('name', null, array(
-	            'label' => 'ccdn_forum_admin.form.label.category.name',
-				'translation_domain' =>  'CCDNForumAdminBundle',
-	        ))
+			->add('name', null,
+				array(
+		            'label'              => 'ccdn_forum_admin.form.label.category.name',
+					'translation_domain' =>  'CCDNForumAdminBundle',
+		        )
+			)
 		;
     }
 
@@ -46,13 +65,12 @@ class CategoryFormType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'empty_data' => new \CCDNForum\ForumBundle\Entity\Category(),
-            'data_class' => 'CCDNForum\ForumBundle\Entity\Category',
-            'csrf_protection' => true,
-            'csrf_field_name' => '_token',
+            'data_class'         => $this->categoryClass,
+            'csrf_protection'    => true,
+            'csrf_field_name'    => '_token',
             // a unique key to help generate the secret token
-            'intention'       => 'category_item',
-            'validation_groups' => 'admin_category',
+            'intention'          => 'category_item',
+            'validation_groups'  => array('admin_category_create', 'admin_category_update'),
         );
     }
 

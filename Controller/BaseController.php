@@ -214,6 +214,17 @@ class BaseController extends ContainerAware
 		return $this->getTemplating()->renderResponse($template . ($engine ?: $this->getEngine()), $params);
 	}
 	
+	/**
+	 *
+	 * @access protected
+	 * @param string $url
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
+	protected function redirectResponse($url)
+	{
+		return new RedirectResponse($url);
+	}
+	
     /**
      *
      * @access protected

@@ -10,7 +10,7 @@ services:
     ccdn_forum_admin.form.type.category_create:
         class: %ccdn_forum_admin.form.type.category_create.class%
         arguments:
-            - @doctrine
+            - %ccdn_forum_admin.entity.category.class%
 
     ccdn_forum_admin.form.handler.category_create:
         class: %ccdn_forum_admin.form.handler.category_create.class%
@@ -22,7 +22,7 @@ services:
     ccdn_forum_admin.form.type.category_update:
         class: %ccdn_forum_admin.form.type.category_update.class%
         arguments:
-            - @doctrine
+            - %ccdn_forum_admin.entity.category.class%
 
     ccdn_forum_admin.form.handler.category_update:
         class: %ccdn_forum_admin.form.handler.category_update.class%
@@ -37,7 +37,7 @@ services:
     ccdn_forum_admin.form.type.board_create:
         class: %ccdn_forum_admin.form.type.board_update.class%
         arguments:
-            - @doctrine
+            - %ccdn_forum_admin.entity.board.class%
 
     ccdn_forum_admin.form.handler.board_create:
         class: %ccdn_forum_admin.form.handler.board_create.class%
@@ -49,7 +49,7 @@ services:
     ccdn_forum_admin.form.type.board_update:
         class: %ccdn_forum_admin.form.type.board_update.class%
         arguments:
-            - @doctrine
+            - %ccdn_forum_admin.entity.board.class%
 
     ccdn_forum_admin.form.handler.board_update:
         class: %ccdn_forum_admin.form.handler.board_update.class%
