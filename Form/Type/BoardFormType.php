@@ -52,22 +52,21 @@ class BoardFormType extends AbstractType
 				array(
 		            'property'           => 'name',
 		            'class'              => 'CCDNForum\ForumBundle\Entity\Category',
-		            'query_builder'      => function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
-		            //'preferred_choices' => $this->getPreferredCategory(),
+		            'choices'      => $options['categories'], //function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
 					'label'              => 'ccdn_forum_admin.form.label.board.category',
-					'translation_domain' =>  'CCDNForumAdminBundle',
+					'translation_domain' => 'CCDNForumAdminBundle',
 		        )
 			)
 	        ->add('name', null,
 				array(
 		        	'label'              => 'ccdn_forum_admin.form.label.board.name',
-					'translation_domain' =>  'CCDNForumAdminBundle',
+					'translation_domain' => 'CCDNForumAdminBundle',
 		        )
 			)
 	        ->add('description', 'bb_editor',
 				array(
 		        	'label'              => 'ccdn_forum_admin.form.label.board.description',
-					'translation_domain' =>  'CCDNForumAdminBundle',
+					'translation_domain' => 'CCDNForumAdminBundle',
 		        )
 			)
 	        ->add('readAuthorisedRoles', 'choice',
@@ -77,7 +76,7 @@ class BoardFormType extends AbstractType
 		            'multiple'           => true,
 		            'choices'            => $options['available_roles'],
 		            'label'              => 'View Board Roles:',
-					'translation_domain' =>  'CCDNForumAdminBundle',
+					'translation_domain' => 'CCDNForumAdminBundle',
 		        )
 			)
 	        ->add('topicCreateAuthorisedRoles', 'choice',
@@ -87,7 +86,7 @@ class BoardFormType extends AbstractType
 		            'multiple'           => true,
 		            'choices'            => $options['available_roles'],
 		            'label'              => 'Topic Create Roles:',
-					'translation_domain' =>  'CCDNForumAdminBundle',
+					'translation_domain' => 'CCDNForumAdminBundle',
 		        )
 			)
 	        ->add('topicReplyAuthorisedRoles', 'choice',
@@ -97,7 +96,7 @@ class BoardFormType extends AbstractType
 		            'multiple'           => true,
 		            'choices'            => $options['available_roles'],
 		            'label'              => 'Topic Reply Roles:',
-					'translation_domain' =>  'CCDNForumAdminBundle',
+					'translation_domain' => 'CCDNForumAdminBundle',
 		        )
 			)
 		;
@@ -116,8 +115,9 @@ class BoardFormType extends AbstractType
             'csrf_field_name'    => '_token',
             // a unique key to help generate the secret token
             'intention'          => 'board_item',
-            'validation_groups'  => 'admin_board',
-            'available_roles'    => array('admin_board_create', 'admin_board_update'),
+            'validation_groups'  => array('admin_board_create', 'admin_board_update'),
+            'available_roles'    => array(),
+			'categories'         => array(),
         );
     }
 

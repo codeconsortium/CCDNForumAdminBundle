@@ -45,6 +45,7 @@ services:
             - @form.factory
             - @ccdn_forum_admin.form.type.board_create
             - @ccdn_forum_forum.manager.board
+            - @ccdn_forum_forum.manager.category
 
     ccdn_forum_admin.form.type.board_update:
         class: %ccdn_forum_admin.form.type.board_update.class%
@@ -57,7 +58,8 @@ services:
             - @form.factory
             - @ccdn_forum_admin.form.type.board_update
             - @ccdn_forum_forum.manager.board
-        
+            - @ccdn_forum_forum.manager.category
+
     #
     # Dashboard Integrator.
     #

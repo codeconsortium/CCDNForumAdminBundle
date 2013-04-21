@@ -46,10 +46,17 @@ class BoardCreateFormHandler
     /**
 	 *
 	 * @access protected
-	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $manager
+	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $boardManager
 	 */
-    protected $manager;
-
+    protected $boardManager;
+	
+    /**
+	 *
+	 * @access protected
+	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $categoryManager
+	 */
+    protected $categoryManager;
+	
     /**
 	 * 
 	 * @access protected
@@ -76,13 +83,15 @@ class BoardCreateFormHandler
      * @access public
      * @param \Symfony\Component\Form\FormFactory $factory
 	 * @param \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
-	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $manager
+	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $boardManager
+	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $categoryManager
      */
-    public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $manager)
+    public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $boardManager, BaseManagerInterface $categoryManager)
 	{
         $this->factory = $factory;
 		$this->boardFormType = $boardFormType;
-        $this->manager = $manager;
+        $this->boardManager = $boardManager;
+		$this->categoryManager = $categoryManager;
     }
 
     /**
@@ -166,7 +175,10 @@ class BoardCreateFormHandler
 			$board = new Board();
 			$board->setCategory($this->category);
 
-			$options = array('available_roles' => $this->roleHierarchy);
+			$options = array(
+				'available_roles' => $this->roleHierarchy,
+				'categories' => $this->categoryManager->findAllCategories(),
+			);
 			
             $this->form = $this->factory->create($this->boardFormType, $board, $options);
         }
@@ -185,6 +197,6 @@ class BoardCreateFormHandler
         $board->setCachedTopicCount(0);
         $board->setCachedPostcount(0);
 		
-        return $this->manager->saveNewBoard($board)->flush();
+        return $this->boardManager->saveNewBoard($board)->flush();
     }
 }

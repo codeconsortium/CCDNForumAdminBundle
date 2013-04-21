@@ -45,9 +45,16 @@ class BoardUpdateFormHandler
     /**
 	 *
 	 * @access protected
-	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $manager
+	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $boardManager
 	 */
-    protected $manager;
+    protected $boardManager;
+	
+    /**
+	 *
+	 * @access protected
+	 * @var \CCDNForum\ForumBundle\Manager\BaseManagerInterface $categoryManager
+	 */
+    protected $categoryManager;
 
     /**
 	 * 
@@ -75,13 +82,15 @@ class BoardUpdateFormHandler
      * @access public
      * @param \Symfony\Component\Form\FormFactory $factory
 	 * @param \CCDNForum\AdminBundle\Form\Type\BoardFormType $boardFormType
-	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $manager
+	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $boardManager
+	 * @param \CCDNForum\ForumBundle\Manager\BaseManagerInterface $categoryManager
      */
-    public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $manager)
+    public function __construct(FormFactory $factory, $boardFormType, BaseManagerInterface $boardManager, BaseManagerInterface $categoryManager)
     {
         $this->factory = $factory;
 		$this->boardFormType = $boardFormType;
-        $this->manager = $manager;
+        $this->boardManager = $boardManager;
+		$this->categoryManager = $categoryManager;
     }
 
     /**
@@ -162,7 +171,10 @@ class BoardUpdateFormHandler
     public function getForm()
     {
         if (null == $this->form) {
-            $options = array('available_roles' => $this->roleHierarchy);
+            $options = array(
+				'available_roles' => $this->roleHierarchy,
+				'categories' => $this->categoryManager->findAllCategories(),
+			);
 
             $this->form = $this->factory->create($this->boardFormType, $this->board, $options);
         }
@@ -178,6 +190,6 @@ class BoardUpdateFormHandler
      */
     protected function onSuccess(Board $board)
     {
-        return $this->manager->updateBoard($board)->flush();
+        return $this->boardManager->updateBoard($board)->flush();
     }
 }
