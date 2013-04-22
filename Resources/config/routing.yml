@@ -114,5 +114,3 @@ ccdn_forum_admin_post_locked_show_all_paginated:
 ccdn_forum_admin_post_locked_bulk_action:
     pattern: /{_locale}/admin/forum/post/locked/action/checked
     defaults: { _controller: CCDNForumAdminBundle:Post:lockedBulk, _locale: en }
-
-

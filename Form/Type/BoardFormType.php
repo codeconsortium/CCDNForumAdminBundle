@@ -18,28 +18,34 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class BoardFormType extends AbstractType
 {
-	/**
-	 *
-	 * @access protected
-	 * @var string $boardClass
-	 */
-	protected $boardClass;
-	
-	/**
-	 *
-	 * @access public
-	 * @var string $boardClass
-	 */
-	public function __construct($boardClass)
-	{
-		$this->boardClass = $boardClass;
-	}
-	
+    /**
+     *
+     * @access protected
+     * @var string $boardClass
+     */
+    protected $boardClass;
+
+    /**
+     *
+     * @access public
+     * @var string $boardClass
+     */
+    public function __construct($boardClass)
+    {
+        $this->boardClass = $boardClass;
+    }
+
     /**
      *
      * @access public
@@ -48,58 +54,58 @@ class BoardFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('category', 'entity',
-				array(
-		            'property'           => 'name',
-		            'class'              => 'CCDNForum\ForumBundle\Entity\Category',
-		            'choices'      => $options['categories'], //function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
-					'label'              => 'ccdn_forum_admin.form.label.board.category',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-	        ->add('name', null,
-				array(
-		        	'label'              => 'ccdn_forum_admin.form.label.board.name',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-	        ->add('description', 'bb_editor',
-				array(
-		        	'label'              => 'ccdn_forum_admin.form.label.board.description',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-	        ->add('readAuthorisedRoles', 'choice',
-				array(
-		            'required'           => false,
-		            'expanded'           => true,
-		            'multiple'           => true,
-		            'choices'            => $options['available_roles'],
-		            'label'              => 'View Board Roles:',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-	        ->add('topicCreateAuthorisedRoles', 'choice',
-				array(
-		            'required'           => false,
-		            'expanded'           => true,
-		            'multiple'           => true,
-		            'choices'            => $options['available_roles'],
-		            'label'              => 'Topic Create Roles:',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-	        ->add('topicReplyAuthorisedRoles', 'choice',
-				array(
-		            'required'           => false,
-		            'expanded'           => true,
-		            'multiple'           => true,
-		            'choices'            => $options['available_roles'],
-		            'label'              => 'Topic Reply Roles:',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-		;
+            ->add('category', 'entity',
+                array(
+                    'property'           => 'name',
+                    'class'              => 'CCDNForum\ForumBundle\Entity\Category',
+                    'choices'      => $options['categories'], //function($repository) { return $repository->createQueryBuilder('c')->orderBy('c.id', 'ASC'); },
+                    'label'              => 'ccdn_forum_admin.form.label.board.category',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+            ->add('name', null,
+                array(
+                    'label'              => 'ccdn_forum_admin.form.label.board.name',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+            ->add('description', 'bb_editor',
+                array(
+                    'label'              => 'ccdn_forum_admin.form.label.board.description',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+            ->add('readAuthorisedRoles', 'choice',
+                array(
+                    'required'           => false,
+                    'expanded'           => true,
+                    'multiple'           => true,
+                    'choices'            => $options['available_roles'],
+                    'label'              => 'View Board Roles:',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+            ->add('topicCreateAuthorisedRoles', 'choice',
+                array(
+                    'required'           => false,
+                    'expanded'           => true,
+                    'multiple'           => true,
+                    'choices'            => $options['available_roles'],
+                    'label'              => 'Topic Create Roles:',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+            ->add('topicReplyAuthorisedRoles', 'choice',
+                array(
+                    'required'           => false,
+                    'expanded'           => true,
+                    'multiple'           => true,
+                    'choices'            => $options['available_roles'],
+                    'label'              => 'Topic Reply Roles:',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+        ;
     }
 
     /**
@@ -117,7 +123,7 @@ class BoardFormType extends AbstractType
             'intention'          => 'board_item',
             'validation_groups'  => array('admin_board_create', 'admin_board_update'),
             'available_roles'    => array(),
-			'categories'         => array(),
+            'categories'         => array(),
         );
     }
 

@@ -13,16 +13,20 @@
 
 namespace CCDNForum\AdminBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use CCDNForum\AdminBundle\Controller\PostBaseController;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class PostController extends PostBaseController
 {
@@ -31,7 +35,7 @@ class PostController extends PostBaseController
      * Display a list of locked posts (locked from editing)
      *
      * @access public
-     * @param int $page
+     * @param  int            $page
      * @return RenderResponse
      */
     public function showLockedAction($page)
@@ -56,7 +60,7 @@ class PostController extends PostBaseController
      * Display a list of deleted posts.
      *
      * @access public
-     * @param int $page
+     * @param  int            $page
      * @return RenderResponse
      */
     public function showDeletedAction($page)
@@ -75,7 +79,7 @@ class PostController extends PostBaseController
             'pager' => $postsPager,
         ));
     }
-	
+
     /**
      *
      * @access public
@@ -85,11 +89,11 @@ class PostController extends PostBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$this->bulkAction();
+        $this->bulkAction();
 
         return $this->redirectResponse($this->path('ccdn_forum_admin_post_locked_show_all'));
     }
-	
+
     /**
      *
      * @access public
@@ -99,7 +103,7 @@ class PostController extends PostBaseController
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$this->bulkAction();
+        $this->bulkAction();
 
         return $this->redirectResponse($this->path('ccdn_forum_admin_post_deleted_show_all'));
     }

@@ -13,25 +13,27 @@
 
 namespace CCDNForum\AdminBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use CCDNForum\AdminBundle\Controller\BaseController;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class TopicBaseController extends BaseController
 {
-	/**
-	 *
-	 * @access protected
-	 */
-	protected function bulkAction()
-	{
+    /**
+     *
+     * @access protected
+     */
+    protected function bulkAction()
+    {
         $itemIds = $this->getCheckedItemIds('check_');
 
         // Don't bother if there are no checkboxes to process.
@@ -41,14 +43,14 @@ class TopicBaseController extends BaseController
 
         $topics = $this->getTopicManager()->findTheseTopicsById($itemIds);
 
-        if ( ! $topics || empty($topics)) {
+        if (! $topics || empty($topics)) {
             $this->setFlash('notice', $this->trans('flash.topic.no_topics_found'));
 
             return;
         }
 
-		$submitAction = $this->getSubmitAction();
-		
+        $submitAction = $this->getSubmitAction();
+
         $user = $this->getUser();
 
         if ($submitAction == 'close') {
@@ -66,5 +68,5 @@ class TopicBaseController extends BaseController
         if ($submitAction == 'hard_delete') {
             $this->getTopicManager()->bulkHardDelete($topics)->flush();
         }
-	}
+    }
 }

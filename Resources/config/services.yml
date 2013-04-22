@@ -54,7 +54,7 @@ services:
 
     ccdn_forum_admin.form.handler.board_update:
         class: %ccdn_forum_admin.form.handler.board_update.class%
-        arguments: 
+        arguments:
             - @form.factory
             - @ccdn_forum_admin.form.type.board_update
             - @ccdn_forum_forum.manager.board

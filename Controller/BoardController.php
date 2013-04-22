@@ -13,32 +13,35 @@
 
 namespace CCDNForum\AdminBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use CCDNForum\AdminBundle\Controller\BoardBaseController;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class BoardController extends BoardBaseController
 {
     /**
      *
      * @access public
-     * @param int $categoryId
+     * @param  int                             $categoryId
      * @return RedirectResponse|RenderResponse
      */
     public function createAction($categoryId)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$category = $this->getCategoryManager()->findOneById($categoryId);
-		$this->isFound($category);
+        $category = $this->getCategoryManager()->findOneById($categoryId);
+        $this->isFound($category);
 
         $formHandler = $this->getFormHandlerToCreateBoard($category);
 
@@ -62,14 +65,14 @@ class BoardController extends BoardBaseController
     /**
      *
      * @access public
-     * @param int $boardId
+     * @param  int                             $boardId
      * @return RedirectResponse|RenderResponse
      */
     public function editAction($boardId)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$board = $this->getBoardManager()->findOneByIdWithCategory($boardId);
+        $board = $this->getBoardManager()->findOneByIdWithCategory($boardId);
         $this->isFound($board);
 
         $formHandler = $this->getFormHandlerToEditBoard($board);
@@ -95,14 +98,14 @@ class BoardController extends BoardBaseController
     /**
      *
      * @access public
-     * @param int $boardId
+     * @param  int                             $boardId
      * @return RedirectResponse|RenderResponse
      */
     public function deleteAction($boardId)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$board = $this->getBoardManager()->findOneById($boardId);
+        $board = $this->getBoardManager()->findOneById($boardId);
         $this->isFound($board);
 
         // setup crumb trail.
@@ -119,14 +122,14 @@ class BoardController extends BoardBaseController
     /**
      *
      * @access public
-     * @param int $boardId
+     * @param  int              $boardId
      * @return RedirectResponse
      */
     public function deleteConfirmedAction($boardId)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$board = $this->getBoardManager()->findOneById($boardId);
+        $board = $this->getBoardManager()->findOneById($boardId);
         $this->isFound($board);
 
         $this->getBoardManager()->remove($board)->flush();
@@ -139,17 +142,17 @@ class BoardController extends BoardBaseController
     /**
      *
      * @access public
-     * @param int $boardId, int $direction
+     * @param  int              $boardId, int $direction
      * @return RedirectResponse
      */
     public function reorderAction($boardId, $direction)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$board = $this->getBoardManager()->findOneByIdWithCategory($boardId);
-		$this->isFound($board);
-		
-		$boards = $this->getCategoryManager()->findOneByIdWithBoards($board->getCategory()->getId());
+        $board = $this->getBoardManager()->findOneByIdWithCategory($boardId);
+        $this->isFound($board);
+
+        $boards = $this->getCategoryManager()->findOneByIdWithBoards($board->getCategory()->getId());
 
         if (! $boards) {
             return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));

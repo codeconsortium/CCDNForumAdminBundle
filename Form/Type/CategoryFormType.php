@@ -18,28 +18,34 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class CategoryFormType extends AbstractType
 {
-	/**
-	 *
-	 * @access protected
-	 * @var string $categoryClass
-	 */
-	protected $categoryClass;
-	
-	/**
-	 *
-	 * @access public
-	 * @var string $categoryClass
-	 */
-	public function __construct($categoryClass)
-	{
-		$this->categoryClass = $categoryClass;
-	}
-	
+    /**
+     *
+     * @access protected
+     * @var string $categoryClass
+     */
+    protected $categoryClass;
+
+    /**
+     *
+     * @access public
+     * @var string $categoryClass
+     */
+    public function __construct($categoryClass)
+    {
+        $this->categoryClass = $categoryClass;
+    }
+
     /**
      *
      * @access public
@@ -48,13 +54,13 @@ class CategoryFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('name', null,
-				array(
-		            'label'              => 'ccdn_forum_admin.form.label.category.name',
-					'translation_domain' => 'CCDNForumAdminBundle',
-		        )
-			)
-		;
+            ->add('name', null,
+                array(
+                    'label'              => 'ccdn_forum_admin.form.label.category.name',
+                    'translation_domain' => 'CCDNForumAdminBundle',
+                )
+            )
+        ;
     }
 
     /**

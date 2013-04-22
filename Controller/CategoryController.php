@@ -13,17 +13,20 @@
 
 namespace CCDNForum\AdminBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use CCDNForum\AdminBundle\Controller\CategoryBaseController;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class CategoryController extends CategoryBaseController
 {
@@ -39,8 +42,8 @@ class CategoryController extends CategoryBaseController
         $categories = $this->getCategoryManager()->findAllBoardsGroupedByCategory();
 
         // Must be consistent with the topics per page on regular user board index.
-		$topicsPerPage = $this->getTopicManager()->getTopicsPerPageOnBoards();
-		
+        $topicsPerPage = $this->getTopicManager()->getTopicsPerPageOnBoards();
+
         $crumbs = $this->getCrumbs()
             ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'));
 
@@ -58,7 +61,7 @@ class CategoryController extends CategoryBaseController
      */
     public function createAction()
     {
-		$this->isAuthorised('ROLE_ADMIN');
+        $this->isAuthorised('ROLE_ADMIN');
 
         $formHandler = $this->getFormHandlerToCreateCategory();
 
@@ -82,16 +85,16 @@ class CategoryController extends CategoryBaseController
     /**
      *
      * @access public
-     * @param int $categoryId
+     * @param  int                             $categoryId
      * @return RedirectResponse|RenderResponse
      */
     public function editAction($categoryId)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$category = $this->getCategoryManager()->findOneById($categoryId);
-		$this->isFound($category);
-		
+        $category = $this->getCategoryManager()->findOneById($categoryId);
+        $this->isFound($category);
+
         $formHandler = $this->getFormHandlerToEditCategory($category);
 
         if ($formHandler->process($this->getRequest())) {
@@ -115,7 +118,7 @@ class CategoryController extends CategoryBaseController
     /**
      *
      * @access public
-     * @param int $categoryId
+     * @param  int                             $categoryId
      * @return RedirectResponse|RenderResponse
      */
     public function deleteAction($categoryId)
@@ -123,8 +126,8 @@ class CategoryController extends CategoryBaseController
         $this->isAuthorised('ROLE_ADMIN');
 
         $category = $this->getCategoryManager()->findOneById($categoryId);
-		$this->isFound($category);
-		
+        $this->isFound($category);
+
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
             ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
@@ -139,7 +142,7 @@ class CategoryController extends CategoryBaseController
     /**
      *
      * @access public
-     * @param int $categoryId
+     * @param  int              $categoryId
      * @return RedirectResponse
      */
     public function deleteConfirmedAction($categoryId)
@@ -147,8 +150,8 @@ class CategoryController extends CategoryBaseController
         $this->isAuthorised('ROLE_ADMIN');
 
         $category = $this->getCategoryManager()->findOneById($categoryId);
-		$this->isFound($category);
-		
+        $this->isFound($category);
+
         $this->getCategoryManager()->remove($category)->flush();
 
         $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.delete.success'));
@@ -159,15 +162,15 @@ class CategoryController extends CategoryBaseController
     /**
      *
      * @access public
-     * @param int $categoryId, string $direction
+     * @param  int              $categoryId, string $direction
      * @return RedirectResponse
      */
     public function reorderAction($categoryId, $direction)
     {
         $this->isAuthorised('ROLE_ADMIN');
 
-		$category = $this->getCategoryManager()->findAllWithBoards();
-		
+        $category = $this->getCategoryManager()->findAllWithBoards();
+
         if (! $categories) {
             return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         }

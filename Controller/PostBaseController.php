@@ -13,16 +13,18 @@
 
 namespace CCDNForum\AdminBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use CCDNForum\AdminBundle\Controller\BaseController;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNForum
+ * @package  AdminBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNForumAdminBundle
+ *
  */
 class PostBaseController extends BaseController
 {
@@ -32,8 +34,8 @@ class PostBaseController extends BaseController
      */
     protected function bulkAction()
     {
-		$itemIds = $this->getCheckedItemIds('check_');
-		
+        $itemIds = $this->getCheckedItemIds('check_');
+
         // Don't bother if there are no checkboxes to process.
         if (count($itemIds) < 1) {
             return;
@@ -41,14 +43,14 @@ class PostBaseController extends BaseController
 
         $posts = $this->getPostManager()->findThesePostsById($itemIds);
 
-        if ( ! $posts || empty($posts)) {
+        if (! $posts || empty($posts)) {
             $this->setFlash('notice', $this->trans('flash.post.no_posts_found'));
 
             return;
         }
 
-		$submitAction = $this->getSubmitAction();
-		
+        $submitAction = $this->getSubmitAction();
+
         $user = $this->getUser();
 
         if ($submitAction == 'lock') {

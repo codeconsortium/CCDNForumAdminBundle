@@ -19,12 +19,12 @@
 		<td class="center">
 			<span class="label label-info lead" title="{{- board.getCachedTopicCount -}}">
 				{{- abbr_number(board.getCachedTopicCount) -}}
-			</span>			
+			</span>
 		</td>
 		<td class="center">
 			<span class="label label-info lead" title="{{- board.getCachedPostCount -}}">
 				{{- abbr_number(board.getCachedPostCount) -}}
-			</span>			
+			</span>
 		</td>
 		<td class="center">
 	        {%- if board.getLastPost -%}
@@ -35,7 +35,7 @@
 	                {% set profile = create_profile(board.getLastPost.getCreatedBy) %}
 
 	                {{- 'ccdn_forum_forum.post.posted_by' | trans({}, 'CCDNForumForumBundle') -}}
-					
+
 	                {{- profile.getProfilePath|raw -}}
 
 	                <br>
@@ -56,5 +56,5 @@
 	        {%- endif -%}
 		</td>
 	</tr>
-	
+
 {%- endspaceless -%}
