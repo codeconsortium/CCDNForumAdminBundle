@@ -46,7 +46,7 @@ class TopicController extends TopicBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_closed_show_all'));
+            ->add($this->trans('crumbs.topic.show_closed'), $this->path('ccdn_forum_admin_topic_closed_show_all'));
 
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.',
             array(
@@ -73,7 +73,7 @@ class TopicController extends TopicBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show_all'));
+            ->add($this->trans('crumbs.topic.show_deleted'), $this->path('ccdn_forum_admin_topic_deleted_show_all'));
 
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.',
             array(

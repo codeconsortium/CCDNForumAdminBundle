@@ -45,13 +45,15 @@ class CategoryController extends CategoryBaseController
         $topicsPerPage = $this->getTopicManager()->getTopicsPerPageOnBoards();
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'));
+            ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'));
 
-        return $this->renderResponse('CCDNForumAdminBundle:Category:index.html.', array(
-            'crumbs' => $crumbs,
-            'categories' => $categories,
-            'topics_per_page' => $topicsPerPage,
-        ));
+        return $this->renderResponse('CCDNForumAdminBundle:Category:index.html.',
+			array(
+	            'crumbs' => $crumbs,
+	            'categories' => $categories,
+	            'topics_per_page' => $topicsPerPage,
+	        )
+		);
     }
 
     /**
@@ -66,19 +68,21 @@ class CategoryController extends CategoryBaseController
         $formHandler = $this->getFormHandlerToCreateCategory();
 
         if ($formHandler->process($this->getRequest())) {
-            $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.create.success'));
+            $this->setFlash('notice', $this->trans('flash.success.category.create'));
 
             return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.create'), $this->path('ccdn_forum_admin_category_create'));
+                ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+                ->add($this->trans('crumbs.category.create'), $this->path('ccdn_forum_admin_category_create'));
 
-            return $this->renderResponse('CCDNForumAdminBundle:Category:create.html.', array(
-                'crumbs' => $crumbs,
-                'form' => $formHandler->getForm()->createView(),
-            ));
+            return $this->renderResponse('CCDNForumAdminBundle:Category:create.html.',
+				array(
+	                'crumbs' => $crumbs,
+	                'form' => $formHandler->getForm()->createView(),
+	            )
+			);
         }
     }
 
@@ -98,20 +102,22 @@ class CategoryController extends CategoryBaseController
         $formHandler = $this->getFormHandlerToEditCategory($category);
 
         if ($formHandler->process($this->getRequest())) {
-            $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.edit.success'));
+            $this->setFlash('notice', $this->trans('flash.success.category.edit'));
 
             return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.edit', array('%category_name%' => $category->getName())), $this->path('ccdn_forum_admin_category_edit', array('categoryId' => $categoryId)));
+                ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+                ->add($this->trans('crumbs.category.edit', array('%category_name%' => $category->getName())), $this->path('ccdn_forum_admin_category_edit', array('categoryId' => $categoryId)));
 
-            return $this->renderResponse('CCDNForumAdminBundle:Category:edit.html.', array(
-                'category' => $category,
-                'crumbs' => $crumbs,
-                'form' => $formHandler->getForm()->createView(),
-            ));
+            return $this->renderResponse('CCDNForumAdminBundle:Category:edit.html.',
+				array(
+	                'category' => $category,
+	                'crumbs' => $crumbs,
+	                'form' => $formHandler->getForm()->createView(),
+	            )
+			);
         }
     }
 
@@ -130,13 +136,15 @@ class CategoryController extends CategoryBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
-            ->add($this->trans('ccdn_forum_admin.crumbs.category.delete', array('%category_name%' => $category->getName())), $this->path('ccdn_forum_admin_category_delete', array('categoryId' => $category->getId())));
+            ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+            ->add($this->trans('crumbs.category.delete', array('%category_name%' => $category->getName())), $this->path('ccdn_forum_admin_category_delete', array('categoryId' => $category->getId())));
 
-        return $this->renderResponse('CCDNForumAdminBundle:Category:delete_category.html.', array(
-            'category' => $category,
-            'crumbs' => $crumbs,
-        ));
+        return $this->renderResponse('CCDNForumAdminBundle:Category:delete_category.html.',
+			array(
+	            'category' => $category,
+	            'crumbs' => $crumbs,
+	        )
+		);
     }
 
     /**
@@ -154,7 +162,7 @@ class CategoryController extends CategoryBaseController
 
         $this->getCategoryManager()->remove($category)->flush();
 
-        $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.delete.success'));
+        $this->setFlash('notice', $this->trans('flash.success.category.delete'));
 
         return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
     }
@@ -184,7 +192,7 @@ class CategoryController extends CategoryBaseController
 
         $this->getCategoryManager()->reorder($categories, $categoryId, $direction)->flush();
 
-        $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.category.reorder.success'));
+        $this->setFlash('notice', $this->trans('flash.success.category.reorder'));
 
         return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
     }

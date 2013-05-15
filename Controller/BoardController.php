@@ -46,19 +46,21 @@ class BoardController extends BoardBaseController
         $formHandler = $this->getFormHandlerToCreateBoard($category);
 
         if ($formHandler->process($this->getRequest())) {
-            $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.create.success'));
+            $this->setFlash('notice', $this->trans('flash.success.board.create'));
 
             return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
-                ->add($this->trans('ccdn_forum_admin.crumbs.board.create'), $this->path('ccdn_forum_admin_board_create'));
+                ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+                ->add($this->trans('crumbs.board.create'), $this->path('ccdn_forum_admin_board_create'));
 
-            return $this->renderResponse('CCDNForumAdminBundle:Board:create.html.', array(
-                'crumbs' => $crumbs,
-                'form' => $formHandler->getForm()->createView(),
-            ));
+            return $this->renderResponse('CCDNForumAdminBundle:Board:create.html.',
+				array(
+	                'crumbs' => $crumbs,
+	                'form' => $formHandler->getForm()->createView(),
+	            )
+			);
         }
     }
 
@@ -78,20 +80,22 @@ class BoardController extends BoardBaseController
         $formHandler = $this->getFormHandlerToEditBoard($board);
 
         if ($formHandler->process($this->getRequest())) {
-            $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.edit.success'));
+            $this->setFlash('notice', $this->trans('flash.success.board.edit'));
 
             return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
         } else {
             // setup crumb trail.
             $crumbs = $this->getCrumbs()
-                ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
-                ->add($this->trans('ccdn_forum_admin.crumbs.board.edit', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_edit', array('boardId' => $boardId)));
+                ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+                ->add($this->trans('crumbs.board.edit', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_edit', array('boardId' => $boardId)));
 
-            return $this->renderResponse('CCDNForumAdminBundle:Board:edit.html.', array(
-                'board' => $board,
-                'crumbs' => $crumbs,
-                'form' => $formHandler->getForm()->createView(),
-            ));
+            return $this->renderResponse('CCDNForumAdminBundle:Board:edit.html.',
+				array(
+	                'board' => $board,
+	                'crumbs' => $crumbs,
+	                'form' => $formHandler->getForm()->createView(),
+	            )
+			);
         }
     }
 
@@ -110,13 +114,15 @@ class BoardController extends BoardBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
-            ->add($this->trans('ccdn_forum_admin.crumbs.board.delete', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_delete', array('boardId' => $board->getId())));
+            ->add($this->trans('crumbs.category.index'), $this->path('ccdn_forum_admin_category_index'))
+            ->add($this->trans('crumbs.board.delete', array('%board_name%' => $board->getName())), $this->path('ccdn_forum_admin_board_delete', array('boardId' => $board->getId())));
 
-        return $this->renderResponse('CCDNForumAdminBundle:Board:delete_board.html.', array(
-            'board' => $board,
-            'crumbs' => $crumbs,
-        ));
+        return $this->renderResponse('CCDNForumAdminBundle:Board:delete_board.html.',
+			array(
+	            'board' => $board,
+	            'crumbs' => $crumbs,
+	        )
+		);
     }
 
     /**
@@ -134,7 +140,7 @@ class BoardController extends BoardBaseController
 
         $this->getBoardManager()->remove($board)->flush();
 
-        $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.delete.success'));
+        $this->setFlash('notice', $this->trans('flash.success.board.delete'));
 
         return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
     }
@@ -165,7 +171,7 @@ class BoardController extends BoardBaseController
 
         $this->getBoardManager()->reorder($boards, $boardId, $direction)->flush();
 
-        $this->setFlash('notice', $this->trans('ccdn_forum_admin.flash.board.reorder.success'));
+        $this->setFlash('notice', $this->trans('flash.success.board.reorder'));
 
         return $this->redirectResponse($this->path('ccdn_forum_admin_category_index'));
     }

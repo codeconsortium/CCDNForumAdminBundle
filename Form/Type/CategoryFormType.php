@@ -56,7 +56,7 @@ class CategoryFormType extends AbstractType
         $builder
             ->add('name', null,
                 array(
-                    'label'              => 'ccdn_forum_admin.form.label.category.name',
+                    'label'              => 'form.label.category.name',
                     'translation_domain' => 'CCDNForumAdminBundle',
                 )
             )

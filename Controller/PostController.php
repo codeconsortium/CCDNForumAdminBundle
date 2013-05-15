@@ -46,13 +46,15 @@ class PostController extends PostBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_locked'), $this->path('ccdn_forum_admin_post_locked_show_all'));
+            ->add($this->trans('crumbs.post.show_locked'), $this->path('ccdn_forum_admin_post_locked_show_all'));
 
-        return $this->renderResponse('CCDNForumAdminBundle:Post:show_locked.html.', array(
-            'crumbs' => $crumbs,
-            'posts' => $postsPager,
-            'pager' => $postsPager,
-        ));
+        return $this->renderResponse('CCDNForumAdminBundle:Post:show_locked.html.',
+			array(
+	            'crumbs' => $crumbs,
+	            'posts' => $postsPager,
+	            'pager' => $postsPager,
+	        )
+		);
     }
 
     /**
@@ -71,13 +73,15 @@ class PostController extends PostBaseController
 
         // setup crumb trail.
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_forum_admin.crumbs.post.show_deleted'), $this->path('ccdn_forum_admin_post_deleted_show_all'));
+            ->add($this->trans('crumbs.post.show_deleted'), $this->path('ccdn_forum_admin_post_deleted_show_all'));
 
-        return $this->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.', array(
-            'crumbs' => $crumbs,
-            'posts' => $postsPager,
-            'pager' => $postsPager,
-        ));
+        return $this->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.',
+			array(
+	            'crumbs' => $crumbs,
+	            'posts' => $postsPager,
+	            'pager' => $postsPager,
+	        )
+		);
     }
 
     /**

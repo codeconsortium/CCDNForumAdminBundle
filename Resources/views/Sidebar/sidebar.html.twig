@@ -2,21 +2,21 @@
 	{%- set route = app.request.attributes.get('_route') -%}
 
 	<li class="nav-header">
-		{{- 'ccdn_forum_admin.sidebar.header.tools' | trans({}, 'CCDNForumAdminBundle') -}}
+		{{- 'sidebar.header.tools' | trans({}, 'CCDNForumAdminBundle') -}}
 	</li>
 
 	{%- if route == 'ccdn_forum_admin_category_index' -%}
 		<li class="active">
 			<a href="{{- path('ccdn_forum_admin_category_index') -}}">
 				<i class="icon-white icon-home"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.manage_boards' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.manage_boards' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- else -%}
 		<li>
 			<a href="{{- path('ccdn_forum_admin_category_index') -}}">
 				<i class="icon-home"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.manage_boards' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.manage_boards' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- endif -%}
@@ -25,14 +25,14 @@
 		<li class="active">
 			<a href="{{- path('ccdn_forum_admin_category_create') -}}">
 				<i class="icon-white icon-asterisk"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.category.create' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.category.create' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- else -%}
 		<li>
 			<a href="{{- path('ccdn_forum_admin_category_create') -}}">
 				<i class="icon-asterisk"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.category.create' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.category.create' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- endif -%}
@@ -41,48 +41,33 @@
 		<li class="active">
 			<a href="{{- path('ccdn_forum_admin_board_create') -}}">
 				<i class="icon-white icon-asterisk"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.board.create' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.board.create' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- else -%}
 		<li>
 			<a href="{{- path('ccdn_forum_admin_board_create') -}}">
 				<i class="icon-asterisk"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.board.create' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.board.create' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- endif -%}
 
 	<li class="divider"></li>
 
-	{%- if route == 'ccdn_forum_admin_post_locked_show_all' -%}
-		<li class="active">
-			<a href="{{- path('ccdn_forum_admin_post_locked_show_all', {}) -}}">
-				<i class="icon-white icon-lock"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.post.show_locked' | trans({}, 'CCDNForumAdminBundle') -}}
-			</a>
-		</li>
-	{%- else -%}
-		<li>
-			<a href="{{- path('ccdn_forum_admin_post_locked_show_all', {}) -}}">
-				<i class="icon-lock"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.post.show_locked' | trans({}, 'CCDNForumAdminBundle') -}}
-			</a>
-		</li>
-	{%- endif -%}
 
 	{%- if route == 'ccdn_forum_admin_topic_closed_show_all' -%}
 		<li class="active">
 			<a href="{{- path('ccdn_forum_admin_topic_closed_show_all', {}) -}}">
 				<i class="icon-white icon-lock"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.topic.show_closed' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.topic.show_closed' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- else -%}
 		<li>
 			<a href="{{- path('ccdn_forum_admin_topic_closed_show_all', {}) -}}">
 				<i class="icon-lock"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.topic.show_closed' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.topic.show_closed' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- endif -%}
@@ -91,30 +76,48 @@
 		<li class="active">
 			<a href="{{- path('ccdn_forum_admin_topic_deleted_show_all') -}}">
 				<i class="icon-white icon-trash"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- else -%}
 		<li>
 			<a href="{{- path('ccdn_forum_admin_topic_deleted_show_all') -}}">
 				<i class="icon-trash"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.topic.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- endif -%}
 
+	<li class="divider"></li>
+	
+	{%- if route == 'ccdn_forum_admin_post_locked_show_all' -%}
+		<li class="active">
+			<a href="{{- path('ccdn_forum_admin_post_locked_show_all', {}) -}}">
+				<i class="icon-white icon-lock"></i>
+				{{- 'link.post.show_locked' | trans({}, 'CCDNForumAdminBundle') -}}
+			</a>
+		</li>
+	{%- else -%}
+		<li>
+			<a href="{{- path('ccdn_forum_admin_post_locked_show_all', {}) -}}">
+				<i class="icon-lock"></i>
+				{{- 'link.post.show_locked' | trans({}, 'CCDNForumAdminBundle') -}}
+			</a>
+		</li>
+	{%- endif -%}
+	
 	{%- if route == 'ccdn_forum_admin_post_deleted_show_all' -%}
 		<li class="active">
 			<a href="{{- path('ccdn_forum_admin_post_deleted_show_all') -}}">
 				<i class="icon-white icon-trash"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.post.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.post.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- else -%}
 		<li>
 			<a href="{{- path('ccdn_forum_admin_post_deleted_show_all') -}}">
 				<i class="icon-trash"></i>
-				{{- 'ccdn_forum_admin.sidebar.link.post.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
+				{{- 'link.post.show_deleted' | trans({}, 'CCDNForumAdminBundle') -}}
 			</a>
 		</li>
 	{%- endif -%}

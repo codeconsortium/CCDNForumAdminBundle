@@ -2,7 +2,7 @@
 
 {% set LayoutTemplate = ccdn_forum_admin.board.edit.layout_template %}
 
-{% block title %}{{- truncDot('ccdn_forum_admin.title.board.edit'| trans({'%board_name%': board.name}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
+{% block title %}{{- truncDot('title.board.edit'| trans({'%board_name%': board.name}, 'CCDNForumAdminBundle'), ccdn_forum_admin.seo.title_length) -}}{% endblock %}
 
 
 {% block body_content %}
@@ -16,7 +16,7 @@
 
 				<div class="control-group form-title">
 					<div class="controls">
-						<h3>{{- 'ccdn_forum_admin.title.board.edit'| trans({'%board_name%': board.name}, 'CCDNForumAdminBundle') -}}</h3>
+						<h3>{{- 'title.board.edit'| trans({'%board_name%': board.name}, 'CCDNForumAdminBundle') -}}</h3>
 					</div>
 				</div>
 
@@ -25,10 +25,10 @@
 				{{- form_widget(form) -}}
 
 				<div class="form-actions">
-					<input type="submit" class="btn btn-primary" value="{{- 'ccdn_forum_admin.form.button.board.edit'| trans({}, 'CCDNForumAdminBundle') -}}">
+					<input type="submit" class="btn btn-primary" value="{{- 'form.button.board.edit'| trans({}, 'CCDNForumAdminBundle') -}}">
 
 					<a class="btn" href="{{- path('ccdn_forum_admin_category_index') -}}">
-						{{- 'ccdn_forum_admin.form.button.cancel' |trans({}, 'CCDNForumAdminBundle') -}}
+						{{- 'form.button.cancel' |trans({}, 'CCDNForumAdminBundle') -}}
 					</a>
 				</div>
 

@@ -1,165 +1,173 @@
-ccdn_forum_admin:
-    dashboard:
-        pages:
-            admin: Admin
-            forum: Forum
-        categories:
-            forum_admin: Forum Administration
+dashboard:
+    pages:
+        admin:           "Admin"
+        forum:           "Forum"
+    categories:
+        forum_admin:     "Forum Administration"
 
-#
-# Page Titles.
-#
-ccdn_forum_admin.title.manage_boards: 'Edit Boards'
-ccdn_forum_admin.title.category: 'Forum Admin.'
-ccdn_forum_admin.title.category.create: 'Create new category.'
-ccdn_forum_admin.title.category.edit: 'Edit category: %category_name%.'
-ccdn_forum_admin.title.category.delete: 'Delete category: %category_name%?'
-ccdn_forum_admin.title.board.create: 'Create new board.'
-ccdn_forum_admin.title.board.edit: 'Edit board: %board_name%.'
-ccdn_forum_admin.title.board.delete: 'Delete board: %board_name%?'
-ccdn_forum_admin.title.topic.show_closed: 'Closed Topics.'
-ccdn_forum_admin.title.topic.show_deleted: 'Deleted Topics.'
-ccdn_forum_admin.title.post.show_locked: 'Locked Posts.'
-ccdn_forum_admin.title.post.show_deleted: 'Deleted Posts.'
+title:
+    manage_boards:       "Edit Boards"
+    category:
+        index:           "Forum Admin"
+        create:          "Create New Category"
+        edit:            "Edit Category: %category_name%"
+        delete:          "Delete Category: %category_name%?"
+    board:
+        create:          "Create New Board"
+        edit:            "Edit Board: %board_name%"
+        delete:          "Delete Board: %board_name%?"
+    topic:
+        show_closed:     "Closed Topics"
+        show_deleted:    "Deleted Topics"
+    post:
+        show_locked:     "Locked Posts"
+        show_deleted:    "Deleted Posts"
 
-#
-# Crumbs.
-#
-ccdn_forum_admin.crumbs.dashboard.index: 'Dashboard'
-ccdn_forum_admin.crumbs.dashboard.admin: 'Admin Panel'
-ccdn_forum_admin.crumbs.category.index: 'Index'
-ccdn_forum_admin.crumbs.category.create: 'Create Category'
-ccdn_forum_admin.crumbs.category.edit: 'Edit Category %category_name%'
-ccdn_forum_admin.crumbs.category.delete: 'Delete Category %category_name%'
-ccdn_forum_admin.crumbs.board.create: 'Create Board'
-ccdn_forum_admin.crumbs.board.edit: 'Edit Board %board_name%'
-ccdn_forum_admin.crumbs.board.delete: 'Delete Board %board_name%'
-ccdn_forum_admin.crumbs.topic.show_closed: 'Show Closed Topics'
-ccdn_forum_admin.crumbs.topic.show_deleted: 'Deleted Topics'
-ccdn_forum_admin.crumbs.topic.change_board: 'Change Board'
-ccdn_forum_admin.crumbs.post.show_locked: 'Show Locked Posts'
-ccdn_forum_admin.crumbs.post.show_deleted: 'Deleted Posts'
+crumbs:
+    category:
+        index:           "Index"
+        create:          "Create Category"
+        edit:            "Edit Category %category_name%"
+        delete:          "Delete Category %category_name%"
+    board:
+        create:          "Create Board"
+        edit:            "Edit Board %board_name%"
+        delete:          "Delete Board %board_name%"
+    topic:
+        show_closed:     "Show Closed Topics"
+        show_deleted:    "Deleted Topics"
+        change_board:    "Change Board"
+    post:
+        show_locked:     "Show Locked Posts"
+        show_deleted:    "Deleted Posts"
 
-#
-# Flash Messages.
-#
-ccdn_forum_admin.flash.category.create.success: 'Category Created Successfully.'
-ccdn_forum_admin.flash.category.edit.success: 'Category Edited Successfully.'
-ccdn_forum_admin.flash.category.delete.success: 'Category Deleted Successfully.'
-ccdn_forum_admin.flash.category.reorder.success: 'Category Re-Ordered Successfully.'
-ccdn_forum_admin.flash.board.create.success: 'Board Created Successfully.'
-ccdn_forum_admin.flash.board.edit.success: 'Board Edited Successfully.'
-ccdn_forum_admin.flash.board.delete.success: 'Board Deleted Successfully.'
-ccdn_forum_admin.flash.board.reorder.success: 'Board Re-Ordered Successfully.'
-ccdn_forum_admin.flash.topic.move.success: 'Topic: %topic_title% moved.'
-ccdn_forum_admin.flash.topic.close.success: 'Topic %topic_title% closed.'
-ccdn_forum_admin.flash.topic.reopen.success: 'Topic: %topic_title% reopened.'
-ccdn_forum_admin.flash.topic.restore.success: 'Topic: %topic_title% restored.'
-ccdn_forum_admin.flash.topic.delete.success: 'Topic: %topic_title% deleted.'
-ccdn_forum_admin.flash.topic.sticky.success: 'Topic: %topic_title% made sticky.'
-ccdn_forum_admin.flash.topic.unsticky.success: 'Topic: %topic_title% is no longer sticky.'
-ccdn_forum_admin.flash.post.lock.success: 'Post: #%post_id% locked.'
-ccdn_forum_admin.flash.post.unlock.success: 'Post: #%post_id% unlocked.'
-ccdn_forum_admin.flash.post.restore.success: 'Post: #%post_id% restored.'
+sidebar:
+    header:
+        tools:           "Forum Admin"
 
-ccdn_forum_admin.flash.topic.none_found: 'The topics you were looking for were not found!'
-ccdn_forum_admin.flash.post.none_found: 'The posts you were looking for were not found!'
+link:
+    manage_boards:       "Manage Boards"
+    item:
+        move_up:         "Move Up"
+        move_down:       "Move Down"
+    category:
+        edit:            "Edit Category"
+        delete:          "Delete Category"
+        create:          "Create Category"
+    board:
+        create:          "Create Board"
+        add:             "Add Board"
+        edit:            "Edit Board"
+        delete:          "Delete Board"
+    topic:
+        show_closed:     "Closed Topics"
+        show_deleted:    "Deleted Topics"
+        close:           "Close"
+        reopen:          "Re-Open"
+        restore:         "Restore"
+        delete_soft:     "Soft Delete"
+        delete_hard:     "Hard Delete"
+        change_board:    "Change Board"
+        sticky:          "Make Sticky Topic"
+        unsticky:        "Unsticky Topic"
+    post:
+        lock:            "Lock"
+        unlock:          "Unlock"
+        restore:         "Restore"
+        delete_soft:     "Soft Delete"
+        delete_hard:     "Hard Delete"
+        show_locked:     "Locked Posts"
+        show_deleted:    "Deleted Posts"
 
-#
-# Sidebar.
-#
-ccdn_forum_admin.sidebar.header.tools: 'Forum Admin'
-ccdn_forum_admin.sidebar.link.manage_boards: 'Manage Boards'
-ccdn_forum_admin.sidebar.link.category.create: 'Create Category'
-ccdn_forum_admin.sidebar.link.board.create: 'Create Board'
-ccdn_forum_admin.sidebar.link.topic.show_closed: 'Closed Topics'
-ccdn_forum_admin.sidebar.link.topic.show_deleted: 'Deleted Topics'
-ccdn_forum_admin.sidebar.link.post.show_locked: 'Locked Posts'
-ccdn_forum_admin.sidebar.link.post.show_deleted: 'Deleted Posts'
+form:
+    required:                "This field is required"
+    label:
+        category:
+            name:            "Category Name"
+        board:
+            category:        "Category"
+            name:            "Board Name"
+            description:     "Board Description"
+            view_roles:      "Board View Roles"
+        topic:
+            create_roles:    "Topic Create Roles"
+            reply_roles:     "Topic Reply Roles"
+    button:
+        cancel:              "Cancel"
+        yes:                 "Yes"
+        no:                  "No"
+        category:
+            create:          "Create Category"
+            edit:            "Save Changes"
+        board:
+            create:          "Create Board"
+            edit:            "Save Changes"
+        topic:
+            move_to_board:   "Update Topic"
 
-#
-# Link Labels.
-#
-ccdn_forum_admin.link.category.edit: 'Edit Category'
-ccdn_forum_admin.link.category.delete: 'Delete Category'
-ccdn_forum_admin.link.board.add: 'Add Board'
-ccdn_forum_admin.link.board.edit: 'Edit Board'
-ccdn_forum_admin.link.board.delete: 'Delete Board'
-ccdn_forum_admin.link.item.move_up: 'Move Up'
-ccdn_forum_admin.link.item.move_down: 'Move Down'
-ccdn_forum_admin.link.topic.close: 'Close'
-ccdn_forum_admin.link.topic.reopen: 'Re-Open'
-ccdn_forum_admin.link.topic.restore: 'Restore'
-ccdn_forum_admin.link.topic.delete_soft: 'Soft Delete'
-ccdn_forum_admin.link.topic.delete_hard: 'Hard Delete'
-ccdn_forum_admin.link.topic.change_board: 'Change Board'
-ccdn_forum_admin.link.topic.sticky: 'Make Sticky Topic'
-ccdn_forum_admin.link.topic.unsticky: 'Unsticky Topic'
-ccdn_forum_admin.link.post.lock: 'Lock'
-ccdn_forum_admin.link.post.unlock: 'Unlock'
-ccdn_forum_admin.link.post.restore: 'Restore'
-ccdn_forum_admin.link.post.delete_soft: 'Soft Delete'
-ccdn_forum_admin.link.post.delete_hard: 'Hard Delete'
+category:
+    delete_confirm:          "Are you sure you want to delete the category %category_name%?"
 
-#
-# Forms.
-#
-ccdn_forum_admin.form.field.required: 'This field is required'
+board:
+    delete_confirm:          "Are you sure you want to delete the board %board_name%?"
+topic:
+    closed:
+        none:                "No closed topics found."
+    deleted:
+        none:                "There are no deleted topics."
+post:
+    deleted:
+        none:                "There are no deleted posts."
+    locked:
+        none:                "No locked posts found."
 
-ccdn_forum_admin.form.label.category.name: 'Category Name:'
-ccdn_forum_admin.form.button.category.create: 'Create Category'
-ccdn_forum_admin.form.button.category.edit: 'Save Changes'
+generic:
+    posted_by:              "Posted by  %name%"
+    created_by:              "Created By %name%"
+    locked_by:               "Locked By %name%"
+    closed_by:               "Closed By %name%"
+    deleted_by:              "Deleted By %name%"
+    last_post:               "Last Post"
+    thead:
+        board:                   "Board"
+        topic:                   "Topic"
+        topics:                  "Topics"
+        post_number:             "#"
+        posts:                   "Posts"
+        replies:                 "Replies"
+        views:                   "Views"
+        created_by:              "Created By"
+        locked_by:               "Locked By"
+        closed_by:               "Closed By"
+        deleted_by:              "Deleted By"
 
-ccdn_forum_admin.form.label.board.category: 'Category: '
-ccdn_forum_admin.form.label.board.name: 'Board Name: '
-ccdn_forum_admin.form.label.board.description: 'Board Description: '
-ccdn_forum_admin.form.button.board.create: 'Create Board'
-ccdn_forum_admin.form.button.board.edit: 'Save Changes'
-ccdn_forum_admin.form.button.cancel: 'Cancel'
+flash:
+    success:
+        category:
+            create:      "Category Created Successfully."
+            edit:        "Category Edited Successfully."
+            delete:      "Category Deleted Successfully."
+            reorder:     "Category Re-Ordered Successfully."
+        board:
+            create:      "Board Created Successfully."
+            edit:        "Board Edited Successfully."
+            delete:      "Board Deleted Successfully."
+            reorder:     "Board Re-Ordered Successfully."
+        topic:
+            move:        "Moved topic: %topic_title%."
+            close:       "Closed topic %topic_title%."
+            reopen:      "Reopened topic: %topic_title%."
+            restore:     "Restored topic: %topic_title%."
+            delete:      "Deleted topic: %topic_title%."
+            sticky:      "Made sticky topic: %topic_titl%."
+            unsticky:    "Unstickied topic: %topic_title%."
+        post:
+            lock:        "Locked post: #%post_id%."
+            unlock:      "Unlocked post: #%post_id%."
+            restore:     "Restored post: #%post_id%."
+    error:
+        topic:
+            not_found:   "The topics you were looking for were not found!"
+        post:
+            not_found:   "The posts you were looking for were not found!"
 
-ccdn_forum_admin.form.button.topic.move_to_board: 'Update Topic'
-
-#
-# Table Labels.
-#
-ccdn_forum_admin.posts.deleted.table.empty: 'There are no deleted posts.'
-ccdn_forum_admin.topics.deleted.table.empty: 'There are no deleted topics.'
-ccdn_forum_admin.board.table.head.board: 'Board'
-ccdn_forum_admin.board.table.head.topic_count: 'Topics'
-ccdn_forum_admin.board.table.head.post_count: 'Posts'
-ccdn_forum_admin.board.table.head.last_post: 'Last Post'
-
-ccdn_forum_admin.board.table.head.topic_title: 'Topic'
-ccdn_forum_admin.board.table.head.reply_count: 'Replies'
-ccdn_forum_admin.board.table.head.view_count: 'Views'
-ccdn_forum_admin.board.table.head.closed_by: 'Closed By'
-ccdn_forum_admin.board.table.head.closed_on: 'Closed At'
-ccdn_forum_admin.board.table.head.deleted_by: 'Deleted By'
-ccdn_forum_admin.board.table.head.deleted_on: 'Deleted At'
-ccdn_forum_admin.board.table.head.post_number: 'Post #'
-ccdn_forum_admin.board.table.head.created_by: 'Created By'
-ccdn_forum_admin.board.table.head.created_on: 'Created At'
-ccdn_forum_admin.board.table.head.locked_by: 'Locked By'
-ccdn_forum_admin.board.table.head.locked_on: 'Locked At'
-
-ccdn_forum_admin.board.table.head.reply_count: 'replies'
-ccdn_forum_admin.board.table.head.view_count: 'views'
-ccdn_forum_admin.board.table.head.post_number: 'Post #'
-ccdn_forum_admin.board.table.head.topic_title: 'Topic'
-ccdn_forum_admin.board.table.head.created_by: 'Created By'
-ccdn_forum_admin.board.table.head.locked_by: 'Locked By'
-ccdn_forum_admin.board.table.head.closed_by: 'Closed By'
-ccdn_forum_admin.board.table.head.deleted_by: 'Deleted By'
-ccdn_forum_admin.posts.locked.table.empty: 'No locked posts found.'
-ccdn_forum_admin.topics.closed.table.empty: 'No closed topics found.'
-
-#
-# Generic.
-#
-ccdn_forum_admin.category.delete.confirmation_question: 'Are you sure you want to delete the category %category_name%?'
-ccdn_forum_admin.board.delete.confirmation_question: 'Are you sure you want to delete the board %board_name%?'
-ccdn_forum_admin.delete.confirm_yes: 'Yes'
-ccdn_forum_admin.delete.confirm_no: 'No'
-ccdn_forum_admin.post.posted_by: 'Posted by '
-ccdn_forum_admin.actioned_at: ' at '
-ccdn_forum_admin.info.not_applicable: 'N/A'
