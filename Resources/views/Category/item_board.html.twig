@@ -22,7 +22,7 @@
 
 			<a href="{{- path('ccdn_forum_forum_board_show', {'boardId': board.getId }) -}}">{{- board.getName -}}</a><br>
 
-			{{- BBCode(board.getDescription | raw, ccdn_forum_admin.category.index.enable_bb_parser) | raw -}}
+			{{- board.getDescription -}}
 		</td>
 		<td class="center">
 			<span class="label label-info lead" title="{{- board.getCachedTopicCount -}}">

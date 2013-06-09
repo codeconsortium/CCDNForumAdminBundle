@@ -69,7 +69,7 @@ class BoardFormType extends AbstractType
                     'translation_domain' => 'CCDNForumAdminBundle',
                 )
             )
-            ->add('description', 'bb_editor',
+            ->add('description', 'textarea',
                 array(
                     'label'              => 'form.label.board.description',
                     'translation_domain' => 'CCDNForumAdminBundle',
