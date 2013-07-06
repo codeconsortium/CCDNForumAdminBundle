@@ -25,11 +25,9 @@
 		            <input type="submit" class="btn btn-danger disabled" value="{{- 'link.post.delete_hard' |trans({}, 'CCDNForumAdminBundle') -}}" name="submit[hard_delete]" disabled data-responds-disabled="posts">
 		        </div>
 				
-		        {%- if pager.haveToPaginate -%}
-		            <nav class="span6 btn-right paginate">
-		                {{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_post_deleted_show_all_paginated', 'routeParams':{}}) -}}
-		            </nav>
-		        {%- endif -%}
+				<nav class="span6 btn-right paginate">
+					{{- knp_pagination_render(pager) -}}
+				</nav>
 		    </div>
 
 		    <table class="table table-striped table-hover table-compact">
@@ -48,7 +46,7 @@
 		            </tr>
 		        </thead>
 		        <tbody>
-		            {%- for row, post in posts -%}
+		            {%- for row, post in pager.getItems() -%}
 		                <tr>
 		                    <td class="center">
 		                        <input type="checkbox" id="post_[{{- post.id -}}]" name="check_[{{- post.id -}}]" data-check-all-responds="true" data-identifier="posts">
@@ -120,14 +118,11 @@
 		        </tbody>
 		    </table>
 
-	        {%- if pager.haveToPaginate -%}
-			    <div class="btn-toolbar">
-		            <nav class="span12 btn-right paginate">
-		                {{- pagerfanta(pager, 'twitter_bootstrap_compact', {'routeName':'ccdn_forum_admin_post_deleted_show_all_paginated', 'routeParams':{}}) -}}
-					</nav>
-			    </div>
-	        {%- endif -%}
-
+			<div class="btn-toolbar">
+				<nav class="span12 btn-right paginate">
+					{{- knp_pagination_render(pager) -}}
+				</nav>
+			</div>
 	    </form>
 	</section>
 

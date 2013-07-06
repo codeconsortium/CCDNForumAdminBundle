@@ -35,13 +35,14 @@ class PostController extends PostBaseController
      * Display a list of locked posts (locked from editing)
      *
      * @access public
-     * @param  int            $page
      * @return RenderResponse
      */
-    public function showLockedAction($page)
+    public function showLockedAction()
     {
         $this->isAuthorised('ROLE_MODERATOR');
 
+		$page = $this->getQuery('page', 1);
+		
         $postsPager = $this->getPostManager()->findLockedPostsForModeratorsPaginated($page);
 
         // setup crumb trail.
@@ -51,7 +52,7 @@ class PostController extends PostBaseController
         return $this->renderResponse('CCDNForumAdminBundle:Post:show_locked.html.',
 			array(
 	            'crumbs' => $crumbs,
-	            'posts' => $postsPager,
+	            //'posts' => $postsPager,
 	            'pager' => $postsPager,
 	        )
 		);
@@ -62,13 +63,14 @@ class PostController extends PostBaseController
      * Display a list of deleted posts.
      *
      * @access public
-     * @param  int            $page
      * @return RenderResponse
      */
-    public function showDeletedAction($page)
+    public function showDeletedAction()
     {
         $this->isAuthorised('ROLE_ADMIN');
 
+		$page = $this->getQuery('page', 1);
+		
         $postsPager = $this->getPostManager()->findDeletedPostsForAdminsPaginated($page);
 
         // setup crumb trail.
@@ -78,7 +80,7 @@ class PostController extends PostBaseController
         return $this->renderResponse('CCDNForumAdminBundle:Post:show_deleted.html.',
 			array(
 	            'crumbs' => $crumbs,
-	            'posts' => $postsPager,
+	            //'posts' => $postsPager,
 	            'pager' => $postsPager,
 	        )
 		);

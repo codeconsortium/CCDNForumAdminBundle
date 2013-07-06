@@ -66,11 +66,7 @@ ccdn_forum_admin_board_priority_move_down:
 #
 ccdn_forum_admin_topic_deleted_show_all:
     pattern: /{_locale}/admin/forum/topics/deleted/show
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en, page: 1 }
-
-ccdn_forum_admin_topic_deleted_show_all_paginated:
-    pattern: /{_locale}/admin/forum/topics/deleted/show/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showDeleted, _locale: en }
 
 ccdn_forum_admin_topic_deleted_bulk_action:
     pattern: /{_locale}/admin/forum/topics/deleted/bulk/action
@@ -78,11 +74,7 @@ ccdn_forum_admin_topic_deleted_bulk_action:
 
 ccdn_forum_admin_topic_closed_show_all:
     pattern: /{_locale}/admin/forum/topic/show/closed
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
-
-ccdn_forum_admin_topic_closed_show_all_paginated:
-    pattern: /{_locale}/admin/forum/topic/show/closed/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Topic:showClosed, _locale: en }
 
 ccdn_forum_admin_topic_closed_bulk_action:
     pattern: /{_locale}/admin/forum/topic/closed/action/checked
@@ -93,11 +85,7 @@ ccdn_forum_admin_topic_closed_bulk_action:
 #
 ccdn_forum_admin_post_deleted_show_all:
     pattern: /{_locale}/admin/forum/posts/deleted/show
-    defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en, page: 1 }
-
-ccdn_forum_admin_post_deleted_show_all_paginated:
-    pattern: /{_locale}/admin/forum/posts/deleted/show/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Post:showDeleted, _locale: en }
 
 ccdn_forum_admin_post_deleted_bulk_action:
     pattern: /{_locale}/admin/forum/posts/deleted/bulk/action
@@ -105,11 +93,7 @@ ccdn_forum_admin_post_deleted_bulk_action:
 
 ccdn_forum_admin_post_locked_show_all:
     pattern: /{_locale}/admin/forum/post/show/locked
-    defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en, page: 1 }
-
-ccdn_forum_admin_post_locked_show_all_paginated:
-    pattern: /{_locale}/admin/forum/post/show/locked/page/{page}
-    defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en, page: 1 }
+    defaults: { _controller: CCDNForumAdminBundle:Post:showLocked, _locale: en }
 
 ccdn_forum_admin_post_locked_bulk_action:
     pattern: /{_locale}/admin/forum/post/locked/action/checked

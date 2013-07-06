@@ -51,7 +51,7 @@ class TopicController extends TopicBaseController
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_closed.html.',
             array(
                 'crumbs' => $crumbs,
-                'topics' => $topicsPager,
+                //'topics' => $topicsPager,
                 'pager' => $topicsPager,
             )
         );
@@ -78,7 +78,7 @@ class TopicController extends TopicBaseController
         return $this->renderResponse('CCDNForumAdminBundle:Topic:show_deleted.html.',
             array(
                 'crumbs' => $crumbs,
-                'topics' => $topicsPager,
+                //'topics' => $topicsPager,
                 'pager' => $topicsPager,
             )
         );
